@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13160D11C5BE6098856AABE3 /* Pods_Smilie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3791D516D54B602DBD18D80F /* Pods_Smilie.framework */; };
 		850948BC1DD60E5200B080CD /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850948BB1DD60E5200B080CD /* Checkbox.swift */; };
 		85781AAA1DD63F32008EE778 /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */; };
 		8588C6901DC8DC82000979EF /* UIImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C68F1DC8DC82000979EF /* UIImageHelper.m */; };
@@ -31,13 +32,13 @@
 		85EA589F1DCE27F700749AEC /* MyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA589E1DCE27F700749AEC /* MyImage.swift */; };
 		85EA58A11DCE2B9500749AEC /* MyCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA58A01DCE2B9500749AEC /* MyCamera.swift */; };
 		85EA58A31DCE31A000749AEC /* SmileDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA58A21DCE31A000749AEC /* SmileDetector.swift */; };
-		99C52EC255079B8906F5AD3C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F938039F0A084A31CBBDC97 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		050C91AF170E955927B5FCBD /* Pods-Smilie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smilie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smilie/Pods-Smilie.release.xcconfig"; sourceTree = "<group>"; };
 		2F938039F0A084A31CBBDC97 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4BB96AEF8546D9A980136043 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		7893CA43466E619E529F1C2A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		3791D516D54B602DBD18D80F /* Pods_Smilie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smilie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E7E125B4DD9943456933D25 /* Pods-Smilie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smilie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smilie/Pods-Smilie.debug.xcconfig"; sourceTree = "<group>"; };
 		850948BB1DD60E5200B080CD /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
 		8588C68D1DC8DBF2000979EF /* Smilie-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Smilie-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -73,18 +74,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99C52EC255079B8906F5AD3C /* Pods.framework in Frameworks */,
+				13160D11C5BE6098856AABE3 /* Pods_Smilie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		031A77B3BD86F54FB771FD19 /* Pods */ = {
+		0A565E311B4B32EE4D53FC7A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7893CA43466E619E529F1C2A /* Pods.debug.xcconfig */,
-				4BB96AEF8546D9A980136043 /* Pods.release.xcconfig */,
+				6E7E125B4DD9943456933D25 /* Pods-Smilie.debug.xcconfig */,
+				050C91AF170E955927B5FCBD /* Pods-Smilie.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -93,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				2F938039F0A084A31CBBDC97 /* Pods.framework */,
+				3791D516D54B602DBD18D80F /* Pods_Smilie.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -102,8 +104,8 @@
 			children = (
 				85DB11011DC7516C00AFCCD0 /* Smilie */,
 				85DB11001DC7516C00AFCCD0 /* Products */,
-				031A77B3BD86F54FB771FD19 /* Pods */,
 				3D3726369D85216CCAF17E57 /* Frameworks */,
+				0A565E311B4B32EE4D53FC7A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,12 +174,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85DB11111DC7516C00AFCCD0 /* Build configuration list for PBXNativeTarget "Smilie" */;
 			buildPhases = (
-				64513CC0C6C90AFCF9779384 /* Check Pods Manifest.lock */,
+				C55126EAA8AC6A5198CB933C /* [CP] Check Pods Manifest.lock */,
 				85DB10FB1DC7516C00AFCCD0 /* Sources */,
 				85DB10FC1DC7516C00AFCCD0 /* Frameworks */,
 				85DB10FD1DC7516C00AFCCD0 /* Resources */,
-				07540A4F9E2D0F66B2C00BBB /* Embed Pods Frameworks */,
-				8EB62A1D429570E7E1AB3CA6 /* Copy Pods Resources */,
+				85F63904F498FB1C488AFDFF /* [CP] Embed Pods Frameworks */,
+				AAD7EB525C30479DD67B6966 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -237,49 +239,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		07540A4F9E2D0F66B2C00BBB /* Embed Pods Frameworks */ = {
+		85F63904F498FB1C488AFDFF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Smilie/Pods-Smilie-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		64513CC0C6C90AFCF9779384 /* Check Pods Manifest.lock */ = {
+		AAD7EB525C30479DD67B6966 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Smilie/Pods-Smilie-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8EB62A1D429570E7E1AB3CA6 /* Copy Pods Resources */ = {
+		C55126EAA8AC6A5198CB933C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -418,7 +420,7 @@
 		};
 		85DB11121DC7516C00AFCCD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7893CA43466E619E529F1C2A /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 6E7E125B4DD9943456933D25 /* Pods-Smilie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -434,7 +436,7 @@
 		};
 		85DB11131DC7516C00AFCCD0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4BB96AEF8546D9A980136043 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 050C91AF170E955927B5FCBD /* Pods-Smilie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

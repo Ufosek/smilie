@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Million smiles gallery-->
@@ -110,6 +111,31 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gI6-Ce-onw">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smile_test" translatesAutoresizingMaskIntoConstraints="NO" id="omN-B7-89v">
+                                <rect key="frame" x="15" y="15" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="Kxf-kX-b4B"/>
+                                    <constraint firstAttribute="height" constant="75" id="XHo-ld-lDV"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#0000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6b-1O-ehj" customClass="SACountingLabel" customModule="SACountingLabel">
+                                <rect key="frame" x="95" y="38" width="111.5" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="gIb-6d-FpZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NICE!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeH-pk-g7R">
+                                <rect key="frame" x="260.5" y="280.5" width="79.5" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="vuV-6z-G7l"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" red="0.8862745098" green="0.95294117649999999" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t88-gt-kiK">
                                 <rect key="frame" x="20" y="530" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.8862745098" green="0.95294117649999999" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -172,17 +198,23 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="IeH-pk-g7R" firstAttribute="centerX" secondItem="wQ8-BH-lQo" secondAttribute="centerX" id="5Th-HG-0bb"/>
+                            <constraint firstItem="b6b-1O-ehj" firstAttribute="centerY" secondItem="omN-B7-89v" secondAttribute="centerY" id="8bW-X1-GiH"/>
                             <constraint firstAttribute="trailing" secondItem="0TS-ld-bgl" secondAttribute="trailing" constant="14" id="BJd-XY-ijW"/>
                             <constraint firstItem="gI6-Ce-onw" firstAttribute="top" secondItem="wQ8-BH-lQo" secondAttribute="top" id="DcU-9H-DMi"/>
                             <constraint firstAttribute="trailing" secondItem="jUt-Du-bFS" secondAttribute="trailing" id="FVM-xX-vda"/>
+                            <constraint firstItem="b6b-1O-ehj" firstAttribute="leading" secondItem="omN-B7-89v" secondAttribute="trailing" constant="5" id="I6X-g5-DIN"/>
+                            <constraint firstItem="omN-B7-89v" firstAttribute="leading" secondItem="wQ8-BH-lQo" secondAttribute="leading" constant="15" id="JTT-RG-azd"/>
                             <constraint firstAttribute="trailing" secondItem="gI6-Ce-onw" secondAttribute="trailing" id="L9X-uM-Rqj"/>
                             <constraint firstItem="gI6-Ce-onw" firstAttribute="leading" secondItem="wQ8-BH-lQo" secondAttribute="leading" id="QdF-W3-1c9"/>
                             <constraint firstItem="qTy-V7-T4k" firstAttribute="top" secondItem="jUt-Du-bFS" secondAttribute="bottom" id="UsE-gX-Kfu"/>
                             <constraint firstItem="qTy-V7-T4k" firstAttribute="top" secondItem="t88-gt-kiK" secondAttribute="bottom" constant="20" id="a9w-zn-WrJ"/>
+                            <constraint firstItem="IeH-pk-g7R" firstAttribute="centerY" secondItem="wQ8-BH-lQo" secondAttribute="centerY" id="dvw-Ci-QMS"/>
                             <constraint firstItem="jUt-Du-bFS" firstAttribute="leading" secondItem="wQ8-BH-lQo" secondAttribute="leading" id="i5v-cV-NIE"/>
                             <constraint firstItem="t88-gt-kiK" firstAttribute="leading" secondItem="wQ8-BH-lQo" secondAttribute="leading" constant="20" id="it7-3a-3eS"/>
                             <constraint firstItem="JV1-Rg-i6m" firstAttribute="centerX" secondItem="0TS-ld-bgl" secondAttribute="centerX" id="j1N-RQ-bK2"/>
                             <constraint firstItem="jUt-Du-bFS" firstAttribute="top" secondItem="wQ8-BH-lQo" secondAttribute="top" id="jAr-Pf-WTf"/>
+                            <constraint firstItem="omN-B7-89v" firstAttribute="top" secondItem="wQ8-BH-lQo" secondAttribute="topMargin" constant="15" id="kiX-sI-jhZ"/>
                             <constraint firstItem="L1y-oj-rHP" firstAttribute="top" secondItem="ohI-wo-wcq" secondAttribute="bottom" id="ljm-g5-WXL"/>
                             <constraint firstItem="L1y-oj-rHP" firstAttribute="centerX" secondItem="wQ8-BH-lQo" secondAttribute="centerX" id="seO-R4-d3n"/>
                             <constraint firstItem="qTy-V7-T4k" firstAttribute="top" secondItem="gI6-Ce-onw" secondAttribute="bottom" id="sh9-c8-KcJ"/>
@@ -192,9 +224,11 @@
                     </view>
                     <connections>
                         <outlet property="imageProcessingLoadingView" destination="jUt-Du-bFS" id="ie7-zq-lBW"/>
+                        <outlet property="numberLabel" destination="b6b-1O-ehj" id="cvP-LD-h6C"/>
                         <outlet property="photoImageView" destination="gI6-Ce-onw" id="2ZL-Qi-BGw"/>
                         <outlet property="probabilityLabel" destination="L1y-oj-rHP" id="bfG-gU-kSI"/>
                         <outlet property="shareAnimView" destination="JV1-Rg-i6m" id="4QK-eI-Etl"/>
+                        <outlet property="yellLabel" destination="IeH-pk-g7R" id="fdX-L9-SNL"/>
                         <segue destination="c4F-NV-Bor" kind="custom" identifier="Share" customClass="ReplaceFadeSegue" customModule="Smilie" customModuleProvider="target" id="sM6-ee-vNQ"/>
                     </connections>
                 </viewController>
@@ -345,4 +379,7 @@
             <point key="canvasLocation" x="360" y="-566"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="smile_test" width="100" height="100"/>
+    </resources>
 </document>

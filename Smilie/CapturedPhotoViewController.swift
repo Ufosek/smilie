@@ -8,7 +8,7 @@
 
 import UIKit
 import GPUImage
-
+import SACountingLabel
 
 class CapturedPhotoViewController: ViewController {
 
@@ -18,6 +18,8 @@ class CapturedPhotoViewController: ViewController {
     @IBOutlet weak var imageProcessingLoadingView: UIView!
     @IBOutlet weak var shareAnimView: UIView!
     
+    @IBOutlet weak var numberLabel: SACountingLabel!
+    @IBOutlet weak var yellLabel: UILabel!
     //
     
     private var isProcessingImage: Bool = false
@@ -42,33 +44,21 @@ class CapturedPhotoViewController: ViewController {
             self.probabilityLabel.text = "Prawdopodobieństwo uśmiechu = \(NSString(format: "%.2f", probability))"
         }
         
-        
         // processing image
+        self.processImage()
         
-        self.isProcessingImage = true
-        
-        self.filteredImage = self.image
-        
-        // filter image
-        workInBackground({
-            // set size
-            self.filteredImage = self.sizeImage(self.filteredImage)
-            // add filters
-            self.filteredImage = self.filterImage(self.filteredImage)
-            // add images and texts
-            self.filteredImage = self.addMaskOnImage(self.filteredImage)
-        }) {
-            self.isProcessingImage = false
-            
-            self.photoImageView.image = self.filteredImage
-            self.imageProcessingLoadingView.hidden = true
-        }
-        
+        // init yell text
+        let yells = ["Nice!", "That is great!", ":)))", "Give me more", "ENDORPHINE++", "Keep on smiling"]
+        let rand = Int(arc4random_uniform(UInt32(yells.count)))
+        self.yellLabel.text = yells[rand]
     }
     
     override func viewDidFirstAppear() {
         self.shareAnimView.hidden = true
         self.shareAnimView.transform = CGAffineTransformMakeScale(1, 1)
+        
+        self.animateNumber()
+        self.showYell()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -82,9 +72,53 @@ class CapturedPhotoViewController: ViewController {
             self.shareAnimView.hidden = true
         }
     }
-
-
+    
+    //
+    
+    
+    func showYell() {
+        self.yellLabel.alpha = 1
+        // show insructions
+        
+        UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.yellLabel.alpha = 0.0
+            self.yellLabel.transform = CGAffineTransformMakeScale(3, 3)
+            }, completion: { (completed) in
+        })
+    }
+    
+    var num = 0
+    
+    func animateNumber() {
+        let currentNumber = 1204
+        
+        numberLabel.countFrom(0, to: Float(currentNumber), withDuration: 2.0, andAnimationType: SACountingLabel.AnimationType.EaseInOut, andCountingType: SACountingLabel.CountingType.Int)
+    }
+    
+    
     // Image processing
+    
+    func processImage() {
+        self.isProcessingImage = true
+        
+        self.filteredImage = self.image
+        
+        // filter image
+        workInBackground({
+            // set size
+            self.filteredImage = self.sizeImage(self.filteredImage)
+            // add filters
+            self.filteredImage = self.filterImage(self.filteredImage)
+            // add images and texts
+            // self.filteredImage = self.addMaskOnImage(self.filteredImage)
+        }) {
+            self.isProcessingImage = false
+            
+            self.photoImageView.image = self.filteredImage
+            self.imageProcessingLoadingView.hidden = true
+        }
+    }
+
     func sizeImage(image: UIImage) -> UIImage {
         log("self.view.bounds = \(self.view.bounds)")
         log("image size = \(image.size)")
@@ -116,23 +150,7 @@ class CapturedPhotoViewController: ViewController {
     }
     
     
-    func addMaskOnImage(image: UIImage) -> UIImage {
-        let mask = UIImage(named: "smile_test")!
-    
-        let textFont = UIFont(name: "Helvetica Bold", size: 45)!
-        
-        // Setup the font attributes that will be later used to dictate how the text should be drawn
-        let textFontAttributes = [
-            NSFontAttributeName: textFont,
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
-        ]
-        
-        var newImage = image.imageWithMask(mask, atLocation: CGPointMake(30, 30), withSize: CGSizeMake(150, 150))
-        newImage = newImage.imageWithText("#0009", atLocation: CGPointMake(190, 150/2), withAttributes: textFontAttributes)
-        
-        return newImage
-    }
-    
+
     
     
     // Actions

@@ -18,6 +18,8 @@ PODS:
     - GoogleSymbolUtilities (~> 1.1)
   - GPUImage (0.1.7)
   - MBProgressHUD (0.9.2)
+  - NVActivityIndicatorView (2.12)
+  - SACountingLabel (0.1.1)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -30,14 +32,22 @@ DEPENDENCIES:
   - GoogleMobileVision/FaceDetector
   - GPUImage (~> 0.1)
   - MBProgressHUD (~> 0.9.1)
+  - NVActivityIndicatorView (from `https://github.com/ninjaprox/NVActivityIndicatorView.git`, branch `swift2.3`)
+  - SACountingLabel
   - SDWebImage
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
+  NVActivityIndicatorView:
+    :branch: swift2.3
+    :git: https://github.com/ninjaprox/NVActivityIndicatorView.git
   SwiftyJSON:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
+  NVActivityIndicatorView:
+    :commit: ac4325492550b9ec9516e3a9b6e28b2c07faa1c6
+    :git: https://github.com/ninjaprox/NVActivityIndicatorView.git
   SwiftyJSON:
     :commit: ffbc7e4b8ee0e9ec76966007e7a7bef659aea284
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
@@ -53,7 +63,11 @@ SPEC CHECKSUMS:
   GoogleUtilities: 8bbc733218aad26306f9d4a253823986110e3358
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  NVActivityIndicatorView: de8be03826726ad99cdfacf7fe09e88cbfeef911
+  SACountingLabel: 6b0c2a177b77e65ea63772e50f4d4285bb6d5a71
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 1d39052373c4944f6466a22d949385485c6ac7c5
+
+COCOAPODS: 1.1.1
