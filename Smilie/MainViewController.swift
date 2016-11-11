@@ -15,6 +15,7 @@ class MainViewController: ViewController {
     
     //
     
+    @IBOutlet weak var keepOnSmilingLabel: UILabel!
     @IBOutlet weak var cameraPreviewView: UIView!
     
     //
@@ -28,6 +29,8 @@ class MainViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        log("viewDidLoad")
+        
         self.smileDetector = SmileDetector()
         
         self.camera = MyCamera()
@@ -36,11 +39,16 @@ class MainViewController: ViewController {
                 self.smileDetector.detectSmile(image, smileDetected: { (probability) in
                     // make photo when smile detected
                     if(probability > self.SMILE_PROBABILITY_TRESHOLD) {
-                        self.camera.makePhoto({ (photoImage) in
-                            self.performSegueWithIdentifier("ShowPhoto", withCompletion: { (destVc) in
-                                (destVc as! CapturedPhotoViewController).image = photoImage
+                        // only 1 photo at once
+                        if(self.photoMade == false) {
+                            self.camera.makePhoto({ (photoImage) in
+                                self.photoMade = true
+                                // move to next vc
+                                self.performSegueWithIdentifier("ShowPhoto", withCompletion: { (destVc) in
+                                    (destVc as! CapturedPhotoViewController).image = photoImage
+                                })
                             })
-                        })
+                        }
                     }
                 })
             }
@@ -48,8 +56,16 @@ class MainViewController: ViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.keepOnSmilingLabel.alpha = 0.0
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        log("DID APPEAR")
         
         self.photoMade = false
         
@@ -60,14 +76,27 @@ class MainViewController: ViewController {
         }) {
             self.showErrorView("No permissions")
         }
+        
+        // show insructions
+        UIView.animateWithDuration(1.0, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.keepOnSmilingLabel.alpha = 1.0
+        }, completion: { (completed) in
+            // hide
+            UIView.animateWithDuration(1.0, delay: 2.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                self.keepOnSmilingLabel.alpha = 0.0
+            }, completion: nil)
+        })
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         
         camera.stop()
     }
 
+    @IBAction func galleryClicked(sender: AnyObject) {
+        self.performSegueWithIdentifier("ShowGallery", sender: self)
+    }
 
 
 }

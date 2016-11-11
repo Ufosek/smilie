@@ -50,6 +50,23 @@ func delay(time: Int, withCompletion completion: () -> ()) {
 
 
 //
+
+
+// do smth in background threads (queues)
+func workInBackground(work: (()->())?, completed: (()->())?) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        // do the time consuming work
+        work?()
+        
+        // complete in main queue (thread)
+        dispatch_async(dispatch_get_main_queue(), { 
+            completed?()
+        })
+    }
+}
+
+
+//
 let degreesToRadians: (CGFloat) -> CGFloat = {
     return $0 / 180.0 * CGFloat(M_PI)
 }

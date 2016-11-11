@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		850948BC1DD60E5200B080CD /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850948BB1DD60E5200B080CD /* Checkbox.swift */; };
+		85781AAA1DD63F32008EE778 /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */; };
 		8588C6901DC8DC82000979EF /* UIImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C68F1DC8DC82000979EF /* UIImageHelper.m */; };
 		85B39B2E1DCE3A6600427350 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B2D1DCE3A6600427350 /* CircleImageView.swift */; };
 		85B39B321DCE3AD500427350 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B311DCE3AD500427350 /* AppDelegate.swift */; };
 		85B39B341DCE3B3300427350 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B331DCE3B3300427350 /* MainViewController.swift */; };
+		85B39B361DCE449300427350 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B351DCE449300427350 /* ShareViewController.swift */; };
+		85B39B381DCE471100427350 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B371DCE471100427350 /* GalleryViewController.swift */; };
 		85DB11081DC7516C00AFCCD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85DB11061DC7516C00AFCCD0 /* Main.storyboard */; };
 		85DB110A1DC7516C00AFCCD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85DB11091DC7516C00AFCCD0 /* Assets.xcassets */; };
 		85DB110D1DC7516C00AFCCD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85DB110B1DC7516C00AFCCD0 /* LaunchScreen.storyboard */; };
@@ -34,12 +38,16 @@
 		2F938039F0A084A31CBBDC97 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BB96AEF8546D9A980136043 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7893CA43466E619E529F1C2A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		850948BB1DD60E5200B080CD /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
 		8588C68D1DC8DBF2000979EF /* Smilie-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Smilie-Bridging-Header.h"; sourceTree = "<group>"; };
 		8588C68E1DC8DC70000979EF /* UIImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageHelper.h; sourceTree = "<group>"; };
 		8588C68F1DC8DC82000979EF /* UIImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageHelper.m; sourceTree = "<group>"; };
 		85B39B2D1DCE3A6600427350 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		85B39B311DCE3AD500427350 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85B39B331DCE3B3300427350 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		85B39B351DCE449300427350 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		85B39B371DCE471100427350 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		85DB10FF1DC7516C00AFCCD0 /* Smilie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smilie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85DB11071DC7516C00AFCCD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		85DB11091DC7516C00AFCCD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,6 +118,7 @@
 		85DB11011DC7516C00AFCCD0 /* Smilie */ = {
 			isa = PBXGroup;
 			children = (
+				85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */,
 				85DB11231DC76E2200AFCCD0 /* views */,
 				85DB11141DC7687F00AFCCD0 /* lib */,
 				85DB11091DC7516C00AFCCD0 /* Assets.xcassets */,
@@ -120,6 +129,8 @@
 				85EA58A01DCE2B9500749AEC /* MyCamera.swift */,
 				85EA58A21DCE31A000749AEC /* SmileDetector.swift */,
 				85B39B331DCE3B3300427350 /* MainViewController.swift */,
+				85B39B351DCE449300427350 /* ShareViewController.swift */,
+				85B39B371DCE471100427350 /* GalleryViewController.swift */,
 			);
 			path = Smilie;
 			sourceTree = "<group>";
@@ -127,6 +138,7 @@
 		85DB11141DC7687F00AFCCD0 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				850948BB1DD60E5200B080CD /* Checkbox.swift */,
 				85B39B2D1DCE3A6600427350 /* CircleImageView.swift */,
 				85EA589C1DCE1FED00749AEC /* MySegues.swift */,
 				85DB111D1DC769CD00AFCCD0 /* Colors.swift */,
@@ -218,6 +230,7 @@
 				85DB110A1DC7516C00AFCCD0 /* Assets.xcassets in Resources */,
 				85DB11081DC7516C00AFCCD0 /* Main.storyboard in Resources */,
 				85DB11201DC76AC400AFCCD0 /* CameraView.xib in Resources */,
+				85781AAA1DD63F32008EE778 /* lookup_miss_etikate.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +297,7 @@
 				85DB11271DC7860400AFCCD0 /* CapturedPhotoViewController.swift in Sources */,
 				85DB111E1DC769CD00AFCCD0 /* Colors.swift in Sources */,
 				85B39B341DCE3B3300427350 /* MainViewController.swift in Sources */,
+				850948BC1DD60E5200B080CD /* Checkbox.swift in Sources */,
 				85B39B321DCE3AD500427350 /* AppDelegate.swift in Sources */,
 				85DB111A1DC769A000AFCCD0 /* NibView.swift in Sources */,
 				85EA589F1DCE27F700749AEC /* MyImage.swift in Sources */,
@@ -291,7 +305,9 @@
 				85DB11221DC76AD600AFCCD0 /* CameraView.swift in Sources */,
 				85EA58A31DCE31A000749AEC /* SmileDetector.swift in Sources */,
 				85DB11251DC77E5E00AFCCD0 /* CameraViewController.swift in Sources */,
+				85B39B381DCE471100427350 /* GalleryViewController.swift in Sources */,
 				85EA589D1DCE1FED00749AEC /* MySegues.swift in Sources */,
+				85B39B361DCE449300427350 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,5 +9,6 @@ pod 'Fabric'
 pod 'Crashlytics'
 pod 'SDWebImage'
 pod 'GoogleMobileVision/FaceDetector'
+pod 'GPUImage', '~> 0.1'
 
 link_with 'Smilie'

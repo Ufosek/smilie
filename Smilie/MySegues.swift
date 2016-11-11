@@ -14,14 +14,14 @@ import UIKit
 
 
 // Custom segue which sets destinationVC as child VC to sourceVC
-class ReplaceSegue: UIStoryboardSegue {
+class ReplaceFadeSegue: UIStoryboardSegue {
     
     override func perform() {
         let sourceViewController: UIViewController = self.sourceViewController
         let destinationViewController: UIViewController = self.destinationViewController
         
         let transition = CATransition()
-        transition.duration = 0.3
+        transition.duration = 0.0
         transition.type = kCATransitionFade
         
         sourceViewController.view.window?.layer.addAnimation(transition, forKey:kCATransition)
@@ -29,6 +29,15 @@ class ReplaceSegue: UIStoryboardSegue {
     }
 }
 
+
+class ReplaceSegue: UIStoryboardSegue {
+    
+    override func perform() {
+        let sourceViewController: UIViewController = self.sourceViewController
+        let destinationViewController: UIViewController = self.destinationViewController
+        sourceViewController.presentViewController(destinationViewController, animated: false, completion: nil)
+    }
+}
 //
 
 class AddChildSegue: UIStoryboardSegue {

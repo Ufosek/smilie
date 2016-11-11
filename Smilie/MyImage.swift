@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GPUImage
 
 
 extension UIImage {
@@ -130,6 +131,84 @@ extension UIImage {
         
         return newImage
     }
+
+    
+    // --
+    // ALL TAKS HAVE TO BE EXECUTED IN BACKGROUND THREAD!
+    // --
+    
+    func imageWithSize(size: CGSize) -> UIImage {
+        UIGraphicsBeginImageContext(size)
+        self.drawInRect(CGRectMake(0, 0, size.width, size.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
+    // width would be calculated from ratio
+    func imageWithWidth(width: CGFloat) -> UIImage {
+        
+        let ratio = self.size.width / self.size.height
+        let height = width * ratio
+
+        return imageWithSize(CGSizeMake(width, height))
+    }
+    
+    // height would be calculated from ratio
+    func imageWithHeight(height: CGFloat) -> UIImage {
+        
+        let ratio = self.size.width / self.size.height
+        let width = height * ratio
+        
+        return imageWithSize(CGSizeMake(width, height))
+    }
+    
+    
+    // fragment of image
+    func imageCropped(crop: CGRect) -> UIImage {
+        return UIImage(CGImage: CGImageCreateWithImageInRect(self.CGImage, crop)!)
+    }
+    
+    
+    
+    // examples of filter and mask
+    func imageWithFilter(filter: GPUImageInput) -> UIImage {
+        let imagePicture = GPUImagePicture(image: self)
+        imagePicture.addTarget(filter)
+        (filter as? GPUImageOutput)?.useNextFrameForImageCapture()
+        imagePicture.processImage()
+        let image = (filter as? GPUImageOutput)!.imageFromCurrentFramebuffer()
+        
+        return image
+    }
+    
+    func imageWithMask(mask: UIImage, atLocation location: CGPoint, withSize size: CGSize?) -> UIImage {
+        let maskSize = size != nil ? size! : mask.size
+        
+        UIGraphicsBeginImageContext(self.size)
+
+        self.drawInRect(CGRectMake(0, 0, self.size.width, self.size.height))
+        mask.drawInRect(CGRectMake(location.x, location.y, maskSize.width, maskSize.height))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
+    func imageWithText(text: String, atLocation location: CGPoint, withAttributes attributes: [String : AnyObject]?=nil) -> UIImage {
+        UIGraphicsBeginImageContext(self.size)
+        
+        self.drawInRect(CGRectMake(0, 0, self.size.width, self.size.height))
+        NSString(string: text).drawAtPoint(location, withAttributes: attributes)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
 }
 
 
