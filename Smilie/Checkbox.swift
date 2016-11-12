@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Checkbox: UIButton {
+class Checkbox: BounceButton {
 
     var delegate: CheckboxDelegate?
     

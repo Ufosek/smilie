@@ -12,6 +12,12 @@ import SACountingLabel
 
 class CapturedPhotoViewController: ViewController {
 
+    
+    private let NUMBER_ANIM_TIME: NSTimeInterval = 1.0
+    
+    
+    //
+    
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var probabilityLabel: UILabel!
     
@@ -92,7 +98,7 @@ class CapturedPhotoViewController: ViewController {
     func animateNumber() {
         let currentNumber = 1204
         
-        numberLabel.countFrom(0, to: Float(currentNumber), withDuration: 2.0, andAnimationType: SACountingLabel.AnimationType.EaseInOut, andCountingType: SACountingLabel.CountingType.Int)
+        numberLabel.countFrom(0, to: Float(currentNumber), withDuration: NUMBER_ANIM_TIME, andAnimationType: SACountingLabel.AnimationType.EaseInOut, andCountingType: SACountingLabel.CountingType.Int)
     }
     
     

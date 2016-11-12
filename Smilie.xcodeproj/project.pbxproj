@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		13160D11C5BE6098856AABE3 /* Pods_Smilie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3791D516D54B602DBD18D80F /* Pods_Smilie.framework */; };
 		850948BC1DD60E5200B080CD /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850948BB1DD60E5200B080CD /* Checkbox.swift */; };
+		853255221DD74C3B00EDF3DE /* DurationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853255211DD74C3B00EDF3DE /* DurationTimer.swift */; };
+		853255241DD7567200EDF3DE /* BounceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853255231DD7567200EDF3DE /* BounceButton.swift */; };
 		85781AAA1DD63F32008EE778 /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */; };
 		8588C6901DC8DC82000979EF /* UIImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C68F1DC8DC82000979EF /* UIImageHelper.m */; };
 		85B39B2E1DCE3A6600427350 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B2D1DCE3A6600427350 /* CircleImageView.swift */; };
@@ -40,6 +42,8 @@
 		3791D516D54B602DBD18D80F /* Pods_Smilie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smilie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E7E125B4DD9943456933D25 /* Pods-Smilie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smilie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smilie/Pods-Smilie.debug.xcconfig"; sourceTree = "<group>"; };
 		850948BB1DD60E5200B080CD /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		853255211DD74C3B00EDF3DE /* DurationTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationTimer.swift; sourceTree = "<group>"; };
+		853255231DD7567200EDF3DE /* BounceButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceButton.swift; sourceTree = "<group>"; };
 		85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
 		8588C68D1DC8DBF2000979EF /* Smilie-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Smilie-Bridging-Header.h"; sourceTree = "<group>"; };
 		8588C68E1DC8DC70000979EF /* UIImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageHelper.h; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 				8588C68E1DC8DC70000979EF /* UIImageHelper.h */,
 				8588C68F1DC8DC82000979EF /* UIImageHelper.m */,
 				85EA589E1DCE27F700749AEC /* MyImage.swift */,
+				853255211DD74C3B00EDF3DE /* DurationTimer.swift */,
+				853255231DD7567200EDF3DE /* BounceButton.swift */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -296,6 +302,7 @@
 				85DB11191DC769A000AFCCD0 /* MyView.swift in Sources */,
 				85DB11161DC7692600AFCCD0 /* ViewController.swift in Sources */,
 				8588C6901DC8DC82000979EF /* UIImageHelper.m in Sources */,
+				853255241DD7567200EDF3DE /* BounceButton.swift in Sources */,
 				85DB11271DC7860400AFCCD0 /* CapturedPhotoViewController.swift in Sources */,
 				85DB111E1DC769CD00AFCCD0 /* Colors.swift in Sources */,
 				85B39B341DCE3B3300427350 /* MainViewController.swift in Sources */,
@@ -304,6 +311,7 @@
 				85DB111A1DC769A000AFCCD0 /* NibView.swift in Sources */,
 				85EA589F1DCE27F700749AEC /* MyImage.swift in Sources */,
 				85DB111C1DC769B800AFCCD0 /* Helper.swift in Sources */,
+				853255221DD74C3B00EDF3DE /* DurationTimer.swift in Sources */,
 				85DB11221DC76AD600AFCCD0 /* CameraView.swift in Sources */,
 				85EA58A31DCE31A000749AEC /* SmileDetector.swift in Sources */,
 				85DB11251DC77E5E00AFCCD0 /* CameraViewController.swift in Sources */,

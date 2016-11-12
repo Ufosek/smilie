@@ -48,7 +48,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOO-4S-h11">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOO-4S-h11" customClass="BounceButton" customModule="Smilie" customModuleProvider="target">
                                 <rect key="frame" x="532" y="40" width="48" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="oLQ-8W-msl"/>
@@ -71,23 +71,40 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgx-um-mbu">
+                                <rect key="frame" x="0.0" y="596" width="0.0" height="4"/>
+                                <color key="backgroundColor" red="0.8862745098" green="0.95294117649999999" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" id="0ku-I8-7Er"/>
+                                    <constraint firstAttribute="height" constant="4" id="130-4R-MzP"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="cgx-um-mbu" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="0QS-I2-hli"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gfr-sh-B0c" secondAttribute="bottom" constant="8" id="5cY-6T-fU6"/>
                             <constraint firstItem="QO6-0w-wff" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CM5-qe-nVO"/>
                             <constraint firstItem="QO6-0w-wff" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Hes-VG-9U1"/>
                             <constraint firstItem="gfr-sh-B0c" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="Mzm-Ct-ZhV"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cgx-um-mbu" secondAttribute="bottom" id="Xy2-ee-oXt"/>
+                            <constraint firstItem="cgx-um-mbu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ZPT-sn-qNz"/>
                             <constraint firstAttribute="trailing" secondItem="FOO-4S-h11" secondAttribute="trailing" constant="20" id="cpb-Xu-rku"/>
                             <constraint firstAttribute="trailing" secondItem="QO6-0w-wff" secondAttribute="trailing" id="hgJ-ch-hp1"/>
                             <constraint firstAttribute="trailing" secondItem="gfr-sh-B0c" secondAttribute="trailing" constant="8" id="mkZ-cv-jv2"/>
                             <constraint firstItem="FOO-4S-h11" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="s7L-1e-m42"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QO6-0w-wff" secondAttribute="bottom" id="ukI-SL-b41"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="0QS-I2-hli"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="cameraPreviewView" destination="QO6-0w-wff" id="kea-gK-cfU"/>
                         <outlet property="keepOnSmilingLabel" destination="gfr-sh-B0c" id="VbT-Eb-ufU"/>
+                        <outlet property="smileTimerWidthCnst" destination="0ku-I8-7Er" id="FTs-qQ-w9M"/>
                         <segue destination="HKd-VQ-e97" kind="custom" identifier="ShowPhoto" customClass="ReplaceSegue" customModule="Smilie" customModuleProvider="target" id="G8A-Dh-cVh"/>
                         <segue destination="nXj-UI-iNF" kind="show" identifier="ShowGallery" id="2AB-CI-qNE"/>
                     </connections>
@@ -136,7 +153,7 @@
                                 <color key="textColor" red="0.8862745098" green="0.95294117649999999" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t88-gt-kiK">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t88-gt-kiK" customClass="BounceButton" customModule="Smilie" customModuleProvider="target">
                                 <rect key="frame" x="20" y="530" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.8862745098" green="0.95294117649999999" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -157,7 +174,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TS-ld-bgl">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TS-ld-bgl" customClass="BounceButton" customModule="Smilie" customModuleProvider="target">
                                 <rect key="frame" x="536" y="530" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.8862745098" green="0.95294117649999999" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -254,7 +271,7 @@
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWN-rt-Uy6">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xq-8b-uHM">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xq-8b-uHM" customClass="BounceButton" customModule="Smilie" customModuleProvider="target">
                                         <rect key="frame" x="285" y="540" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="mSs-5u-qCg"/>
@@ -267,7 +284,7 @@
                                             <action selector="exitClicked:" destination="c4F-NV-Bor" eventType="touchUpInside" id="Vhy-nV-Ifz"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocC-wv-x3e">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocC-wv-x3e" customClass="BounceButton" customModule="Smilie" customModuleProvider="target">
                                         <rect key="frame" x="265" y="435" width="70" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="cNs-wo-k73"/>
