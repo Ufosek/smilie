@@ -129,6 +129,16 @@ extension UIViewController {
     func hideLoadingView() {
         // fill
     }
+    
+    func dismissfadeOut() {
+        // fadeout dismiss
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = kCATransitionFade
+        
+        self.view.window?.layer.addAnimation(transition, forKey:kCATransition)
+        self.dismissViewControllerAnimated(false, completion: nil)
+    }
 }
 
 

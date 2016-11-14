@@ -64,7 +64,7 @@ class ShareViewController: UIViewController, NVActivityIndicatorViewable {
     }
     
     @IBAction func exitClicked(sender: AnyObject) {
-        self.dismissViewControllerAnimated(false, completion: nil)
+        self.dismissfadeOut()
     }
 
 }

@@ -13,6 +13,7 @@
 		853255241DD7567200EDF3DE /* BounceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853255231DD7567200EDF3DE /* BounceButton.swift */; };
 		85781AAA1DD63F32008EE778 /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */; };
 		8588C6901DC8DC82000979EF /* UIImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C68F1DC8DC82000979EF /* UIImageHelper.m */; };
+		85A3B4011DD8E54E007EE252 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A3B4001DD8E54E007EE252 /* DataManager.swift */; };
 		85B39B2E1DCE3A6600427350 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B2D1DCE3A6600427350 /* CircleImageView.swift */; };
 		85B39B321DCE3AD500427350 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B311DCE3AD500427350 /* AppDelegate.swift */; };
 		85B39B341DCE3B3300427350 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B331DCE3B3300427350 /* MainViewController.swift */; };
@@ -34,6 +35,7 @@
 		85EA589F1DCE27F700749AEC /* MyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA589E1DCE27F700749AEC /* MyImage.swift */; };
 		85EA58A11DCE2B9500749AEC /* MyCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA58A01DCE2B9500749AEC /* MyCamera.swift */; };
 		85EA58A31DCE31A000749AEC /* SmileDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA58A21DCE31A000749AEC /* SmileDetector.swift */; };
+		85EB35BF1DD93B84002DED9F /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EB35BE1DD93B84002DED9F /* IntroViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,7 @@
 		8588C68D1DC8DBF2000979EF /* Smilie-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Smilie-Bridging-Header.h"; sourceTree = "<group>"; };
 		8588C68E1DC8DC70000979EF /* UIImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageHelper.h; sourceTree = "<group>"; };
 		8588C68F1DC8DC82000979EF /* UIImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageHelper.m; sourceTree = "<group>"; };
+		85A3B4001DD8E54E007EE252 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		85B39B2D1DCE3A6600427350 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		85B39B311DCE3AD500427350 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85B39B331DCE3B3300427350 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +74,7 @@
 		85EA589E1DCE27F700749AEC /* MyImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImage.swift; sourceTree = "<group>"; };
 		85EA58A01DCE2B9500749AEC /* MyCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCamera.swift; sourceTree = "<group>"; };
 		85EA58A21DCE31A000749AEC /* SmileDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmileDetector.swift; sourceTree = "<group>"; };
+		85EB35BE1DD93B84002DED9F /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,8 @@
 				85B39B331DCE3B3300427350 /* MainViewController.swift */,
 				85B39B351DCE449300427350 /* ShareViewController.swift */,
 				85B39B371DCE471100427350 /* GalleryViewController.swift */,
+				85A3B4001DD8E54E007EE252 /* DataManager.swift */,
+				85EB35BE1DD93B84002DED9F /* IntroViewController.swift */,
 			);
 			path = Smilie;
 			sourceTree = "<group>";
@@ -297,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85EB35BF1DD93B84002DED9F /* IntroViewController.swift in Sources */,
 				85B39B2E1DCE3A6600427350 /* CircleImageView.swift in Sources */,
 				85EA58A11DCE2B9500749AEC /* MyCamera.swift in Sources */,
 				85DB11191DC769A000AFCCD0 /* MyView.swift in Sources */,
@@ -316,6 +323,7 @@
 				85EA58A31DCE31A000749AEC /* SmileDetector.swift in Sources */,
 				85DB11251DC77E5E00AFCCD0 /* CameraViewController.swift in Sources */,
 				85B39B381DCE471100427350 /* GalleryViewController.swift in Sources */,
+				85A3B4011DD8E54E007EE252 /* DataManager.swift in Sources */,
 				85EA589D1DCE1FED00749AEC /* MySegues.swift in Sources */,
 				85B39B361DCE449300427350 /* ShareViewController.swift in Sources */,
 			);

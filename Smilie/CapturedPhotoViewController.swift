@@ -12,13 +12,14 @@ import SACountingLabel
 
 class CapturedPhotoViewController: ViewController {
 
-    
-    private let NUMBER_ANIM_TIME: NSTimeInterval = 1.0
+    private let SHARE_COLOR_VIEW_ANIM_DURATION: NSTimeInterval = 0.4
+    private let NUMBER_ANIM_DURATION: NSTimeInterval = 1.0
     
     
     //
     
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var filteredPhotoImageView: UIImageView!
     @IBOutlet weak var probabilityLabel: UILabel!
     
     @IBOutlet weak var imageProcessingLoadingView: UIView!
@@ -45,7 +46,11 @@ class CapturedPhotoViewController: ViewController {
         
         // set current image without filters in background
         self.photoImageView.image = image
+        self.photoImageView.alpha = 0.0
 
+        // not visible filtered
+        self.filteredPhotoImageView.alpha = 0
+        
         SmileDetector().detectSmile(image) { (probability) in
             self.probabilityLabel.text = "Prawdopodobieństwo uśmiechu = \(NSString(format: "%.2f", probability))"
         }
@@ -65,6 +70,11 @@ class CapturedPhotoViewController: ViewController {
         
         self.animateNumber()
         self.showYell()
+        
+        // show current photo with anim
+        UIView.animateWithDuration(0.5, animations: {
+            self.photoImageView.alpha = 1.0
+        })
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -72,7 +82,7 @@ class CapturedPhotoViewController: ViewController {
         
         self.shareAnimView.hidden = false
         
-        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+        UIView.animateWithDuration(SHARE_COLOR_VIEW_ANIM_DURATION, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             self.shareAnimView.transform = CGAffineTransformMakeScale(1, 1)
         }) { (finished) in
             self.shareAnimView.hidden = true
@@ -96,9 +106,11 @@ class CapturedPhotoViewController: ViewController {
     var num = 0
     
     func animateNumber() {
-        let currentNumber = 1204
+        let currentNumber = DataManager.currentPhotoNumber
         
-        numberLabel.countFrom(0, to: Float(currentNumber), withDuration: NUMBER_ANIM_TIME, andAnimationType: SACountingLabel.AnimationType.EaseInOut, andCountingType: SACountingLabel.CountingType.Int)
+        numberLabel.countFrom(0, to: Float(currentNumber), withDuration: NUMBER_ANIM_DURATION, andAnimationType: SACountingLabel.AnimationType.EaseInOut, andCountingType: SACountingLabel.CountingType.Int)
+        
+        DataManager.incrementCurrentPhotoNumber()
     }
     
     
@@ -119,9 +131,13 @@ class CapturedPhotoViewController: ViewController {
             // self.filteredImage = self.addMaskOnImage(self.filteredImage)
         }) {
             self.isProcessingImage = false
-            
-            self.photoImageView.image = self.filteredImage
             self.imageProcessingLoadingView.hidden = true
+            
+            // show filterd photo
+            self.filteredPhotoImageView.image = self.filteredImage
+            UIView.animateWithDuration(0.5, animations: { 
+                self.filteredPhotoImageView.alpha = 1.0
+            })
         }
     }
 
@@ -160,15 +176,16 @@ class CapturedPhotoViewController: ViewController {
     
     
     // Actions
+    
     @IBAction func backClicked(sender: AnyObject) {
-        self.dismissViewControllerAnimated(false, completion: nil)
+        self.dismissfadeOut()
     }
     
 
     @IBAction func shareClicked(sender: AnyObject) {
         if(self.isProcessingImage == false) {
             self.shareAnimView.hidden = false
-            UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            UIView.animateWithDuration(SHARE_COLOR_VIEW_ANIM_DURATION, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
                 let scale = 3 * (self.view.frame.height / self.shareAnimView.frame.height)
                 self.shareAnimView.transform = CGAffineTransformMakeScale(scale, scale)
             }) { (finished) in

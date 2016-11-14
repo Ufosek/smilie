@@ -42,8 +42,8 @@ func stringForKey(key: String) -> String {
 
 
 // time in msc
-func delay(time: Int, withCompletion completion: () -> ()) {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(time/1000) * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
+func delay(time: NSTimeInterval, withCompletion completion: () -> ()) {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(time) * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
         completion()
     })
 }

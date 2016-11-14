@@ -16,6 +16,7 @@ class MainViewController: ViewController {
     private let SMILE_TIME: NSTimeInterval = 2.0
     
     //
+    @IBOutlet weak var introView: UIView!
     
     @IBOutlet weak var keepOnSmilingLabel: UILabel!
     @IBOutlet weak var cameraPreviewView: UIView!
@@ -32,6 +33,8 @@ class MainViewController: ViewController {
     // after first smile detected, wait 2 sec
     private var smileTimer: DurationTimer!
     
+    private var isIntroVisible: Bool!
+    
     //
     
     override func viewDidLoad() {
@@ -39,8 +42,11 @@ class MainViewController: ViewController {
         
         self.smileDetector = SmileDetector()
         
+        self.isIntroVisible = true
+        
         // keep on smiling for 2 seconds...
         self.smileTimer = DurationTimer(duration: SMILE_TIME, onProgress: { (progress) in
+            log("ON PROGRESS = '\(progress)")
             self.smileTimerWidthCnst.constant = CGFloat(progress) * self.view.frame.width
         }, completed: {
             self.makePhoto()
@@ -48,8 +54,10 @@ class MainViewController: ViewController {
         
         self.camera = MyCamera()
         self.camera.previewImage = { (image) in
-            if(self.photoMade == false) {
-                self.smileDetector.detectSmile(image, smileDetected: { (probability) in
+            self.smileDetector.detectSmile(image, smileDetected: { (probability) in
+                if(self.photoMade == false && self.isIntroVisible == false) {
+                    log("SMIEL DETECTED= '\(probability)")
+                    
                     // start timer when smile detected
                     if(probability > self.SMILE_PROBABILITY_TRESHOLD) {
                         if(!self.smileTimer.isCounting) {
@@ -63,14 +71,16 @@ class MainViewController: ViewController {
                             self.view.layoutIfNeeded()
                         })
                     }
-                })
-            }
+                }
+            })
         }
         
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        log("viewWillAppear")
         
         self.keepOnSmilingLabel.alpha = 0.0
         
@@ -82,40 +92,60 @@ class MainViewController: ViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        log("viewDidAppear")
+        
         // make another photo
         self.photoMade = false
         
         // init camera
-        MyCamera.checkCameraPermissions({ 
+        MyCamera.checkCameraPermissions({
             self.camera.start(self.cameraPreviewView, handleError: {
                 self.showErrorView("Camera error")
             })
         }) {
             self.showErrorView("No permissions")
         }
-        
-        // show insructions
-        UIView.animateWithDuration(1.0, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            self.keepOnSmilingLabel.alpha = 1.0
-        }, completion: { (completed) in
-            // hide
-            UIView.animateWithDuration(1.0, delay: 2.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-                self.keepOnSmilingLabel.alpha = 0.0
-            }, completion: nil)
-        })
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        log("viewWillDisappear")
+        
         camera.stop()
     }
 
+    
+    override func viewDidFirstAppear() {
+        // show insructions
+        UIView.animateWithDuration(1.0, delay: 2.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.introView.alpha = 0.0
+        }, completion: { (completed) in
+            self.isIntroVisible = false
+            self.showKeppOnSmiling()
+        })
+    }
+    
+    
+    private func showKeppOnSmiling() {
+        // show insructions
+        UIView.animateWithDuration(1.0, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.keepOnSmilingLabel.alpha = 1.0
+            }, completion: { (completed) in
+                // hide
+                UIView.animateWithDuration(1.0, delay: 2.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                    self.keepOnSmilingLabel.alpha = 0.0
+                    }, completion: nil)
+        })
+    }
     
     //
     
     func makePhoto() {
         if(self.photoMade == false) {
+            log("MAKE PHOTO")
+            self.smileTimer.cancel()
+            
             self.camera.makePhoto({ (photoImage) in
                 self.photoMade = true
                 // move to next vc
