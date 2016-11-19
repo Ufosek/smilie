@@ -10,12 +10,22 @@ import UIKit
 import NVActivityIndicatorView
 
 
-class ShareViewController: UIViewController, NVActivityIndicatorViewable {
+class ShareViewController: ViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var galleryCheckbox: Checkbox!
     @IBOutlet weak var shareCheckbox: Checkbox!
+    @IBOutlet weak var keepOnSmilingLabel: UILabel!
     
+    
+    private var camera: MyCamera!
+    private var smileDetector: SmileDetector!
+    private var isSmileDetected: Bool = false
+    private var isCameraAvailable: Bool = false
+    
+    private var smileProgressView: SmileProgressView!
+    // after first smile detected, wait 2 sec
+    private var smileTimer: DurationTimer!
     
     //
     
@@ -27,12 +37,86 @@ class ShareViewController: UIViewController, NVActivityIndicatorViewable {
         super.viewDidLoad()
 
         self.photoImageView.image = self.image
+        
+        initCamera()
+        initSmile()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.isSmileDetected = false
+        
+        // start camera
+        self.camera.start(self.view, shouldShowView: false, handleError: {
+            self.showErrorView("Camera error")
+        })
+        
+        
+    }
+    override func viewDidFirstAppear() {
+        self.showKeppOnSmiling()
+    }
+    
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        log("SHAREVIEW DID DISAPPEAR")
+        
+        self.smileProgressView.onProgress(0)
+        self.camera.stop()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.keepOnSmilingLabel.alpha = 0.0
+    }
+    
+    
+    //
+    
+    private func initCamera() {
+        self.smileDetector = SmileDetector()
+        self.camera = MyCamera()
+        self.camera.previewImage = { (image) in
+            self.smileDetector.detectSmile(image, smileDetected: { (probability) in
+                if(!self.isSmileDetected) {
+                    if(probability > SMILE_PROBABILITY_TRESHOLD) {
+                        // start timer when smile detected
+                        if(!self.smileTimer.isCounting) {
+                            self.smileTimer.start()
+                        }
+                    } else if(self.smileTimer.isCounting) {
+                        // no smile :( -> stop timer, no photo will be made
+                        self.smileTimer.cancel()
+                        
+                        self.smileProgressView.hideAnim()
+                    }
+                }
+            })
+        }
+    }
+    
+    private func initSmile() {
+        // keep on smiling for 2 seconds...
+        self.smileTimer = DurationTimer(duration: SMILE_TIME, onProgress: { (progress) in
+            self.smileProgressView.onProgress(progress)
+            }, completed: {
+                self.isSmileDetected = true
+                self.share()
+        })
+        
+        self.smileProgressView = SmileProgressView(frame: CGRectZero)
+        self.view.addSubview(self.smileProgressView)
+        self.smileProgressView.onProgress(0)
     }
     
     
     // image processing
-    func addMaskOnImage(image: UIImage) -> UIImage {
-        let mask = UIImage(named: "smile_test")!
+    private func addMaskOnImage(image: UIImage) -> UIImage {
+        let mask = UIImage(named: "smile_orange")!
         
         let textFont = UIFont(name: "Helvetica Bold", size: 45)!
         
@@ -48,22 +132,41 @@ class ShareViewController: UIViewController, NVActivityIndicatorViewable {
         return newImage
     }
     
-
-
-    // Actions
-    @IBAction func shareClicked(sender: AnyObject) {
+    private func share() {
         //self.startActivityAnimating("")
         if(shareCheckbox.selected) {
+            
             workInBackground({
                 self.image = self.addMaskOnImage(self.image)
             }) {
                 let activityVc = UIActivityViewController(activityItems: [self.image], applicationActivities: nil)
+                activityVc.completionWithItemsHandler = { (activity, success, items, error) in
+                    self.isSmileDetected = false
+                    self.smileProgressView.hideAnim()
+                }
                 self.presentViewController(activityVc, animated: true, completion: nil)
             }
         }
     }
     
+
+    private func showKeppOnSmiling() {
+        // show insructions
+        UIView.animateWithDuration(1.0, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.keepOnSmilingLabel.alpha = 1.0
+            }, completion: { (completed) in
+                // hide
+                UIView.animateWithDuration(1.0, delay: 2.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                    self.keepOnSmilingLabel.alpha = 0.0
+                    }, completion: nil)
+        })
+    }
+    
+    // Actions
+
+    
     @IBAction func exitClicked(sender: AnyObject) {
+        self.camera.stop()
         self.dismissfadeOut()
     }
 

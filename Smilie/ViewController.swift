@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private var didAppear: Bool = false
+    private(set) var didAppear: Bool = false
     private(set) var isVisible: Bool = false
     
     // references to segue actions

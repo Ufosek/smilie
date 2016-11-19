@@ -17,19 +17,38 @@ class CapturedPhotoViewController: ViewController {
     
     
     //
+
+    //
+    @IBOutlet weak var keepOnSmilingLabel: UILabel!
     
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var filteredPhotoImageView: UIImageView!
     @IBOutlet weak var probabilityLabel: UILabel!
-    
-    @IBOutlet weak var imageProcessingLoadingView: UIView!
-    @IBOutlet weak var shareAnimView: UIView!
-    
+
     @IBOutlet weak var numberLabel: SACountingLabel!
     @IBOutlet weak var yellLabel: UILabel!
+    
+    @IBOutlet weak var imageProcessingView: UIView!
+    
     //
     
+    private var shareAnimView: UIView!
+    
+    private var smileProgressView: SmileProgressView!
+    // after first smile detected, wait 2 sec
+    private var smileTimer: DurationTimer!
+    
+    private var camera: MyCamera!
+    private var smileDetector: SmileDetector!
+    
     private var isProcessingImage: Bool = false
+
+    private var isSmileDetected: Bool = false
+
+    
+    //
+    
+    private var filteredImage: UIImage!
     
     var image: UIImage! {
         didSet {
@@ -37,7 +56,7 @@ class CapturedPhotoViewController: ViewController {
         }
     }
     
-    private var filteredImage: UIImage!
+
     
     //
     
@@ -47,14 +66,10 @@ class CapturedPhotoViewController: ViewController {
         // set current image without filters in background
         self.photoImageView.image = image
         self.photoImageView.alpha = 0.0
-
+        
         // not visible filtered
         self.filteredPhotoImageView.alpha = 0
-        
-        SmileDetector().detectSmile(image) { (probability) in
-            self.probabilityLabel.text = "Prawdopodobieństwo uśmiechu = \(NSString(format: "%.2f", probability))"
-        }
-        
+
         // processing image
         self.processImage()
         
@@ -62,11 +77,14 @@ class CapturedPhotoViewController: ViewController {
         let yells = ["Nice!", "That is great!", ":)))", "Give me more", "ENDORPHINE++", "Keep on smiling"]
         let rand = Int(arc4random_uniform(UInt32(yells.count)))
         self.yellLabel.text = yells[rand]
+        
+        // init camera
+        initCamera()
+        initSmile()
     }
     
     override func viewDidFirstAppear() {
-        self.shareAnimView.hidden = true
-        self.shareAnimView.transform = CGAffineTransformMakeScale(1, 1)
+        self.initShareView()
         
         self.animateNumber()
         self.showYell()
@@ -75,35 +93,107 @@ class CapturedPhotoViewController: ViewController {
         UIView.animateWithDuration(0.5, animations: {
             self.photoImageView.alpha = 1.0
         })
+        
+        self.showKeppOnSmiling()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+        log("CAPTURED DID APPEAR")
         
-        self.shareAnimView.hidden = false
+        self.isSmileDetected = false
         
+        // hide share view
         UIView.animateWithDuration(SHARE_COLOR_VIEW_ANIM_DURATION, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             self.shareAnimView.transform = CGAffineTransformMakeScale(1, 1)
         }) { (finished) in
             self.shareAnimView.hidden = true
         }
+        
+        // start camera
+        self.camera.start(self.view, shouldShowView: false, handleError: {
+            self.showErrorView("Camera error")
+        })
+    }
+    
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        self.smileProgressView.onProgress(0)
+        self.camera.stop()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.keepOnSmilingLabel.alpha = 0.0
     }
     
     //
+    
+    private func initShareView() {
+        let shareViewInitSize: CGFloat = 50
+        self.shareAnimView = UIView(frame: CGRectMake((self.view.frame.width - shareViewInitSize)/2, (self.view.frame.height - shareViewInitSize)/2, shareViewInitSize, shareViewInitSize))
+        self.shareAnimView.cornerRadius = shareViewInitSize/2
+        self.shareAnimView.backgroundColor = UIColor.orange
+        self.shareAnimView.transform = CGAffineTransformMakeScale(1, 1)
+        self.shareAnimView.alpha = 0.9
+        self.view.addSubview(self.shareAnimView)
+        
+        self.shareAnimView.hidden = true
+    }
+
+    
+    private func initCamera() {
+        self.smileDetector = SmileDetector()
+        self.camera = MyCamera()
+        self.camera.previewImage = { (image) in
+            self.smileDetector.detectSmile(image, smileDetected: { (probability) in
+                if(!self.isSmileDetected) {
+                    if(probability > SMILE_PROBABILITY_TRESHOLD) {
+                        // start timer when smile detected
+                        if(!self.smileTimer.isCounting) {
+                            self.smileTimer.start()
+                        }
+                    } else if(self.smileTimer.isCounting) {
+                        // no smile :( -> stop timer, no photo will be made
+                        self.smileTimer.cancel()
+                        
+                        self.smileProgressView.hideAnim()
+                    }
+                }
+            })
+        }
+    }
+    
+    private func initSmile() {
+        // keep on smiling for 2 seconds...
+        self.smileTimer = DurationTimer(duration: SMILE_TIME, onProgress: { (progress) in
+            self.smileProgressView.onProgress(progress)
+        }, completed: {
+            self.isSmileDetected = true
+            self.share()
+        })
+        
+        self.smileProgressView = SmileProgressView(frame: CGRectZero)
+        self.view.addSubview(self.smileProgressView)
+        self.smileProgressView.onProgress(0)
+    }
     
     
     func showYell() {
         self.yellLabel.alpha = 1
         // show insructions
         
-        UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+        UIView.animateWithDuration(1.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             self.yellLabel.alpha = 0.0
-            self.yellLabel.transform = CGAffineTransformMakeScale(3, 3)
+            self.yellLabel.transform = CGAffineTransformMakeScale(2, 2)
             }, completion: { (completed) in
         })
     }
-    
-    var num = 0
+
     
     func animateNumber() {
         let currentNumber = DataManager.currentPhotoNumber
@@ -131,7 +221,7 @@ class CapturedPhotoViewController: ViewController {
             // self.filteredImage = self.addMaskOnImage(self.filteredImage)
         }) {
             self.isProcessingImage = false
-            self.imageProcessingLoadingView.hidden = true
+            self.imageProcessingView.hidden = true
             
             // show filterd photo
             self.filteredPhotoImageView.image = self.filteredImage
@@ -172,17 +262,7 @@ class CapturedPhotoViewController: ViewController {
     }
     
     
-
-    
-    
-    // Actions
-    
-    @IBAction func backClicked(sender: AnyObject) {
-        self.dismissfadeOut()
-    }
-    
-
-    @IBAction func shareClicked(sender: AnyObject) {
+    private func share() {
         if(self.isProcessingImage == false) {
             self.shareAnimView.hidden = false
             UIView.animateWithDuration(SHARE_COLOR_VIEW_ANIM_DURATION, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
@@ -195,4 +275,26 @@ class CapturedPhotoViewController: ViewController {
             }
         }
     }
+    
+    private func showKeppOnSmiling() {
+        // show insructions
+        UIView.animateWithDuration(1.0, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.keepOnSmilingLabel.alpha = 1.0
+        }, completion: { (completed) in
+            // hide
+            UIView.animateWithDuration(1.0, delay: 2.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                self.keepOnSmilingLabel.alpha = 0.0
+            }, completion: nil)
+        })
+    }
+    
+    // Actions
+    
+    @IBAction func backClicked(sender: AnyObject) {
+        self.camera.stop()
+        self.dismissfadeOut()
+    }
+    
+
+
 }

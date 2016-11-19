@@ -67,7 +67,7 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     
-    func start(cameraPreviewView: UIView, handleError: (()->())?) {
+    func start(cameraPreviewView: UIView, shouldShowView showView: Bool=true, handleError: (()->())?) {
         self.cameraSession = AVCaptureSession()
         // default configuration
         self.cameraSession.sessionPreset = AVCaptureSessionPresetPhoto
@@ -91,7 +91,10 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
                 previewLayer = AVCaptureVideoPreviewLayer(session: cameraSession) as AVCaptureVideoPreviewLayer
                 previewLayer.frame = cameraPreviewView.frame
                 previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-                cameraPreviewView.layer.addSublayer(previewLayer)
+                
+                if(showView) {
+                    cameraPreviewView.layer.addSublayer(previewLayer)
+                }
                 
                 // init GL
                 glContext = EAGLContext(API: .OpenGLES2)
@@ -166,6 +169,7 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     // AVCaptureVideoDataOutputSampleBufferDelegate
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
+        
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
         let image = CIImage(CVPixelBuffer: pixelBuffer!)
         if glContext != EAGLContext.currentContext() {

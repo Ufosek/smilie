@@ -11,6 +11,7 @@
 		850948BC1DD60E5200B080CD /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850948BB1DD60E5200B080CD /* Checkbox.swift */; };
 		853255221DD74C3B00EDF3DE /* DurationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853255211DD74C3B00EDF3DE /* DurationTimer.swift */; };
 		853255241DD7567200EDF3DE /* BounceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853255231DD7567200EDF3DE /* BounceButton.swift */; };
+		8547DF8D1DE0D53C00B511FB /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8547DF8C1DE0D53C00B511FB /* CircleView.swift */; };
 		85781AAA1DD63F32008EE778 /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */; };
 		8588C6901DC8DC82000979EF /* UIImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C68F1DC8DC82000979EF /* UIImageHelper.m */; };
 		85A3B4011DD8E54E007EE252 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A3B4001DD8E54E007EE252 /* DataManager.swift */; };
@@ -18,9 +19,20 @@
 		85B39B321DCE3AD500427350 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B311DCE3AD500427350 /* AppDelegate.swift */; };
 		85B39B341DCE3B3300427350 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B331DCE3B3300427350 /* MainViewController.swift */; };
 		85B39B361DCE449300427350 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B351DCE449300427350 /* ShareViewController.swift */; };
-		85B39B381DCE471100427350 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B371DCE471100427350 /* GalleryViewController.swift */; };
+		85CCC50C1DE0855D007D1991 /* SmileProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85CCC50B1DE0855D007D1991 /* SmileProgressView.swift */; };
+		85CCC50E1DE085D3007D1991 /* SmileProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85CCC50D1DE085D3007D1991 /* SmileProgressView.xib */; };
+		85CCC5121DE0B1E5007D1991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85CCC5111DE0B1E5007D1991 /* Assets.xcassets */; };
+		85CCC51E1DE0C220007D1991 /* Lato-Bol.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85CCC5141DE0C220007D1991 /* Lato-Bol.otf */; };
+		85CCC51F1DE0C220007D1991 /* Lato-BolIta.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85CCC5151DE0C220007D1991 /* Lato-BolIta.otf */; };
+		85CCC5201DE0C220007D1991 /* Lato-Hai.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85CCC5161DE0C220007D1991 /* Lato-Hai.otf */; };
+		85CCC5211DE0C220007D1991 /* Lato-HaiIta.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85CCC5171DE0C220007D1991 /* Lato-HaiIta.otf */; };
+		85CCC5221DE0C220007D1991 /* Lato-Lig.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85CCC5181DE0C220007D1991 /* Lato-Lig.otf */; };
+		85CCC5231DE0C220007D1991 /* Lato-LigIta.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85CCC5191DE0C220007D1991 /* Lato-LigIta.otf */; };
+		85CCC5241DE0C220007D1991 /* Lato-Reg.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85CCC51A1DE0C220007D1991 /* Lato-Reg.otf */; };
+		85CCC5251DE0C220007D1991 /* Lato-RegIta.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85CCC51B1DE0C220007D1991 /* Lato-RegIta.otf */; };
+		85CCC5261DE0C220007D1991 /* Lato-Bla.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85CCC51C1DE0C220007D1991 /* Lato-Bla.otf */; };
+		85CCC5271DE0C220007D1991 /* Lato-BlaIta.otf in Resources */ = {isa = PBXBuildFile; fileRef = 85CCC51D1DE0C220007D1991 /* Lato-BlaIta.otf */; };
 		85DB11081DC7516C00AFCCD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85DB11061DC7516C00AFCCD0 /* Main.storyboard */; };
-		85DB110A1DC7516C00AFCCD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85DB11091DC7516C00AFCCD0 /* Assets.xcassets */; };
 		85DB110D1DC7516C00AFCCD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85DB110B1DC7516C00AFCCD0 /* LaunchScreen.storyboard */; };
 		85DB11161DC7692600AFCCD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DB11151DC7692600AFCCD0 /* ViewController.swift */; };
 		85DB11191DC769A000AFCCD0 /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DB11171DC769A000AFCCD0 /* MyView.swift */; };
@@ -46,6 +58,7 @@
 		850948BB1DD60E5200B080CD /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		853255211DD74C3B00EDF3DE /* DurationTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationTimer.swift; sourceTree = "<group>"; };
 		853255231DD7567200EDF3DE /* BounceButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceButton.swift; sourceTree = "<group>"; };
+		8547DF8C1DE0D53C00B511FB /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
 		8588C68D1DC8DBF2000979EF /* Smilie-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Smilie-Bridging-Header.h"; sourceTree = "<group>"; };
 		8588C68E1DC8DC70000979EF /* UIImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageHelper.h; sourceTree = "<group>"; };
@@ -55,10 +68,21 @@
 		85B39B311DCE3AD500427350 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85B39B331DCE3B3300427350 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		85B39B351DCE449300427350 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		85B39B371DCE471100427350 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		85CCC50B1DE0855D007D1991 /* SmileProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmileProgressView.swift; sourceTree = "<group>"; };
+		85CCC50D1DE085D3007D1991 /* SmileProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SmileProgressView.xib; sourceTree = "<group>"; };
+		85CCC5111DE0B1E5007D1991 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		85CCC5141DE0C220007D1991 /* Lato-Bol.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bol.otf"; sourceTree = "<group>"; };
+		85CCC5151DE0C220007D1991 /* Lato-BolIta.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BolIta.otf"; sourceTree = "<group>"; };
+		85CCC5161DE0C220007D1991 /* Lato-Hai.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Hai.otf"; sourceTree = "<group>"; };
+		85CCC5171DE0C220007D1991 /* Lato-HaiIta.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-HaiIta.otf"; sourceTree = "<group>"; };
+		85CCC5181DE0C220007D1991 /* Lato-Lig.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Lig.otf"; sourceTree = "<group>"; };
+		85CCC5191DE0C220007D1991 /* Lato-LigIta.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LigIta.otf"; sourceTree = "<group>"; };
+		85CCC51A1DE0C220007D1991 /* Lato-Reg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Reg.otf"; sourceTree = "<group>"; };
+		85CCC51B1DE0C220007D1991 /* Lato-RegIta.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-RegIta.otf"; sourceTree = "<group>"; };
+		85CCC51C1DE0C220007D1991 /* Lato-Bla.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bla.otf"; sourceTree = "<group>"; };
+		85CCC51D1DE0C220007D1991 /* Lato-BlaIta.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BlaIta.otf"; sourceTree = "<group>"; };
 		85DB10FF1DC7516C00AFCCD0 /* Smilie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smilie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85DB11071DC7516C00AFCCD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		85DB11091DC7516C00AFCCD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85DB110C1DC7516C00AFCCD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85DB110E1DC7516C00AFCCD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85DB11151DC7692600AFCCD0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +131,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		85CCC5131DE0C1B0007D1991 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				85CCC5141DE0C220007D1991 /* Lato-Bol.otf */,
+				85CCC5151DE0C220007D1991 /* Lato-BolIta.otf */,
+				85CCC5161DE0C220007D1991 /* Lato-Hai.otf */,
+				85CCC5171DE0C220007D1991 /* Lato-HaiIta.otf */,
+				85CCC5181DE0C220007D1991 /* Lato-Lig.otf */,
+				85CCC5191DE0C220007D1991 /* Lato-LigIta.otf */,
+				85CCC51A1DE0C220007D1991 /* Lato-Reg.otf */,
+				85CCC51B1DE0C220007D1991 /* Lato-RegIta.otf */,
+				85CCC51C1DE0C220007D1991 /* Lato-Bla.otf */,
+				85CCC51D1DE0C220007D1991 /* Lato-BlaIta.otf */,
+			);
+			name = fonts;
+			sourceTree = "<group>";
+		};
 		85DB10F61DC7516C00AFCCD0 = {
 			isa = PBXGroup;
 			children = (
@@ -128,10 +169,11 @@
 		85DB11011DC7516C00AFCCD0 /* Smilie */ = {
 			isa = PBXGroup;
 			children = (
+				85CCC5111DE0B1E5007D1991 /* Assets.xcassets */,
 				85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */,
+				85CCC5131DE0C1B0007D1991 /* fonts */,
 				85DB11231DC76E2200AFCCD0 /* views */,
 				85DB11141DC7687F00AFCCD0 /* lib */,
-				85DB11091DC7516C00AFCCD0 /* Assets.xcassets */,
 				85DB110E1DC7516C00AFCCD0 /* Info.plist */,
 				85B39B311DCE3AD500427350 /* AppDelegate.swift */,
 				85DB11241DC77E5E00AFCCD0 /* CameraViewController.swift */,
@@ -140,7 +182,6 @@
 				85EA58A21DCE31A000749AEC /* SmileDetector.swift */,
 				85B39B331DCE3B3300427350 /* MainViewController.swift */,
 				85B39B351DCE449300427350 /* ShareViewController.swift */,
-				85B39B371DCE471100427350 /* GalleryViewController.swift */,
 				85A3B4001DD8E54E007EE252 /* DataManager.swift */,
 				85EB35BE1DD93B84002DED9F /* IntroViewController.swift */,
 			);
@@ -164,6 +205,7 @@
 				85EA589E1DCE27F700749AEC /* MyImage.swift */,
 				853255211DD74C3B00EDF3DE /* DurationTimer.swift */,
 				853255231DD7567200EDF3DE /* BounceButton.swift */,
+				8547DF8C1DE0D53C00B511FB /* CircleView.swift */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -175,6 +217,8 @@
 				85DB110B1DC7516C00AFCCD0 /* LaunchScreen.storyboard */,
 				85DB111F1DC76AC400AFCCD0 /* CameraView.xib */,
 				85DB11211DC76AD600AFCCD0 /* CameraView.swift */,
+				85CCC50B1DE0855D007D1991 /* SmileProgressView.swift */,
+				85CCC50D1DE085D3007D1991 /* SmileProgressView.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -240,10 +284,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85CCC5271DE0C220007D1991 /* Lato-BlaIta.otf in Resources */,
+				85CCC51E1DE0C220007D1991 /* Lato-Bol.otf in Resources */,
 				85DB110D1DC7516C00AFCCD0 /* LaunchScreen.storyboard in Resources */,
-				85DB110A1DC7516C00AFCCD0 /* Assets.xcassets in Resources */,
+				85CCC5241DE0C220007D1991 /* Lato-Reg.otf in Resources */,
 				85DB11081DC7516C00AFCCD0 /* Main.storyboard in Resources */,
+				85CCC5261DE0C220007D1991 /* Lato-Bla.otf in Resources */,
+				85CCC5211DE0C220007D1991 /* Lato-HaiIta.otf in Resources */,
 				85DB11201DC76AC400AFCCD0 /* CameraView.xib in Resources */,
+				85CCC5201DE0C220007D1991 /* Lato-Hai.otf in Resources */,
+				85CCC50E1DE085D3007D1991 /* SmileProgressView.xib in Resources */,
+				85CCC5121DE0B1E5007D1991 /* Assets.xcassets in Resources */,
+				85CCC5251DE0C220007D1991 /* Lato-RegIta.otf in Resources */,
+				85CCC51F1DE0C220007D1991 /* Lato-BolIta.otf in Resources */,
+				85CCC5231DE0C220007D1991 /* Lato-LigIta.otf in Resources */,
+				85CCC5221DE0C220007D1991 /* Lato-Lig.otf in Resources */,
 				85781AAA1DD63F32008EE778 /* lookup_miss_etikate.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8547DF8D1DE0D53C00B511FB /* CircleView.swift in Sources */,
 				85EB35BF1DD93B84002DED9F /* IntroViewController.swift in Sources */,
 				85B39B2E1DCE3A6600427350 /* CircleImageView.swift in Sources */,
 				85EA58A11DCE2B9500749AEC /* MyCamera.swift in Sources */,
@@ -322,7 +378,7 @@
 				85DB11221DC76AD600AFCCD0 /* CameraView.swift in Sources */,
 				85EA58A31DCE31A000749AEC /* SmileDetector.swift in Sources */,
 				85DB11251DC77E5E00AFCCD0 /* CameraViewController.swift in Sources */,
-				85B39B381DCE471100427350 /* GalleryViewController.swift in Sources */,
+				85CCC50C1DE0855D007D1991 /* SmileProgressView.swift in Sources */,
 				85A3B4011DD8E54E007EE252 /* DataManager.swift in Sources */,
 				85EA589D1DCE1FED00749AEC /* MySegues.swift in Sources */,
 				85B39B361DCE449300427350 /* ShareViewController.swift in Sources */,

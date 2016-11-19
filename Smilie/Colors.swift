@@ -121,6 +121,10 @@ extension UIColor {
         return UIColor(r: 255, g: 255, b: 255, a: 0.1)
     }
 
+    // Smilie
     
+    static var orange: UIColor {
+        return UIColor(hex: "#FCB514")
+    }
 
 }

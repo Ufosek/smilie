@@ -28,7 +28,6 @@ class Checkbox: BounceButton {
         self.setBackgroundImage(UIImage(named: "checkbox_unchecked.png"), forState: UIControlState.Normal)
         self.setBackgroundImage(UIImage(named: "checkbox_checked.png"), forState: UIControlState.Selected)
         self.tintColor = UIColor.clearColor()
-        self.selected = false
         
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(Checkbox.checkboxClicked(_:))))
     }

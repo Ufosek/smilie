@@ -8,30 +8,36 @@
 
 import UIKit
 
-class MainViewController: ViewController {
 
-    private let SMILE_PROBABILITY_TRESHOLD: CGFloat = 0.5
-    
-    // after first smile detected, wait 2 sec
-    private let SMILE_TIME: NSTimeInterval = 2.0
+//
+
+let SMILE_PROBABILITY_TRESHOLD: CGFloat = 0.5
+// after first smile detected, wait 2 sec
+let SMILE_TIME: NSTimeInterval = 1.2
+
+//
+
+class MainViewController: ViewController {
     
     //
     @IBOutlet weak var introView: UIView!
     
     @IBOutlet weak var keepOnSmilingLabel: UILabel!
     @IBOutlet weak var cameraPreviewView: UIView!
-    
-    // from 0 to 1
-    @IBOutlet weak var smileTimerWidthCnst: NSLayoutConstraint!
+
     //
+    
+    private var smileProgressView: SmileProgressView!
+    // after first smile detected, wait 2 sec
+    private var smileTimer: DurationTimer!
+    
     
     private var camera: MyCamera!
     private var smileDetector: SmileDetector!
     
     private var photoMade: Bool!
     
-    // after first smile detected, wait 2 sec
-    private var smileTimer: DurationTimer!
+
     
     private var isIntroVisible: Bool!
     
@@ -40,60 +46,25 @@ class MainViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.smileDetector = SmileDetector()
-        
         self.isIntroVisible = true
         
-        // keep on smiling for 2 seconds...
-        self.smileTimer = DurationTimer(duration: SMILE_TIME, onProgress: { (progress) in
-            log("ON PROGRESS = '\(progress)")
-            self.smileTimerWidthCnst.constant = CGFloat(progress) * self.view.frame.width
-        }, completed: {
-            self.makePhoto()
-        })
-        
-        self.camera = MyCamera()
-        self.camera.previewImage = { (image) in
-            self.smileDetector.detectSmile(image, smileDetected: { (probability) in
-                if(self.photoMade == false && self.isIntroVisible == false) {
-                    log("SMIEL DETECTED= '\(probability)")
-                    
-                    // start timer when smile detected
-                    if(probability > self.SMILE_PROBABILITY_TRESHOLD) {
-                        if(!self.smileTimer.isCounting) {
-                            self.smileTimer.start()
-                        }
-                    } else {
-                        // no smile :( -> stop timer, no photo will be made
-                        self.smileTimer.cancel()
-                        UIView.animateWithDuration(0.5, animations: { 
-                            self.smileTimerWidthCnst.constant = 0
-                            self.view.layoutIfNeeded()
-                        })
-                    }
-                }
-            })
-        }
-        
+        //
+        self.initCamera()
+        self.initSmile()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        log("viewWillAppear")
+
         
         self.keepOnSmilingLabel.alpha = 0.0
         
-        // init smile detector timer view
-        self.smileTimerWidthCnst.constant = 0
-        self.view.layoutIfNeeded()
+        self.smileProgressView.onProgress(0)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        log("viewDidAppear")
-        
+
         // make another photo
         self.photoMade = false
         
@@ -105,27 +76,76 @@ class MainViewController: ViewController {
         }) {
             self.showErrorView("No permissions")
         }
+        
+        //
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        log("viewWillDisappear")
         
         camera.stop()
     }
 
     
     override func viewDidFirstAppear() {
-        // show insructions
-        UIView.animateWithDuration(1.0, delay: 2.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            self.introView.alpha = 0.0
+        // hide intro view
+        UIView.animateWithDuration(0.3, delay: 1.5, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.introView.transform = CGAffineTransformMakeScale(1.2, 1.2)
         }, completion: { (completed) in
-            self.isIntroVisible = false
-            self.showKeppOnSmiling()
+            self.introView.cornerRadius = 30
+            UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                self.introView.alpha = 0.0
+                self.introView.transform = CGAffineTransformMakeScale(0.01, 0.01)
+            }, completion: { (completed) in
+                // show insructions
+                    self.introView.hidden = true
+                    self.isIntroVisible = false
+                    self.showKeppOnSmiling()
+            })
         })
     }
+
     
+    //
+    
+    private func initCamera() {
+        self.smileDetector = SmileDetector()
+        self.camera = MyCamera()
+        self.camera.previewImage = { (image) in
+            self.smileDetector.detectSmile(image, smileDetected: { (probability) in
+                if(self.photoMade == false && self.isIntroVisible == false) {
+                    //log("SMIEL DETECTED= '\(probability)")
+                    
+                    // start timer when smile detected
+                    if(probability > SMILE_PROBABILITY_TRESHOLD) {
+                        if(!self.smileTimer.isCounting) {
+                            self.smileTimer.start()
+                        }
+                    } else if(self.smileTimer.isCounting) {
+                        // no smile :( -> stop timer, no photo will be made
+                        self.smileTimer.cancel()
+                        
+                        self.smileProgressView.hideAnim()
+                    }
+                }
+            })
+        }
+    }
+    
+    private func initSmile() {
+        // keep on smiling for 2 seconds...
+        self.smileTimer = DurationTimer(duration: SMILE_TIME, onProgress: { (progress) in
+            self.smileProgressView.onProgress(progress)
+        }, completed: {
+                self.makePhoto()
+        })
+        
+        
+        self.smileProgressView = SmileProgressView(frame: CGRectZero)
+        self.view.addSubview(self.smileProgressView)
+    }
+
     
     private func showKeppOnSmiling() {
         // show insructions

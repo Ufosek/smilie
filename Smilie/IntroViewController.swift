@@ -15,10 +15,10 @@ class IntroViewController: ViewController {
     @IBOutlet weak var firstInfoLabel: UILabel!
     @IBOutlet weak var secondInfoLabel: UILabel!
     
-    // -30
+    // 0
     @IBOutlet weak var firstInfoLabelCenterXCnst: NSLayoutConstraint!
     
-    // 50
+    // 0
     @IBOutlet weak var secondInfoLabelCenterXCnst: NSLayoutConstraint!
     
     
@@ -32,27 +32,25 @@ class IntroViewController: ViewController {
     }
     
     override func viewDidFirstAppear() {
-
         self.firstInfoLabelCenterXCnst.constant =  -self.view.frame.width
         self.secondInfoLabelCenterXCnst.constant =  self.view.frame.width
         
         self.view.layoutIfNeeded()
         
-        UIView.animateWithDuration(1.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+        UIView.animateWithDuration(1.5, delay: 1.5, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             self.firstInfoLabel.alpha = 1.0
-            self.firstInfoLabelCenterXCnst.constant = -30
+            self.firstInfoLabelCenterXCnst.constant = 0
             
             self.view.layoutIfNeeded()
         }) { (finished) in }
-        
-        UIView.animateWithDuration(1.5, delay: 1.5, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            self.secondInfoLabel.alpha = 1.0
-            self.secondInfoLabelCenterXCnst.constant = 50
-            
-            self.view.layoutIfNeeded()
-        }) { (finished) in
-            delay(1.0, withCompletion: {
-                self.performSegueWithIdentifier("Start", sender: self)
+            UIView.animateWithDuration(1.5, delay: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                self.secondInfoLabel.alpha = 1.0
+                self.secondInfoLabelCenterXCnst.constant = 0
+                
+                self.view.layoutIfNeeded()
+            }) { (finished) in
+                delay(1.0, withCompletion: {
+                    self.performSegueWithIdentifier("Start", sender: self)
             })
         }
     }
