@@ -94,9 +94,9 @@ class MainViewController: ViewController {
             self.introView.transform = CGAffineTransformMakeScale(1.2, 1.2)
         }, completion: { (completed) in
             self.introView.cornerRadius = 30
-            UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
                 self.introView.alpha = 0.0
-                self.introView.transform = CGAffineTransformMakeScale(0.01, 0.01)
+                self.introView.transform = CGAffineTransformMakeScale(1.0, 1.0)
             }, completion: { (completed) in
                 // show insructions
                     self.introView.hidden = true

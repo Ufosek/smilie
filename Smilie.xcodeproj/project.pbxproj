@@ -48,6 +48,9 @@
 		85EA58A11DCE2B9500749AEC /* MyCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA58A01DCE2B9500749AEC /* MyCamera.swift */; };
 		85EA58A31DCE31A000749AEC /* SmileDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA58A21DCE31A000749AEC /* SmileDetector.swift */; };
 		85EB35BF1DD93B84002DED9F /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EB35BE1DD93B84002DED9F /* IntroViewController.swift */; };
+		85FB657C1DE3A0F700CC4021 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB657B1DE3A0F700CC4021 /* GalleryViewController.swift */; };
+		85FB657F1DE3B6E500CC4021 /* SmilieLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB657E1DE3B6E500CC4021 /* SmilieLoadingView.swift */; };
+		85FB65811DE3B6FC00CC4021 /* SmilieLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FB65801DE3B6FC00CC4021 /* SmilieLoadingView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +102,9 @@
 		85EA58A01DCE2B9500749AEC /* MyCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCamera.swift; sourceTree = "<group>"; };
 		85EA58A21DCE31A000749AEC /* SmileDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmileDetector.swift; sourceTree = "<group>"; };
 		85EB35BE1DD93B84002DED9F /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		85FB657B1DE3A0F700CC4021 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		85FB657E1DE3B6E500CC4021 /* SmilieLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmilieLoadingView.swift; sourceTree = "<group>"; };
+		85FB65801DE3B6FC00CC4021 /* SmilieLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SmilieLoadingView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,19 +177,15 @@
 			children = (
 				85CCC5111DE0B1E5007D1991 /* Assets.xcassets */,
 				85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */,
+				85FB657D1DE3A0FA00CC4021 /* vc */,
 				85CCC5131DE0C1B0007D1991 /* fonts */,
 				85DB11231DC76E2200AFCCD0 /* views */,
 				85DB11141DC7687F00AFCCD0 /* lib */,
 				85DB110E1DC7516C00AFCCD0 /* Info.plist */,
 				85B39B311DCE3AD500427350 /* AppDelegate.swift */,
-				85DB11241DC77E5E00AFCCD0 /* CameraViewController.swift */,
-				85DB11261DC7860400AFCCD0 /* CapturedPhotoViewController.swift */,
 				85EA58A01DCE2B9500749AEC /* MyCamera.swift */,
 				85EA58A21DCE31A000749AEC /* SmileDetector.swift */,
-				85B39B331DCE3B3300427350 /* MainViewController.swift */,
-				85B39B351DCE449300427350 /* ShareViewController.swift */,
 				85A3B4001DD8E54E007EE252 /* DataManager.swift */,
-				85EB35BE1DD93B84002DED9F /* IntroViewController.swift */,
 			);
 			path = Smilie;
 			sourceTree = "<group>";
@@ -219,8 +221,23 @@
 				85DB11211DC76AD600AFCCD0 /* CameraView.swift */,
 				85CCC50B1DE0855D007D1991 /* SmileProgressView.swift */,
 				85CCC50D1DE085D3007D1991 /* SmileProgressView.xib */,
+				85FB657E1DE3B6E500CC4021 /* SmilieLoadingView.swift */,
+				85FB65801DE3B6FC00CC4021 /* SmilieLoadingView.xib */,
 			);
 			name = views;
+			sourceTree = "<group>";
+		};
+		85FB657D1DE3A0FA00CC4021 /* vc */ = {
+			isa = PBXGroup;
+			children = (
+				85DB11261DC7860400AFCCD0 /* CapturedPhotoViewController.swift */,
+				85DB11241DC77E5E00AFCCD0 /* CameraViewController.swift */,
+				85EB35BE1DD93B84002DED9F /* IntroViewController.swift */,
+				85FB657B1DE3A0F700CC4021 /* GalleryViewController.swift */,
+				85B39B351DCE449300427350 /* ShareViewController.swift */,
+				85B39B331DCE3B3300427350 /* MainViewController.swift */,
+			);
+			name = vc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +306,7 @@
 				85DB110D1DC7516C00AFCCD0 /* LaunchScreen.storyboard in Resources */,
 				85CCC5241DE0C220007D1991 /* Lato-Reg.otf in Resources */,
 				85DB11081DC7516C00AFCCD0 /* Main.storyboard in Resources */,
+				85FB65811DE3B6FC00CC4021 /* SmilieLoadingView.xib in Resources */,
 				85CCC5261DE0C220007D1991 /* Lato-Bla.otf in Resources */,
 				85CCC5211DE0C220007D1991 /* Lato-HaiIta.otf in Resources */,
 				85DB11201DC76AC400AFCCD0 /* CameraView.xib in Resources */,
@@ -362,6 +380,7 @@
 				85EB35BF1DD93B84002DED9F /* IntroViewController.swift in Sources */,
 				85B39B2E1DCE3A6600427350 /* CircleImageView.swift in Sources */,
 				85EA58A11DCE2B9500749AEC /* MyCamera.swift in Sources */,
+				85FB657F1DE3B6E500CC4021 /* SmilieLoadingView.swift in Sources */,
 				85DB11191DC769A000AFCCD0 /* MyView.swift in Sources */,
 				85DB11161DC7692600AFCCD0 /* ViewController.swift in Sources */,
 				8588C6901DC8DC82000979EF /* UIImageHelper.m in Sources */,
@@ -370,6 +389,7 @@
 				85DB111E1DC769CD00AFCCD0 /* Colors.swift in Sources */,
 				85B39B341DCE3B3300427350 /* MainViewController.swift in Sources */,
 				850948BC1DD60E5200B080CD /* Checkbox.swift in Sources */,
+				85FB657C1DE3A0F700CC4021 /* GalleryViewController.swift in Sources */,
 				85B39B321DCE3AD500427350 /* AppDelegate.swift in Sources */,
 				85DB111A1DC769A000AFCCD0 /* NibView.swift in Sources */,
 				85EA589F1DCE27F700749AEC /* MyImage.swift in Sources */,

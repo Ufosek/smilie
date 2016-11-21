@@ -43,14 +43,15 @@ class IntroViewController: ViewController {
             
             self.view.layoutIfNeeded()
         }) { (finished) in }
-            UIView.animateWithDuration(1.5, delay: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-                self.secondInfoLabel.alpha = 1.0
-                self.secondInfoLabelCenterXCnst.constant = 0
-                
-                self.view.layoutIfNeeded()
-            }) { (finished) in
-                delay(1.0, withCompletion: {
-                    self.performSegueWithIdentifier("Start", sender: self)
+        
+        UIView.animateWithDuration(1.5, delay: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.secondInfoLabel.alpha = 1.0
+            self.secondInfoLabelCenterXCnst.constant = 0
+            
+            self.view.layoutIfNeeded()
+        }) { (finished) in
+            delay(1.0, withCompletion: {
+                self.performSegueWithIdentifier("Start", sender: self)
             })
         }
     }

@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import NVActivityIndicatorView
 
-
-class ShareViewController: ViewController, NVActivityIndicatorViewable {
+class ShareViewController: ViewController {
 
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var galleryCheckbox: Checkbox!
@@ -26,6 +24,8 @@ class ShareViewController: ViewController, NVActivityIndicatorViewable {
     private var smileProgressView: SmileProgressView!
     // after first smile detected, wait 2 sec
     private var smileTimer: DurationTimer!
+    
+    private var filteredImage: UIImage!
     
     //
     
@@ -133,14 +133,41 @@ class ShareViewController: ViewController, NVActivityIndicatorViewable {
     }
     
     private func share() {
-        //self.startActivityAnimating("")
+        //
+        if(galleryCheckbox.selected) {
+            self.showSmilieLoadingView()
+            
+            // add filters
+            workInBackground({
+                self.filteredImage = self.addMaskOnImage(self.image)
+            }) {
+                delay(2.0, withCompletion: {
+                    self.hideSmilieLoadingView()
+                    self.smileProgressView.hideAnim()
+                    self.performSegueWithIdentifier("ShowGallery", withCompletion: { (destVc) in
+                        let galleryVc = (destVc as! GalleryViewController)
+                        galleryVc.image = self.filteredImage
+                        galleryVc.shouldShareWithFriends = self.shareCheckbox.selected
+                    })
+                })
+            }
+        } else if(shareCheckbox.selected) {
+            self.shareWithFriends()
+        }
+
+    }
+    
+    private func shareWithFriends() {
         if(shareCheckbox.selected) {
+            
+            self.showSmilieLoadingView()
             
             workInBackground({
                 self.image = self.addMaskOnImage(self.image)
             }) {
                 let activityVc = UIActivityViewController(activityItems: [self.image], applicationActivities: nil)
                 activityVc.completionWithItemsHandler = { (activity, success, items, error) in
+                    self.hideSmilieLoadingView()
                     self.isSmileDetected = false
                     self.smileProgressView.hideAnim()
                 }
@@ -154,11 +181,11 @@ class ShareViewController: ViewController, NVActivityIndicatorViewable {
         // show insructions
         UIView.animateWithDuration(1.0, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             self.keepOnSmilingLabel.alpha = 1.0
-            }, completion: { (completed) in
-                // hide
-                UIView.animateWithDuration(1.0, delay: 2.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-                    self.keepOnSmilingLabel.alpha = 0.0
-                    }, completion: nil)
+        }, completion: { (completed) in
+            // hide
+            UIView.animateWithDuration(1.0, delay: 2.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                self.keepOnSmilingLabel.alpha = 0.0
+            }, completion: nil)
         })
     }
     
