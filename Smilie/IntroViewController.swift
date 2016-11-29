@@ -32,6 +32,10 @@ class IntroViewController: ViewController {
     }
     
     override func viewDidFirstAppear() {
+        self.performSegueWithIdentifier("Start", sender: self)
+        
+        /*
+        
         self.firstInfoLabelCenterXCnst.constant =  -self.view.frame.width
         self.secondInfoLabelCenterXCnst.constant =  self.view.frame.width
         
@@ -50,10 +54,16 @@ class IntroViewController: ViewController {
             
             self.view.layoutIfNeeded()
         }) { (finished) in
+            
+            // delay and ask for permissions
             delay(1.0, withCompletion: {
-                self.performSegueWithIdentifier("Start", sender: self)
+                MyCamera.checkCameraPermissions({
+                    self.performSegueWithIdentifier("Start", sender: self)
+                }) {
+                    self.showErrorView("No permissions")
+                }
             })
-        }
+        }*/
     }
 
 

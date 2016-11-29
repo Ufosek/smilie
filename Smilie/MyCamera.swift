@@ -135,7 +135,7 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     func stop() {
-        self.cameraSession.stopRunning()
+        self.cameraSession?.stopRunning()
     }
     
     

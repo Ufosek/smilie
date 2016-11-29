@@ -39,7 +39,7 @@ class SmileDetector: NSObject {
     }
     
     
-    func detectSmile(image: UIImage, smileDetected: ((CGFloat)->())?) {
+    func detectSmile(image: UIImage, smileDetected: ((CGFloat, CGRect)->())?) {
         // calculate 1 at once
         if(self.isCalculatingSmilingProbability == false) {
             self.isCalculatingSmilingProbability = true
@@ -49,21 +49,39 @@ class SmileDetector: NSObject {
                 // get face features
                 let faceFeatures: [GMVFaceFeature] = self.faceDetector.featuresInImage(image, options: nil) as! [GMVFaceFeature]
                 
+                var faceRect = CGRectMake(0, 0, 10, 10)
+                
                 // find biggest smile probability
                 var probability: CGFloat = 0
                 for feature in faceFeatures {
                     if feature.hasSmilingProbability && feature.smilingProbability > probability {
                         probability = feature.smilingProbability
+                        faceRect = self.faceRect(feature)
                     }
                 }
-                
+
                 dispatch_async(dispatch_get_main_queue(), {
                     self.isCalculatingSmilingProbability = false
-                    smileDetected?(probability)
+                    smileDetected?(probability, faceRect)
                 })
             }
         }
     }
+    
+    //
+    
+    // face pos and size
+    private func faceRect(faceFeature: GMVFaceFeature) -> CGRect {
+        let radius: CGFloat = sqrt((faceFeature.noseBasePosition.x - faceFeature.leftEarPosition.x)*(faceFeature.noseBasePosition.x - faceFeature.leftEarPosition.x) + (faceFeature.noseBasePosition.y - faceFeature.leftEarPosition.y)*(faceFeature.noseBasePosition.y - faceFeature.leftEarPosition.y)) + 80
+        let posx: CGFloat = faceFeature.noseBasePosition.x - radius
+        let posy: CGFloat = faceFeature.noseBasePosition.y - radius
+        let width: CGFloat = faceFeature.noseBasePosition.x + radius - posx
+        let height: CGFloat = faceFeature.noseBasePosition.y + radius - posy
+        
+        return CGRectMake(posx, posy, width, height)
+    }
+    
+
     
 }
 

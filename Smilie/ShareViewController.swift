@@ -81,7 +81,7 @@ class ShareViewController: ViewController {
         self.smileDetector = SmileDetector()
         self.camera = MyCamera()
         self.camera.previewImage = { (image) in
-            self.smileDetector.detectSmile(image, smileDetected: { (probability) in
+            self.smileDetector.detectSmile(image, smileDetected: { (probability, faceRect) in
                 if(!self.isSmileDetected) {
                     if(probability > SMILE_PROBABILITY_TRESHOLD) {
                         // start timer when smile detected

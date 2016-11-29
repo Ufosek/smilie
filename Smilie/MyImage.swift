@@ -8,6 +8,8 @@
 
 import Foundation
 import GPUImage
+import QuartzCore
+
 
 
 extension UIImage {
@@ -196,6 +198,22 @@ extension UIImage {
         
         return newImage
     }
+    
+    func imageCircle() -> UIImage {
+        let newImage = self.copy() as! UIImage
+        let cornerRadius = self.size.height/2
+        UIGraphicsBeginImageContextWithOptions(self.size, false, 1.0)
+        
+        let bounds = CGRect(origin: CGPointZero, size: self.size)
+        
+        UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).addClip()
+        newImage.drawInRect(bounds)
+        
+        let finalImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return finalImage
+    }
+    
     
     func imageWithText(text: String, atLocation location: CGPoint, withAttributes attributes: [String : AnyObject]?=nil) -> UIImage {
         UIGraphicsBeginImageContext(self.size)

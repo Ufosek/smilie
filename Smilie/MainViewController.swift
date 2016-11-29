@@ -113,7 +113,7 @@ class MainViewController: ViewController {
         self.smileDetector = SmileDetector()
         self.camera = MyCamera()
         self.camera.previewImage = { (image) in
-            self.smileDetector.detectSmile(image, smileDetected: { (probability) in
+            self.smileDetector.detectSmile(image, smileDetected: { (probability, faceRect) in
                 if(self.photoMade == false && self.isIntroVisible == false) {
                     //log("SMIEL DETECTED= '\(probability)")
                     
@@ -163,7 +163,6 @@ class MainViewController: ViewController {
     
     func makePhoto() {
         if(self.photoMade == false) {
-            log("MAKE PHOTO")
             self.smileTimer.cancel()
             
             self.camera.makePhoto({ (photoImage) in
