@@ -16,28 +16,28 @@ extension UIImage {
     
     public func imageWithoutRotation() -> UIImage {
         switch(self.imageOrientation) {
-        case UIImageOrientation.LeftMirrored:
+        case UIImageOrientation.leftMirrored:
             print("LeftMirrored")
             return self.imageRotatedByDegrees(-90, flip: true)
-        case UIImageOrientation.Left:
+        case UIImageOrientation.left:
             print("Left")
             return self.imageRotatedByDegrees(-90, flip: false)
-        case UIImageOrientation.Right:
+        case UIImageOrientation.right:
             print("Right")
             return self.imageRotatedByDegrees(90, flip: false)
-        case UIImageOrientation.RightMirrored:
+        case UIImageOrientation.rightMirrored:
             print("RightMirrored")
             return self.imageRotatedByDegrees(90, flip: true)
-        case UIImageOrientation.Down:
+        case UIImageOrientation.down:
             print("DOWN")
             return self.imageRotatedByDegrees(180, flip: false)
-        case UIImageOrientation.DownMirrored:
+        case UIImageOrientation.downMirrored:
             print("DownMirrored")
             return self.imageRotatedByDegrees(180, flip: true)
-        case UIImageOrientation.Up:
+        case UIImageOrientation.up:
             print("UP")
             return self
-        case UIImageOrientation.UpMirrored:
+        case UIImageOrientation.upMirrored:
             print("UpMirrored")
             return self.imageRotatedByDegrees(180, flip: true)
         }
@@ -46,21 +46,21 @@ extension UIImage {
     
     public func orientationDegrees() -> CGFloat {
         switch(self.imageOrientation) {
-        case UIImageOrientation.LeftMirrored:
+        case UIImageOrientation.leftMirrored:
             return 90
-        case UIImageOrientation.Left:
+        case UIImageOrientation.left:
             return -90
-        case UIImageOrientation.Right:
+        case UIImageOrientation.right:
             return 0
-        case UIImageOrientation.RightMirrored:
+        case UIImageOrientation.rightMirrored:
             return 90
-        case UIImageOrientation.Down:
+        case UIImageOrientation.down:
             return 180
-        case UIImageOrientation.DownMirrored:
+        case UIImageOrientation.downMirrored:
             return 180
-        case UIImageOrientation.Up:
+        case UIImageOrientation.up:
             return 180
-        case UIImageOrientation.UpMirrored:
+        case UIImageOrientation.upMirrored:
             return 180
         }
     }
@@ -70,28 +70,28 @@ extension UIImage {
         UIGraphicsBeginImageContext(size)
         let bitmap = UIGraphicsGetCurrentContext()
         
-        CGContextTranslateCTM(bitmap, size.width / 2.0, size.height / 2.0)
-        CGContextRotateCTM(bitmap, degreesToRadians(-90))
-        CGContextScaleCTM(bitmap, -1.0, -1.0)
-        CGContextDrawImage(bitmap, CGRectMake(-size.height/2, -size.width/2, size.height, size.width), CGImage)
+        bitmap?.translateBy(x: size.width / 2.0, y: size.height / 2.0)
+        bitmap?.rotate(by: degreesToRadians(-90))
+        bitmap?.scaleBy(x: -1.0, y: -1.0)
+        bitmap?.draw(cgImage!, in: CGRect(x: -size.height/2, y: -size.width/2, width: size.height, height: size.width))
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
-    public func imageRotatedByDegrees(degrees: CGFloat, flip: Bool) -> UIImage {
+    public func imageRotatedByDegrees(_ degrees: CGFloat, flip: Bool) -> UIImage {
         return imageRotatedByDegrees(degrees, flip: flip, switchedSizes: false)
     }
     
-    public func imageRotatedByDegrees(degrees: CGFloat, flip: Bool, switchedSizes: Bool) -> UIImage {
+    public func imageRotatedByDegrees(_ degrees: CGFloat, flip: Bool, switchedSizes: Bool) -> UIImage {
         
         //print("size before = \(size)")
         
         // calculate the size of the rotated view's containing box for our drawing space
-        let rotatedViewBox = UIView(frame: CGRect(origin: CGPointZero, size: size))
-        let t = CGAffineTransformMakeRotation(degreesToRadians(degrees));
+        let rotatedViewBox = UIView(frame: CGRect(origin: CGPoint.zero, size: size))
+        let t = CGAffineTransform(rotationAngle: degreesToRadians(degrees));
         rotatedViewBox.transform = t
         let rotatedSize = size
         
@@ -106,10 +106,10 @@ extension UIImage {
         
         // Move the origin to the middle of the image so we will rotate and scale around the center.
         //CGContextTranslateCTM(bitmap, rotatedSize.width / 2.0, rotatedSize.height / 2.0);
-        CGContextTranslateCTM(bitmap, width / 2.0, height / 2.0);
+        bitmap?.translateBy(x: width / 2.0, y: height / 2.0);
         
         //   // Rotate the image context
-        CGContextRotateCTM(bitmap, degreesToRadians(degrees));
+        bitmap?.rotate(by: degreesToRadians(degrees));
         
         
         // Now, draw the rotated/scaled image into the context
@@ -121,17 +121,17 @@ extension UIImage {
             yFlip = CGFloat(1.0)
         }
         
-        CGContextScaleCTM(bitmap, yFlip, -1.0)
+        bitmap?.scaleBy(x: yFlip, y: -1.0)
         if(abs(degrees) > 90) {
-            CGContextDrawImage(bitmap, CGRectMake(-width / 2, -height / 2, width, height), CGImage)
+            bitmap?.draw(cgImage!, in: CGRect(x: -width / 2, y: -height / 2, width: width, height: height))
         } else {
-            CGContextDrawImage(bitmap, CGRectMake(-height / 2, -width / 2, height, width), CGImage)
+            bitmap?.draw(cgImage!, in: CGRect(x: -height / 2, y: -width / 2, width: height, height: width))
         }
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
 
     
@@ -139,64 +139,70 @@ extension UIImage {
     // ALL TAKS HAVE TO BE EXECUTED IN BACKGROUND THREAD!
     // --
     
-    func imageWithSize(size: CGSize) -> UIImage {
+    func imageWithSize(_ size: CGSize) -> UIImage {
         UIGraphicsBeginImageContext(size)
-        self.drawInRect(CGRectMake(0, 0, size.width, size.height))
+        self.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
     // width would be calculated from ratio
-    func imageWithWidth(width: CGFloat) -> UIImage {
+    func imageWithWidth(_ width: CGFloat) -> UIImage {
         
         let ratio = self.size.width / self.size.height
         let height = width * ratio
 
-        return imageWithSize(CGSizeMake(width, height))
+        return imageWithSize(CGSize(width: width, height: height))
     }
     
     // height would be calculated from ratio
-    func imageWithHeight(height: CGFloat) -> UIImage {
+    func imageWithHeight(_ height: CGFloat) -> UIImage {
         
         let ratio = self.size.width / self.size.height
         let width = height * ratio
         
-        return imageWithSize(CGSizeMake(width, height))
+        return imageWithSize(CGSize(width: width, height: height))
     }
     
     
     // fragment of image
-    func imageCropped(crop: CGRect) -> UIImage {
-        return UIImage(CGImage: CGImageCreateWithImageInRect(self.CGImage, crop)!)
+    func imageCropped(_ crop: CGRect) -> UIImage {
+        return UIImage(cgImage: self.cgImage!.cropping(to: crop)!)
     }
     
     
     
     // examples of filter and mask
-    func imageWithFilter(filter: GPUImageInput) -> UIImage {
+    func imageWithFilter(_ filter: GPUImageInput) -> UIImage {
         let imagePicture = GPUImagePicture(image: self)
-        imagePicture.addTarget(filter)
+        imagePicture?.addTarget(filter)
         (filter as? GPUImageOutput)?.useNextFrameForImageCapture()
-        imagePicture.processImage()
+        imagePicture?.processImage()
         let image = (filter as? GPUImageOutput)!.imageFromCurrentFramebuffer()
         
-        return image
+        return image!
     }
     
-    func imageWithMask(mask: UIImage, atLocation location: CGPoint, withSize size: CGSize?) -> UIImage {
-        let maskSize = size != nil ? size! : mask.size
+    func imageWithImage(_ image: UIImage, atLocation location: CGPoint, isBelow: Bool=false, withSize size: CGSize?) -> UIImage {
+        let imageSize = size != nil ? size! : image.size
         
         UIGraphicsBeginImageContext(self.size)
 
-        self.drawInRect(CGRectMake(0, 0, self.size.width, self.size.height))
-        mask.drawInRect(CGRectMake(location.x, location.y, maskSize.width, maskSize.height))
+        if(!isBelow) {
+            self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+        }
+        image.draw(in: CGRect(x: location.x, y: location.y, width: imageSize.width, height: imageSize.height))
+        if(isBelow) {
+            self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+        }
+        
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
     func imageCircle() -> UIImage {
@@ -204,27 +210,27 @@ extension UIImage {
         let cornerRadius = self.size.height/2
         UIGraphicsBeginImageContextWithOptions(self.size, false, 1.0)
         
-        let bounds = CGRect(origin: CGPointZero, size: self.size)
+        let bounds = CGRect(origin: CGPoint.zero, size: self.size)
         
         UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).addClip()
-        newImage.drawInRect(bounds)
+        newImage.draw(in: bounds)
         
         let finalImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return finalImage
+        return finalImage!
     }
     
     
-    func imageWithText(text: String, atLocation location: CGPoint, withAttributes attributes: [String : AnyObject]?=nil) -> UIImage {
+    func imageWithText(_ text: String, atLocation location: CGPoint, withAttributes attributes: [String : AnyObject]?=nil) -> UIImage {
         UIGraphicsBeginImageContext(self.size)
         
-        self.drawInRect(CGRectMake(0, 0, self.size.width, self.size.height))
-        NSString(string: text).drawAtPoint(location, withAttributes: attributes)
+        self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+        NSString(string: text).draw(at: location, withAttributes: attributes)
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
 }

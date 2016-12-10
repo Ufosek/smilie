@@ -23,27 +23,27 @@ self.tableView.tableHeaderView = headerView
 
 //
 
-func isIPAD () -> Bool { return UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad }
+func isIPAD () -> Bool { return UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad }
 func isIPhone() -> Bool { return !isIPAD() }
 
 // Log only when DEV
 
-func log(string: String) {
-    let formatter = NSDateFormatter()
+func log(_ string: String) {
+    let formatter = DateFormatter()
     formatter.dateFormat = "hh:mm:ss:SSS"
-    print("[\(formatter.stringFromDate(NSDate()))] : " +  string)
+    print("[\(formatter.string(from: Date()))] : " +  string)
 }
 
 //
 
-func stringForKey(key: String) -> String {
+func stringForKey(_ key: String) -> String {
     return NSLocalizedString(key, comment: "")
 }
 
 
 // time in msc
-func delay(time: NSTimeInterval, withCompletion completion: () -> ()) {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(time) * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
+func delay(_ time: TimeInterval, withCompletion completion: @escaping () -> ()) {
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(UInt64(time) * NSEC_PER_SEC)) / Double(NSEC_PER_SEC), execute: { () -> Void in
         completion()
     })
 }
@@ -53,13 +53,13 @@ func delay(time: NSTimeInterval, withCompletion completion: () -> ()) {
 
 
 // do smth in background threads (queues)
-func workInBackground(work: (()->())?, completed: (()->())?) {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+func workInBackground(_ work: (()->())?, completed: (()->())?) {
+    DispatchQueue.global(qos: .background).async {
         // do the time consuming work
         work?()
         
         // complete in main queue (thread)
-        dispatch_async(dispatch_get_main_queue(), { 
+        DispatchQueue.main.async(execute: {
             completed?()
         })
     }
@@ -77,8 +77,8 @@ let degreesToRadians: (CGFloat) -> CGFloat = {
 extension String {
     // remove html tags
     var plainText: String {
-        let text = self.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
-        return text.stringByReplacingOccurrencesOfString("\n", withString: "")
+        let text = self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        return text.replacingOccurrences(of: "\n", with: "")
     }
 }
 
@@ -87,8 +87,8 @@ extension String {
 
 extension UIScrollView {
     // adjust contentOffset to make view be just above keyboard
-    func offsetAdjustToView(view: UIView, withKeyboardheight keyboardHeight: CGFloat) -> CGFloat {
-        let pos = view.superview!.convertPoint(view.frame.origin, toView: self.superview!)
+    func offsetAdjustToView(_ view: UIView, withKeyboardheight keyboardHeight: CGFloat) -> CGFloat {
+        let pos = view.superview!.convert(view.frame.origin, to: self.superview!)
         return self.contentOffset.y - (self.superview!.frame.height - keyboardHeight - pos.y - view.frame.height)
     }
 }
@@ -96,20 +96,20 @@ extension UIScrollView {
 //
 
 extension CGRect {
-    func resize(tw tw: CGFloat, th: CGFloat) -> CGRect{
-        return CGRectMake(self.origin.x, self.origin.y, self.size.width + tw, self.size.height + th)
+    func resize(tw: CGFloat, th: CGFloat) -> CGRect{
+        return CGRect(x: self.origin.x, y: self.origin.y, width: self.size.width + tw, height: self.size.height + th)
     }
     
-    func rectWithHeight(height: CGFloat) -> CGRect{
-        return CGRectMake(self.origin.x, self.origin.y, self.size.width, height)
+    func rectWithHeight(_ height: CGFloat) -> CGRect{
+        return CGRect(x: self.origin.x, y: self.origin.y, width: self.size.width, height: height)
     }
     
-    func move(dx: CGFloat, dy: CGFloat) -> CGRect{
-        return CGRectMake(self.origin.x + dx, self.origin.y + dy, self.size.width, self.size.height)
+    func move(_ dx: CGFloat, dy: CGFloat) -> CGRect{
+        return CGRect(x: self.origin.x + dx, y: self.origin.y + dy, width: self.size.width, height: self.size.height)
     }
     
-    func setX(x: CGFloat) -> CGRect{
-        return CGRectMake(x, self.origin.y, self.size.width, self.size.height)
+    func setX(_ x: CGFloat) -> CGRect{
+        return CGRect(x: x, y: self.origin.y, width: self.size.width, height: self.size.height)
     }
 }
 
@@ -117,9 +117,9 @@ extension CGRect {
 
 extension UIFont {
     
-    func bold(withSize withSize: CGFloat=0) -> UIFont {
-        let descriptor = self.fontDescriptor().fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits.TraitBold)
-        return UIFont(descriptor: descriptor, size: withSize)
+    func bold(withSize: CGFloat=0) -> UIFont {
+        let descriptor = self.fontDescriptor.withSymbolicTraits(UIFontDescriptorSymbolicTraits.traitBold)
+        return UIFont(descriptor: descriptor!, size: withSize)
     }
 }
 
@@ -134,10 +134,10 @@ extension UILabel {
 
 //
 
-extension NSData {
+extension Data {
     var hexString: String {
-        let bytes = UnsafeBufferPointer<UInt8>(start: UnsafePointer(self.bytes), count:self.length)
-        return bytes.map { String(format: "%02hhx", $0) }.reduce("", combine: { $0 + $1 })
+        let bytes = UnsafeBufferPointer<UInt8>(start: (self as NSData).bytes.bindMemory(to: UInt8.self, capacity: self.count), count:self.count)
+        return bytes.map { String(format: "%02hhx", $0) }.reduce("", { $0 + $1 })
     }
 }
 
@@ -165,8 +165,8 @@ extension Array {
 //
 
 extension UIButton {
-    func enable(enabled: Bool) {
-        self.enabled = enabled
+    func enable(_ enabled: Bool) {
+        self.isEnabled = enabled
         self.alpha = enabled ? 1 : 0.2
     }
 }
@@ -177,7 +177,7 @@ extension UIButton {
 //
 
 protocol ScrollDelegate: class {
-    func didScroll(pos: CGFloat)
+    func didScroll(_ pos: CGFloat)
 }
 
 //

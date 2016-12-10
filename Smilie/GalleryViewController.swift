@@ -38,17 +38,17 @@ class GalleryViewController: ViewController {
 
         self.photoImageView.image = self.image
         
-        self.firstPhotoImageView.sd_setImageWithURL(NSURL(string: "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/11205978_878508218880745_86255981664347946_n.jpg?oh=1ca3679ffb89a955ccb9b7683ff179ae&oe=58B812D4"))
-        self.secondPhotoImageView.sd_setImageWithURL(NSURL(string: "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/14591738_10211270332863418_104164574000390510_n.jpg?oh=1619449a64fc983e060b33d5aac508f6&oe=58B51004"))
-        self.thirdPhotoImageView.sd_setImageWithURL(NSURL(string: "https://scontent-waw1-1.xx.fbcdn.net/t31.0-8/1961695_807364982624266_815569610_o.jpg"))
+        self.firstPhotoImageView.sd_setImage(with: URL(string: "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/11205978_878508218880745_86255981664347946_n.jpg?oh=1ca3679ffb89a955ccb9b7683ff179ae&oe=58B812D4"))
+        self.secondPhotoImageView.sd_setImage(with: URL(string: "https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/14591738_10211270332863418_104164574000390510_n.jpg?oh=1619449a64fc983e060b33d5aac508f6&oe=58B51004"))
+        self.thirdPhotoImageView.sd_setImage(with: URL(string: "https://scontent-waw1-1.xx.fbcdn.net/t31.0-8/1961695_807364982624266_815569610_o.jpg"))
         //
         
-        self.photoView.transform = CGAffineTransformMakeScale(0.1, 0.1)
+        self.photoView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         self.photoView.alpha = 0
         
-        firstPhotoView.transform = CGAffineTransformMakeScale(0.1, 0.1)
-        secondPhotoView.transform = CGAffineTransformMakeScale(0.1, 0.1)
-        thirdPhotoView.transform = CGAffineTransformMakeScale(0.1, 0.1)
+        firstPhotoView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        secondPhotoView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        thirdPhotoView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         
         firstPhotoView.alpha = 0
         secondPhotoView.alpha = 0
@@ -56,26 +56,26 @@ class GalleryViewController: ViewController {
     }
     
     override func viewDidFirstAppear() {
-        UIView.animateWithDuration(0.2, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            self.photoView.transform = CGAffineTransformMakeScale(1, 1)
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: {
+            self.photoView.transform = CGAffineTransform(scaleX: 1, y: 1)
             self.photoView.alpha = 1
             self.photoView.setNeedsLayout()
         }) { (finished) in }
         
-        UIView.animateWithDuration(0.2, delay: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            self.firstPhotoView.transform = CGAffineTransformMakeScale(1, 1)
+        UIView.animate(withDuration: 0.2, delay: 0.1, options: UIViewAnimationOptions(), animations: {
+            self.firstPhotoView.transform = CGAffineTransform(scaleX: 1, y: 1)
             self.firstPhotoView.alpha = 1
             self.firstPhotoView.setNeedsLayout()
         }) { (finished) in }
         
-        UIView.animateWithDuration(0.2, delay: 0.2, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            self.secondPhotoView.transform = CGAffineTransformMakeScale(1, 1)
+        UIView.animate(withDuration: 0.2, delay: 0.2, options: UIViewAnimationOptions(), animations: {
+            self.secondPhotoView.transform = CGAffineTransform(scaleX: 1, y: 1)
             self.secondPhotoView.alpha = 1
             self.secondPhotoView.setNeedsLayout()
         }) { (finished) in }
         
-        UIView.animateWithDuration(0.2, delay: 0.3, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            self.thirdPhotoView.transform = CGAffineTransformMakeScale(1, 1)
+        UIView.animate(withDuration: 0.2, delay: 0.3, options: UIViewAnimationOptions(), animations: {
+            self.thirdPhotoView.transform = CGAffineTransform(scaleX: 1, y: 1)
             self.thirdPhotoView.alpha = 1
             self.thirdPhotoView.setNeedsLayout()
         }) { (finished) in }
@@ -90,20 +90,20 @@ class GalleryViewController: ViewController {
     }
 
 
-    private func shareWithFriends() {
+    fileprivate func shareWithFriends() {
         if(self.shouldShareWithFriends) {
             let activityVc = UIActivityViewController(activityItems: [self.image], applicationActivities: nil)
             activityVc.completionWithItemsHandler = { (activity, success, items, error) in
                 //
             }
-            self.presentViewController(activityVc, animated: true, completion: nil)
+            self.present(activityVc, animated: true, completion: nil)
         }
     }
 
     
     // Actions
     
-    @IBAction func exitClicked(sender: AnyObject) {
+    @IBAction func exitClicked(_ sender: AnyObject) {
         self.dismissfadeOut()
     }
 

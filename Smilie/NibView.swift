@@ -11,7 +11,7 @@ import UIKit
 class NibView: UIView {
     // LOAD VIEW
     
-    private var subView: UIView!
+    fileprivate var subView: UIView!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -33,9 +33,9 @@ class NibView: UIView {
     }
     
     
-    private func load() {
+    fileprivate func load() {
         self.subView = self.loadViewFromNib(self.nibName())
-        self.insertSubview(self.subView, atIndex: 0)
+        self.insertSubview(self.subView, at: 0)
         
         self.didLoad()
     }

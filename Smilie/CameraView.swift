@@ -26,7 +26,7 @@ class CameraView: NibView {
     
     //
     
-    @IBAction func takePhotoClicked(sender: AnyObject) {
+    @IBAction func takePhotoClicked(_ sender: AnyObject) {
         self.takePhotoAction?()
     }
 

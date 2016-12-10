@@ -13,7 +13,7 @@ import UIKit
 
 let SMILE_PROBABILITY_TRESHOLD: CGFloat = 0.5
 // after first smile detected, wait 2 sec
-let SMILE_TIME: NSTimeInterval = 1.2
+let SMILE_TIME: TimeInterval = 1.2
 
 //
 
@@ -27,19 +27,19 @@ class MainViewController: ViewController {
 
     //
     
-    private var smileProgressView: SmileProgressView!
+    fileprivate var smileProgressView: SmileProgressView!
     // after first smile detected, wait 2 sec
-    private var smileTimer: DurationTimer!
+    fileprivate var smileTimer: DurationTimer!
     
     
-    private var camera: MyCamera!
-    private var smileDetector: SmileDetector!
+    fileprivate var camera: MyCamera!
+    fileprivate var smileDetector: SmileDetector!
     
-    private var photoMade: Bool!
+    fileprivate var photoMade: Bool!
     
 
     
-    private var isIntroVisible: Bool!
+    fileprivate var isIntroVisible: Bool!
     
     //
     
@@ -53,7 +53,7 @@ class MainViewController: ViewController {
         self.initSmile()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         
@@ -62,7 +62,7 @@ class MainViewController: ViewController {
         self.smileProgressView.onProgress(0)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         // make another photo
@@ -81,7 +81,7 @@ class MainViewController: ViewController {
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         camera.stop()
@@ -90,16 +90,16 @@ class MainViewController: ViewController {
     
     override func viewDidFirstAppear() {
         // hide intro view
-        UIView.animateWithDuration(0.3, delay: 1.5, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            self.introView.transform = CGAffineTransformMakeScale(1.2, 1.2)
+        UIView.animate(withDuration: 0.3, delay: 1.5, options: UIViewAnimationOptions(), animations: {
+            self.introView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }, completion: { (completed) in
             self.introView.cornerRadius = 30
-            UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions(), animations: {
                 self.introView.alpha = 0.0
-                self.introView.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                self.introView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }, completion: { (completed) in
                 // show insructions
-                    self.introView.hidden = true
+                    self.introView.isHidden = true
                     self.isIntroVisible = false
                     self.showKeppOnSmiling()
             })
@@ -109,11 +109,11 @@ class MainViewController: ViewController {
     
     //
     
-    private func initCamera() {
+    fileprivate func initCamera() {
         self.smileDetector = SmileDetector()
         self.camera = MyCamera()
         self.camera.previewImage = { (image) in
-            self.smileDetector.detectSmile(image, smileDetected: { (probability, faceRect) in
+            self.smileDetector.detectSmile(image, smileDetected: { (probability, faceRect, faceFeature) in
                 if(self.photoMade == false && self.isIntroVisible == false) {
                     //log("SMIEL DETECTED= '\(probability)")
                     
@@ -133,7 +133,7 @@ class MainViewController: ViewController {
         }
     }
     
-    private func initSmile() {
+    fileprivate func initSmile() {
         // keep on smiling for 2 seconds...
         self.smileTimer = DurationTimer(duration: SMILE_TIME, onProgress: { (progress) in
             self.smileProgressView.onProgress(progress)
@@ -142,18 +142,18 @@ class MainViewController: ViewController {
         })
         
         
-        self.smileProgressView = SmileProgressView(frame: CGRectZero)
+        self.smileProgressView = SmileProgressView(frame: CGRect.zero)
         self.view.addSubview(self.smileProgressView)
     }
 
     
-    private func showKeppOnSmiling() {
+    fileprivate func showKeppOnSmiling() {
         // show insructions
-        UIView.animateWithDuration(1.0, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+        UIView.animate(withDuration: 1.0, delay: 1.0, options: UIViewAnimationOptions(), animations: {
             self.keepOnSmilingLabel.alpha = 1.0
             }, completion: { (completed) in
                 // hide
-                UIView.animateWithDuration(1.0, delay: 2.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                UIView.animate(withDuration: 1.0, delay: 2.0, options: UIViewAnimationOptions(), animations: {
                     self.keepOnSmilingLabel.alpha = 0.0
                     }, completion: nil)
         })
@@ -178,8 +178,8 @@ class MainViewController: ViewController {
     
     // actions
 
-    @IBAction func galleryClicked(sender: AnyObject) {
-        self.performSegueWithIdentifier("ShowGallery", sender: self)
+    @IBAction func galleryClicked(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "ShowGallery", sender: self)
     }
 
 

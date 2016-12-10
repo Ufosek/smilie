@@ -11,18 +11,18 @@ import Foundation
 
 class DataManager {
     
-    private static let CURRENT_PHOTO_KEY = "CurrentPhotoKey"
+    fileprivate static let CURRENT_PHOTO_KEY = "CurrentPhotoKey"
     
     //
     
     static var currentPhotoNumber: Int {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        return userDefaults.integerForKey(CURRENT_PHOTO_KEY)
+        let userDefaults = UserDefaults.standard
+        return userDefaults.integer(forKey: CURRENT_PHOTO_KEY)
     }
     
     static func incrementCurrentPhotoNumber() {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setInteger(DataManager.currentPhotoNumber+1, forKey: CURRENT_PHOTO_KEY)
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(DataManager.currentPhotoNumber+1, forKey: CURRENT_PHOTO_KEY)
         userDefaults.synchronize()
     }
     

@@ -11,14 +11,14 @@ import Foundation
 class DurationTimer: NSObject {
     
     // after first smile detected, wait 2 sec
-    private var timer: NSTimer?
+    fileprivate var timer: Timer?
     
-    private var onProgress: ((Double)->())?
-    private var completed: (()->())?
+    fileprivate var onProgress: ((Double)->())?
+    fileprivate var completed: (()->())?
     
-    private var progress: NSTimeInterval!
-    private var lastUpdate: NSTimeInterval!
-    private var duration: NSTimeInterval!
+    fileprivate var progress: TimeInterval!
+    fileprivate var lastUpdate: TimeInterval!
+    fileprivate var duration: TimeInterval!
     
     
     var isCounting: Bool {
@@ -29,7 +29,7 @@ class DurationTimer: NSObject {
     //
     
     
-    init(duration: NSTimeInterval, onProgress: ((Double)->())?, completed: (()->())?) {
+    init(duration: TimeInterval, onProgress: ((Double)->())?, completed: (()->())?) {
         super.init()
         
         self.duration = duration
@@ -40,9 +40,9 @@ class DurationTimer: NSObject {
     
     func start() {
         self.progress = 0.0
-        self.lastUpdate = NSDate.timeIntervalSinceReferenceDate()
+        self.lastUpdate = Date.timeIntervalSinceReferenceDate
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
     }
     
     func cancel() {
@@ -54,7 +54,7 @@ class DurationTimer: NSObject {
     
     func updateTimer() {
         // Update the progress
-        let now = NSDate.timeIntervalSinceReferenceDate()
+        let now = Date.timeIntervalSinceReferenceDate
         progress = progress + (now - lastUpdate)
         lastUpdate = now
         

@@ -10,11 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private(set) var didAppear: Bool = false
-    private(set) var isVisible: Bool = false
+    fileprivate(set) var didAppear: Bool = false
+    fileprivate(set) var isVisible: Bool = false
     
     // references to segue actions
-    private var segueActions: [SegueAction] = []
+    fileprivate var segueActions: [SegueAction] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         self.hideBackTitle()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if(self.didAppear == false) {
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         self.isVisible = true
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         self.isVisible = false
@@ -49,16 +49,16 @@ class ViewController: UIViewController {
     
     
     // add segue action
-    func performSegueWithIdentifier(identifier: String, withCompletion completion: ((destVc: UIViewController)->())) {
+    func performSegueWithIdentifier(_ identifier: String, withCompletion completion: @escaping ((_ destVc: UIViewController)->())) {
         self.segueActions.append(SegueAction(id: identifier, withAction: completion))
-        self.performSegueWithIdentifier(identifier, sender: self)
+        self.performSegue(withIdentifier: identifier, sender: self)
     }
     
     // use segue action
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         for segueAction in self.segueActions {
             if(segue.identifier == segueAction.id) {
-                segueAction.action(destVc: segue.destinationViewController)
+                segueAction.action(segue.destination)
             }
         }
     }
@@ -80,17 +80,17 @@ extension UIViewController {
     }
     
     func removeAsChild() {
-        self.willMoveToParentViewController(nil)
+        self.willMove(toParentViewController: nil)
         self.view.removeFromSuperview()
         self.removeFromParentViewController()
     }
     
-    func addRefreshControl(scrollView : UIScrollView) -> UIRefreshControl
+    func addRefreshControl(_ scrollView : UIScrollView) -> UIRefreshControl
     {
         let refreshControl = UIRefreshControl()
         refreshControl.tag = REFRESH_CONTROL_TAG
-        refreshControl.tintColor = UIColor.blackColor()
-        refreshControl.addTarget(self, action: #selector(didRefreshed), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.tintColor = UIColor.black
+        refreshControl.addTarget(self, action: #selector(didRefreshed), for: UIControlEvents.valueChanged)
         scrollView.addSubview(refreshControl)
         
         return refreshControl
@@ -106,17 +106,17 @@ extension UIViewController {
     }
     
     func hideBackTitle() {
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
     }
     
     //
     
-    func showErrorView(text: String="Error") {
+    func showErrorView(_ text: String="Error") {
         self.hideLoadingView()
         self.showInfoView("Error", text: text)
     }
     
-    func showInfoView(title: String, text: String) {
+    func showInfoView(_ title: String, text: String) {
         self.hideLoadingView()
         let infoView = UIAlertView(title: title, message: text, delegate: nil, cancelButtonTitle: "OK")
         infoView.show()
@@ -136,8 +136,8 @@ extension UIViewController {
         transition.duration = 0.5
         transition.type = kCATransitionFade
         
-        self.view.window?.layer.addAnimation(transition, forKey:kCATransition)
-        self.dismissViewControllerAnimated(false, completion: nil)
+        self.view.window?.layer.add(transition, forKey:kCATransition)
+        self.dismiss(animated: false, completion: nil)
     }
 }
 
@@ -145,10 +145,10 @@ extension UIViewController {
 //
 
 class SegueAction {
-    private(set) var id: String
-    private(set) var action: ((destVc: UIViewController)->())
+    fileprivate(set) var id: String
+    fileprivate(set) var action: ((_ destVc: UIViewController)->())
     
-    init(id: String, withAction action: ((destVc: UIViewController)->())) {
+    init(id: String, withAction action: @escaping ((_ destVc: UIViewController)->())) {
         self.id = id
         self.action = action
     }

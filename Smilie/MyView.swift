@@ -33,30 +33,30 @@ extension UIView {
         
         // makes magic
         // !!! REMEMBER !!! it will only work when constraints are made from top to bottom !
-        let size = self.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+        let size = self.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
         
         return size.height
     }
     
-    func autolayoutCalculatedHeight(extraHeight: CGFloat=0) {
-        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.x, self.frame.width, self.autolayoutCalculatedHeight + extraHeight)
+    func autolayoutCalculatedHeight(_ extraHeight: CGFloat=0) {
+        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.x, width: self.frame.width, height: self.autolayoutCalculatedHeight + extraHeight)
     }
     
     //
     
-    func loadViewFromNib(nibName: String) -> UIView {
-        return NSBundle.mainBundle().loadNibNamed(nibName, owner: self, options: nil).last as! UIView
+    func loadViewFromNib(_ nibName: String) -> UIView {
+        return Bundle.main.loadNibNamed(nibName, owner: self, options: nil)!.last as! UIView
     }
     
     
     //
     
-    func testPoint(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-        if(self.pointInside(point, withEvent: event) == true && self.tag > 0) {
+    func testPoint(_ point: CGPoint, withEvent event: UIEvent?) -> Bool {
+        if(self.point(inside: point, with: event) == true && self.tag > 0) {
             return true
         }
         for sview in self.subviews {
-            if(sview.tag > 0 && sview.testPoint(self.convertPoint(point, toView: sview), withEvent: event) == true) {
+            if(sview.tag > 0 && sview.testPoint(self.convert(point, to: sview), withEvent: event) == true) {
                 return true
             }
         }
@@ -65,19 +65,19 @@ extension UIView {
     
     //
     
-    func move(x x: CGFloat, y: CGFloat) {
+    func move(x: CGFloat, y: CGFloat) {
         self.frame = CGRect(x: self.frame.origin.x + x, y: self.frame.origin.y + y, width: self.bounds.width, height: self.bounds.height)
     }
     
-    func setPos(x x: CGFloat, y: CGFloat) {
+    func setPos(x: CGFloat, y: CGFloat) {
         self.frame = CGRect(x: x, y: y, width: self.bounds.width, height: self.bounds.height)
     }
     
-    func resize(tw tw: CGFloat, th: CGFloat) {
+    func resize(tw: CGFloat, th: CGFloat) {
         self.frame = self.frame.resize(tw: tw, th: th)
     }
     
-    func setSize(w w: CGFloat, h: CGFloat) {
+    func setSize(w: CGFloat, h: CGFloat) {
         self.frame = CGRect(x: self.frame.origin.x , y: self.frame.origin.y, width: w, height: h)
     }
     
@@ -97,7 +97,7 @@ extension UIView {
             return UIColor.gray
         }
         set {
-            self.layer.borderColor = newValue.CGColor
+            self.layer.borderColor = newValue.cgColor
         }
     }
     
@@ -117,8 +117,8 @@ extension UIView {
         }
         set {
             if(newValue == true) {
-                self.layer.shadowColor = UIColor.blackColor().CGColor
-                self.layer.shadowOffset = CGSizeMake(0, 0)
+                self.layer.shadowColor = UIColor.black.cgColor
+                self.layer.shadowOffset = CGSize(width: 0, height: 0)
                 self.layer.shadowOpacity = 0.4
                 self.layer.masksToBounds = false
             }

@@ -12,16 +12,16 @@ class BounceButton: UIButton {
 
     //
     
-    private let BOUNCE_DURATION: NSTimeInterval = 0.3
-    private let BOUNCE_BACK_DURATION: NSTimeInterval = 0.1
+    fileprivate let BOUNCE_DURATION: TimeInterval = 0.3
+    fileprivate let BOUNCE_BACK_DURATION: TimeInterval = 0.1
     
     //
     
-    private var isAnimating: Bool = false
+    fileprivate var isAnimating: Bool = false
     
-    override var highlighted: Bool {
+    override var isHighlighted: Bool {
         didSet {
-            if(highlighted) {
+            if(isHighlighted) {
                 self.bounce()
             } else {
                 self.bounceBack()
@@ -31,26 +31,26 @@ class BounceButton: UIButton {
     
     //
     
-    private func bounce() {
+    fileprivate func bounce() {
         if(!self.isAnimating) {
             self.isAnimating = true
-            UIView.animateWithDuration(BOUNCE_DURATION, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-                self.transform = CGAffineTransformMakeScale(0.8, 0.8)
+            UIView.animate(withDuration: BOUNCE_DURATION, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             }) { (finished) in
                 self.isAnimating = false
                 
-                if(!self.highlighted) {
+                if(!self.isHighlighted) {
                     self.bounceBack()
                 }
             }
         }
     }
     
-    private func bounceBack() {
+    fileprivate func bounceBack() {
         if(!self.isAnimating) {
             self.isAnimating = true
-            UIView.animateWithDuration(BOUNCE_BACK_DURATION, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-                self.transform = CGAffineTransformMakeScale(1, 1)
+            UIView.animate(withDuration: BOUNCE_BACK_DURATION, delay: 0, options: UIViewAnimationOptions(), animations: {
+                self.transform = CGAffineTransform(scaleX: 1, y: 1)
             }) { (finished) in
                 self.isAnimating = false
             }

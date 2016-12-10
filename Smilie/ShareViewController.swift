@@ -16,16 +16,16 @@ class ShareViewController: ViewController {
     @IBOutlet weak var keepOnSmilingLabel: UILabel!
     
     
-    private var camera: MyCamera!
-    private var smileDetector: SmileDetector!
-    private var isSmileDetected: Bool = false
-    private var isCameraAvailable: Bool = false
+    fileprivate var camera: MyCamera!
+    fileprivate var smileDetector: SmileDetector!
+    fileprivate var isSmileDetected: Bool = false
+    fileprivate var isCameraAvailable: Bool = false
     
-    private var smileProgressView: SmileProgressView!
+    fileprivate var smileProgressView: SmileProgressView!
     // after first smile detected, wait 2 sec
-    private var smileTimer: DurationTimer!
+    fileprivate var smileTimer: DurationTimer!
     
-    private var filteredImage: UIImage!
+    fileprivate var filteredImage: UIImage!
     
     //
     
@@ -42,7 +42,7 @@ class ShareViewController: ViewController {
         initSmile()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         self.isSmileDetected = false
@@ -59,7 +59,7 @@ class ShareViewController: ViewController {
     }
     
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         log("SHAREVIEW DID DISAPPEAR")
@@ -68,7 +68,7 @@ class ShareViewController: ViewController {
         self.camera.stop()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.keepOnSmilingLabel.alpha = 0.0
@@ -77,11 +77,11 @@ class ShareViewController: ViewController {
     
     //
     
-    private func initCamera() {
+    fileprivate func initCamera() {
         self.smileDetector = SmileDetector()
         self.camera = MyCamera()
         self.camera.previewImage = { (image) in
-            self.smileDetector.detectSmile(image, smileDetected: { (probability, faceRect) in
+            self.smileDetector.detectSmile(image, smileDetected: { (probability, faceRect, faceFeature) in
                 if(!self.isSmileDetected) {
                     if(probability > SMILE_PROBABILITY_TRESHOLD) {
                         // start timer when smile detected
@@ -99,7 +99,7 @@ class ShareViewController: ViewController {
         }
     }
     
-    private func initSmile() {
+    fileprivate func initSmile() {
         // keep on smiling for 2 seconds...
         self.smileTimer = DurationTimer(duration: SMILE_TIME, onProgress: { (progress) in
             self.smileProgressView.onProgress(progress)
@@ -108,14 +108,14 @@ class ShareViewController: ViewController {
                 self.share()
         })
         
-        self.smileProgressView = SmileProgressView(frame: CGRectZero)
+        self.smileProgressView = SmileProgressView(frame: CGRect.zero)
         self.view.addSubview(self.smileProgressView)
         self.smileProgressView.onProgress(0)
     }
     
     
     // image processing
-    private func addMaskOnImage(image: UIImage) -> UIImage {
+    fileprivate func addMaskOnImage(_ image: UIImage) -> UIImage {
         let mask = UIImage(named: "smile_orange")!
         
         let textFont = UIFont(name: "Helvetica Bold", size: 45)!
@@ -123,18 +123,18 @@ class ShareViewController: ViewController {
         // Setup the font attributes that will be later used to dictate how the text should be drawn
         let textFontAttributes = [
             NSFontAttributeName: textFont,
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSForegroundColorAttributeName: UIColor.white,
             ]
         
-        var newImage = image.imageWithMask(mask, atLocation: CGPointMake(30, 30), withSize: CGSizeMake(150, 150))
-        newImage = newImage.imageWithText("#0000001", atLocation: CGPointMake(190, 150/2), withAttributes: textFontAttributes)
+        var newImage = image.imageWithImage(mask, atLocation: CGPoint(x: 30, y: 30), withSize: CGSize(width: 150, height: 150))
+        newImage = newImage.imageWithText("#0000001", atLocation: CGPoint(x: 190, y: 150/2), withAttributes: textFontAttributes)
         
         return newImage
     }
     
-    private func share() {
+    fileprivate func share() {
         //
-        if(galleryCheckbox.selected) {
+        if(galleryCheckbox.isSelected) {
             self.showSmilieLoadingView()
             
             // add filters
@@ -147,18 +147,18 @@ class ShareViewController: ViewController {
                     self.performSegueWithIdentifier("ShowGallery", withCompletion: { (destVc) in
                         let galleryVc = (destVc as! GalleryViewController)
                         galleryVc.image = self.filteredImage
-                        galleryVc.shouldShareWithFriends = self.shareCheckbox.selected
+                        galleryVc.shouldShareWithFriends = self.shareCheckbox.isSelected
                     })
                 })
             }
-        } else if(shareCheckbox.selected) {
+        } else if(shareCheckbox.isSelected) {
             self.shareWithFriends()
         }
 
     }
     
-    private func shareWithFriends() {
-        if(shareCheckbox.selected) {
+    fileprivate func shareWithFriends() {
+        if(shareCheckbox.isSelected) {
             
             self.showSmilieLoadingView()
             
@@ -171,19 +171,19 @@ class ShareViewController: ViewController {
                     self.isSmileDetected = false
                     self.smileProgressView.hideAnim()
                 }
-                self.presentViewController(activityVc, animated: true, completion: nil)
+                self.present(activityVc, animated: true, completion: nil)
             }
         }
     }
     
 
-    private func showKeppOnSmiling() {
+    fileprivate func showKeppOnSmiling() {
         // show insructions
-        UIView.animateWithDuration(1.0, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+        UIView.animate(withDuration: 1.0, delay: 1.0, options: UIViewAnimationOptions(), animations: {
             self.keepOnSmilingLabel.alpha = 1.0
         }, completion: { (completed) in
             // hide
-            UIView.animateWithDuration(1.0, delay: 2.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            UIView.animate(withDuration: 1.0, delay: 2.0, options: UIViewAnimationOptions(), animations: {
                 self.keepOnSmilingLabel.alpha = 0.0
             }, completion: nil)
         })
@@ -192,7 +192,7 @@ class ShareViewController: ViewController {
     // Actions
 
     
-    @IBAction func exitClicked(sender: AnyObject) {
+    @IBAction func exitClicked(_ sender: AnyObject) {
         self.camera.stop()
         self.dismissfadeOut()
     }

@@ -32,23 +32,19 @@ class IntroViewController: ViewController {
     }
     
     override func viewDidFirstAppear() {
-        self.performSegueWithIdentifier("Start", sender: self)
-        
-        /*
-        
         self.firstInfoLabelCenterXCnst.constant =  -self.view.frame.width
         self.secondInfoLabelCenterXCnst.constant =  self.view.frame.width
         
         self.view.layoutIfNeeded()
         
-        UIView.animateWithDuration(1.5, delay: 1.5, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+        UIView.animate(withDuration: 1.5, delay: 1.5, options: UIViewAnimationOptions.curveEaseInOut, animations: {
             self.firstInfoLabel.alpha = 1.0
             self.firstInfoLabelCenterXCnst.constant = 0
             
             self.view.layoutIfNeeded()
         }) { (finished) in }
         
-        UIView.animateWithDuration(1.5, delay: 3.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+        UIView.animate(withDuration: 1.5, delay: 3.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
             self.secondInfoLabel.alpha = 1.0
             self.secondInfoLabelCenterXCnst.constant = 0
             
@@ -58,12 +54,12 @@ class IntroViewController: ViewController {
             // delay and ask for permissions
             delay(1.0, withCompletion: {
                 MyCamera.checkCameraPermissions({
-                    self.performSegueWithIdentifier("Start", sender: self)
+                    self.performSegue(withIdentifier: "Start", sender: self)
                 }) {
                     self.showErrorView("No permissions")
                 }
             })
-        }*/
+        }
     }
 
 

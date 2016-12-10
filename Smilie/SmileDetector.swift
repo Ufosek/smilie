@@ -14,19 +14,19 @@ import GoogleMobileVision
 
 class SmileDetector: NSObject {
     
-    private let GMVDetectorFaceLandmarkType_ALL = 1 << 1
-    private let GMVDetectorFaceClassificationType_ALL = 1 << 1
+    fileprivate let GMVDetectorFaceLandmarkType_ALL = 1 << 1
+    fileprivate let GMVDetectorFaceClassificationType_ALL = 1 << 1
 
     
-    private var faceDetector: GMVDetector!
-    private var detectQueue: dispatch_queue_t!
-    private var isCalculatingSmilingProbability: Bool!
+    fileprivate var faceDetector: GMVDetector!
+    fileprivate var detectQueue: DispatchQueue!
+    fileprivate var isCalculatingSmilingProbability: Bool!
     
     
     //
     
     override init() {
-        let options: [NSObject : AnyObject] = [
+        let options: [AnyHashable: Any] = [
             GMVDetectorFaceLandmarkType: GMVDetectorFaceLandmarkType_ALL,
             GMVDetectorFaceClassificationType: GMVDetectorFaceClassificationType_ALL,
             GMVDetectorFaceTrackingEnabled: false
@@ -34,22 +34,23 @@ class SmileDetector: NSObject {
         
         self.faceDetector = GMVDetector(ofType: GMVDetectorTypeFace, options: options)
         
-        self.detectQueue = dispatch_queue_create("panowie.p.detect", DISPATCH_QUEUE_SERIAL)
+        self.detectQueue = DispatchQueue(label: "panowie.p.detect", attributes: [])
         self.isCalculatingSmilingProbability = false
     }
     
     
-    func detectSmile(image: UIImage, smileDetected: ((CGFloat, CGRect)->())?) {
+    func detectSmile(_ image: UIImage, smileDetected: ((CGFloat, CGRect, GMVFaceFeature)->())?) {
         // calculate 1 at once
         if(self.isCalculatingSmilingProbability == false) {
             self.isCalculatingSmilingProbability = true
             
             // callback in main queue (main thread)
-            dispatch_async(self.detectQueue) {
+            self.detectQueue.async {
                 // get face features
-                let faceFeatures: [GMVFaceFeature] = self.faceDetector.featuresInImage(image, options: nil) as! [GMVFaceFeature]
+                let faceFeatures: [GMVFaceFeature] = self.faceDetector.features(in: image, options: nil) as! [GMVFaceFeature]
                 
-                var faceRect = CGRectMake(0, 0, 10, 10)
+                var faceRect = CGRect(x: 0, y: 0, width: 10, height: 10)
+                var feature_ = GMVFaceFeature()
                 
                 // find biggest smile probability
                 var probability: CGFloat = 0
@@ -57,12 +58,13 @@ class SmileDetector: NSObject {
                     if feature.hasSmilingProbability && feature.smilingProbability > probability {
                         probability = feature.smilingProbability
                         faceRect = self.faceRect(feature)
+                        feature_ = feature
                     }
                 }
 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.isCalculatingSmilingProbability = false
-                    smileDetected?(probability, faceRect)
+                    smileDetected?(probability, faceRect, feature_)
                 })
             }
         }
@@ -71,14 +73,16 @@ class SmileDetector: NSObject {
     //
     
     // face pos and size
-    private func faceRect(faceFeature: GMVFaceFeature) -> CGRect {
-        let radius: CGFloat = sqrt((faceFeature.noseBasePosition.x - faceFeature.leftEarPosition.x)*(faceFeature.noseBasePosition.x - faceFeature.leftEarPosition.x) + (faceFeature.noseBasePosition.y - faceFeature.leftEarPosition.y)*(faceFeature.noseBasePosition.y - faceFeature.leftEarPosition.y)) + 80
-        let posx: CGFloat = faceFeature.noseBasePosition.x - radius
-        let posy: CGFloat = faceFeature.noseBasePosition.y - radius
-        let width: CGFloat = faceFeature.noseBasePosition.x + radius - posx
-        let height: CGFloat = faceFeature.noseBasePosition.y + radius - posy
-        
-        return CGRectMake(posx, posy, width, height)
+    fileprivate func faceRect(_ faceFeature: GMVFaceFeature) -> CGRect {
+        // radius = distance between nose and ear
+        let radius: CGFloat = sqrt((faceFeature.noseBasePosition.x - faceFeature.leftEarPosition.x)*(faceFeature.noseBasePosition.x - faceFeature.leftEarPosition.x) + (faceFeature.noseBasePosition.y - faceFeature.leftEarPosition.y)*(faceFeature.noseBasePosition.y - faceFeature.leftEarPosition.y))
+       
+        let posx: CGFloat = faceFeature.noseBasePosition.x - radius * 1.5
+        let posy: CGFloat = faceFeature.noseBasePosition.y - radius * 1.6
+        let width: CGFloat = faceFeature.noseBasePosition.x + radius * 1.5 - posx
+        let height: CGFloat = faceFeature.noseBasePosition.y + radius * 1.2 - posy
+
+        return CGRect(x: posx, y: posy, width: width, height: height)
     }
     
 

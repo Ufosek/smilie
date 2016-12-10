@@ -17,15 +17,15 @@ import UIKit
 class ReplaceFadeSegue: UIStoryboardSegue {
     
     override func perform() {
-        let sourceViewController: UIViewController = self.sourceViewController
-        let destinationViewController: UIViewController = self.destinationViewController
+        let sourceViewController: UIViewController = self.source
+        let destinationViewController: UIViewController = self.destination
         
         let transition = CATransition()
         transition.duration = 0.0
         transition.type = kCATransitionFade
         
-        sourceViewController.view.window?.layer.addAnimation(transition, forKey:kCATransition)
-        sourceViewController.presentViewController(destinationViewController, animated: false, completion: nil)
+        sourceViewController.view.window?.layer.add(transition, forKey:kCATransition)
+        sourceViewController.present(destinationViewController, animated: false, completion: nil)
     }
 }
 
@@ -33,9 +33,9 @@ class ReplaceFadeSegue: UIStoryboardSegue {
 class ReplaceSegue: UIStoryboardSegue {
     
     override func perform() {
-        let sourceViewController: UIViewController = self.sourceViewController
-        let destinationViewController: UIViewController = self.destinationViewController
-        sourceViewController.presentViewController(destinationViewController, animated: false, completion: nil)
+        let sourceViewController: UIViewController = self.source
+        let destinationViewController: UIViewController = self.destination
+        sourceViewController.present(destinationViewController, animated: false, completion: nil)
     }
 }
 //
@@ -43,13 +43,13 @@ class ReplaceSegue: UIStoryboardSegue {
 class AddChildSegue: UIStoryboardSegue {
     
     override func perform() {
-        let sourceViewController: UIViewController = self.sourceViewController
-        let destinationViewController: UIViewController = self.destinationViewController
+        let sourceViewController: UIViewController = self.source
+        let destinationViewController: UIViewController = self.destination
         
         sourceViewController.addChildViewController(destinationViewController)
         destinationViewController.view.frame = sourceViewController.view.bounds
         sourceViewController.view.addSubview(destinationViewController.view)
-        destinationViewController.didMoveToParentViewController(sourceViewController)
+        destinationViewController.didMove(toParentViewController: sourceViewController)
     }
 }
 
@@ -58,14 +58,14 @@ class AddChildSegue: UIStoryboardSegue {
 class SetChildSegue: UIStoryboardSegue {
     
     override func perform() {
-        let sourceViewController: UIViewController = self.sourceViewController
-        let destinationViewController: UIViewController = self.destinationViewController
+        let sourceViewController: UIViewController = self.source
+        let destinationViewController: UIViewController = self.destination
         
         sourceViewController.removeChildrenVcs()
         
         sourceViewController.addChildViewController(destinationViewController)
         destinationViewController.view.frame = sourceViewController.view.bounds
         sourceViewController.view.addSubview(destinationViewController.view)
-        destinationViewController.didMoveToParentViewController(sourceViewController)
+        destinationViewController.didMove(toParentViewController: sourceViewController)
     }
 }

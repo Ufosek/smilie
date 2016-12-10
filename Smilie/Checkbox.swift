@@ -25,20 +25,20 @@ class Checkbox: BounceButton {
     }
     
     func configure() {
-        self.setBackgroundImage(UIImage(named: "checkbox_unchecked.png"), forState: UIControlState.Normal)
-        self.setBackgroundImage(UIImage(named: "checkbox_checked.png"), forState: UIControlState.Selected)
-        self.tintColor = UIColor.clearColor()
+        self.setBackgroundImage(UIImage(named: "checkbox_unchecked.png"), for: UIControlState())
+        self.setBackgroundImage(UIImage(named: "checkbox_checked.png"), for: UIControlState.selected)
+        self.tintColor = UIColor.clear
         
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(Checkbox.checkboxClicked(_:))))
     }
     
-    func checkboxClicked(gestureRecognizer: UITapGestureRecognizer) {
-        self.selected = !self.selected
-        self.delegate?.checkboxChecked(self, checked: self.selected)
+    func checkboxClicked(_ gestureRecognizer: UITapGestureRecognizer) {
+        self.isSelected = !self.isSelected
+        self.delegate?.checkboxChecked(self, checked: self.isSelected)
     }
 
 }
 
 protocol CheckboxDelegate: class {
-    func checkboxChecked(checkbox: Checkbox, checked: Bool)
+    func checkboxChecked(_ checkbox: Checkbox, checked: Bool)
 }

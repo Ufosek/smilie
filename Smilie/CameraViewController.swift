@@ -13,7 +13,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     //
     
     
-    private var imagePicker: UIImagePickerController!
+    fileprivate var imagePicker: UIImagePickerController!
     
     
     //
@@ -30,12 +30,12 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     
     func showCamera() {
-        if (UIImagePickerController.availableCaptureModesForCameraDevice(.Front) != nil) {
+        if (UIImagePickerController.availableCaptureModes(for: .front) != nil) {
             self.imagePicker = UIImagePickerController()
-            self.imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-            self.imagePicker.cameraDevice = .Front
-            self.imagePicker.cameraCaptureMode = .Photo
-            self.imagePicker.modalPresentationStyle = .FullScreen
+            self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            self.imagePicker.cameraDevice = .front
+            self.imagePicker.cameraCaptureMode = .photo
+            self.imagePicker.modalPresentationStyle = .fullScreen
             self.imagePicker.showsCameraControls = false
             self.imagePicker.delegate = self
             
@@ -50,7 +50,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.imagePicker.cameraOverlayView = cameraView
             
             
-            self.presentViewController(self.imagePicker, animated: false) {
+            self.present(self.imagePicker, animated: false) {
                 
             }
             
@@ -62,9 +62,9 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     // adjust size to device
     
-    private func scaleForFullScreen() -> CGAffineTransform {
+    fileprivate func scaleForFullScreen() -> CGAffineTransform {
         
-        let screenSize = UIScreen.mainScreen().bounds.size
+        let screenSize = UIScreen.main.bounds.size
         let cameraAspectRatio = CGFloat(4.0 / 3.0)
         let imageWidth = screenSize.width * cameraAspectRatio;
         // 20 I guess for status bar
@@ -76,8 +76,8 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         print("imageWidth = \(imageWidth)")
         print("imageHeight = \(imageHeight)")
         
-        var transform = CGAffineTransformMakeScale(scale, scale)
-        transform = CGAffineTransformTranslate(transform, 0, 60)
+        var transform = CGAffineTransform(scaleX: scale, y: scale)
+        transform = transform.translatedBy(x: 0, y: 60)
         
         return transform
     }
@@ -85,17 +85,17 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     // UIImagePickerControllerDelegate
     // image selected
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [AnyHashable: Any]!) {
+        picker.dismiss(animated: true, completion: nil)
 
         // do smth
     }
     
     // otherwise status bar changes color
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
-        if((navigationController as! UIImagePickerController).sourceType == UIImagePickerControllerSourceType.PhotoLibrary) {
-            UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.None)
-            UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if((navigationController as! UIImagePickerController).sourceType == UIImagePickerControllerSourceType.photoLibrary) {
+            UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.none)
+            UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
         }
     }
 

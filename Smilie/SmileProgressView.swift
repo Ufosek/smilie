@@ -10,11 +10,11 @@ import UIKit
 
 class SmileProgressView: NibView {
 
-    private let HEIGHT: CGFloat = 40
+    fileprivate let HEIGHT: CGFloat = 40
     
     //
     
-    private var isAnimating: Bool = false
+    fileprivate var isAnimating: Bool = false
     
     //
     
@@ -26,7 +26,7 @@ class SmileProgressView: NibView {
     //
     
     override init(frame: CGRect) {
-        super.init(frame: CGRectMake(0, 0, HEIGHT, HEIGHT))
+        super.init(frame: CGRect(x: 0, y: 0, width: HEIGHT, height: HEIGHT))
         self.onProgress(0)
     }
     
@@ -34,17 +34,17 @@ class SmileProgressView: NibView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func onProgress(progress: Double) {
+    func onProgress(_ progress: Double) {
         if let parent = self.superview {
             let height = CGFloat(HEIGHT)
             let width = height + parent.frame.width * CGFloat(progress)
-            self.frame = CGRectMake(0, parent.frame.height - height,  width, height)
+            self.frame = CGRect(x: 0, y: parent.frame.height - height,  width: width, height: height)
             parent.layoutIfNeeded()
         }
     }
     
     func hideAnim() {
-        UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions(), animations: {
             self.onProgress(0)
         }, completion: { (completed) in })
     }

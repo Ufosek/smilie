@@ -15,15 +15,15 @@ import GoogleMobileVision
 class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     
-    private var frontCameraDevice: AVCaptureDevice!
-    private var cameraSession: AVCaptureSession!
-    private var previewLayer: AVCaptureVideoPreviewLayer!
-    private var glContext: EAGLContext!
-    private var glView: GLKView!
-    private var ciContext: CIContext!
-    private var videoOutput: AVCaptureVideoDataOutput!
-    private var stillCameraOutput: AVCaptureStillImageOutput!
-    private var sessionQueue: dispatch_queue_t!
+    fileprivate var frontCameraDevice: AVCaptureDevice!
+    fileprivate var cameraSession: AVCaptureSession!
+    fileprivate var previewLayer: AVCaptureVideoPreviewLayer!
+    fileprivate var glContext: EAGLContext!
+    fileprivate var glView: GLKView!
+    fileprivate var ciContext: CIContext!
+    fileprivate var videoOutput: AVCaptureVideoDataOutput!
+    fileprivate var stillCameraOutput: AVCaptureStillImageOutput!
+    fileprivate var sessionQueue: DispatchQueue!
     
     
     //
@@ -34,15 +34,15 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     
     
-    func makePhoto(photoTaken: ((UIImage)->())?, handleError: (()->())?=nil) {
-        dispatch_async(sessionQueue) { () -> Void in
+    func makePhoto(_ photoTaken: ((UIImage)->())?, handleError: (()->())?=nil) {
+        sessionQueue.async { () -> Void in
             
-            let connection = self.stillCameraOutput.connectionWithMediaType(AVMediaTypeVideo)
+            let connection = self.stillCameraOutput.connection(withMediaType: AVMediaTypeVideo)
             
             // update the video orientation to the device one
-            connection.videoOrientation = AVCaptureVideoOrientation(rawValue: UIDevice.currentDevice().orientation.rawValue)!
+            connection?.videoOrientation = AVCaptureVideoOrientation(rawValue: UIDevice.current.orientation.rawValue)!
             
-            self.stillCameraOutput.captureStillImageAsynchronouslyFromConnection(connection) {
+            self.stillCameraOutput.captureStillImageAsynchronously(from: connection) {
                 (imageDataSampleBuffer, error) -> Void in
                 
                 if error == nil {
@@ -51,7 +51,7 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
                     
                     let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
                     
-                    if let image = UIImage(data: imageData) {
+                    if let image = UIImage(data: imageData!) {
                         // save the image or do something interesting with it
                         
                         photoTaken?(image.imageFlipped())
@@ -67,15 +67,15 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     
-    func start(cameraPreviewView: UIView, shouldShowView showView: Bool=true, handleError: (()->())?) {
+    func start(_ cameraPreviewView: UIView, shouldShowView showView: Bool=true, handleError: (()->())?) {
         self.cameraSession = AVCaptureSession()
         // default configuration
         self.cameraSession.sessionPreset = AVCaptureSessionPresetPhoto
         
         // get fron camera
-        let availableCameraDevices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo)
+        let availableCameraDevices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
         for device in availableCameraDevices as! [AVCaptureDevice] {
-            if device.position == .Front {
+            if device.position == .front {
                 frontCameraDevice = device
             }
         }
@@ -97,14 +97,14 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
                 }
                 
                 // init GL
-                glContext = EAGLContext(API: .OpenGLES2)
+                glContext = EAGLContext(api: .openGLES2)
                 glView = GLKView(frame: previewLayer.frame, context: glContext)
-                ciContext = CIContext(EAGLContext: glContext)
+                ciContext = CIContext(eaglContext: glContext)
                 
                 // video and callback (for preview image)
                 videoOutput = AVCaptureVideoDataOutput()
-                videoOutput.videoSettings = NSDictionary(object: NSNumber(unsignedInt: kCVPixelFormatType_32BGRA), forKey: NSString(string: kCVPixelBufferPixelFormatTypeKey)) as [NSObject : AnyObject]
-                videoOutput.setSampleBufferDelegate(self, queue: dispatch_queue_create("sample buffer delegate", DISPATCH_QUEUE_SERIAL))
+                videoOutput.videoSettings = NSDictionary(object: NSNumber(value: kCVPixelFormatType_32BGRA as UInt32), forKey: NSString(string: kCVPixelBufferPixelFormatTypeKey)) as! [AnyHashable: Any]
+                videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "sample buffer delegate", attributes: []))
                 if cameraSession.canAddOutput(self.videoOutput) {
                     cameraSession.addOutput(self.videoOutput)
                 }
@@ -116,8 +116,8 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
                 }
                 
                 // start camera
-                sessionQueue = dispatch_queue_create("panowie.p.camera", DISPATCH_QUEUE_SERIAL)
-                dispatch_async(sessionQueue) { () -> Void in
+                sessionQueue = DispatchQueue(label: "panowie.p.camera", attributes: [])
+                sessionQueue.async { () -> Void in
                     self.cameraSession.startRunning()
                 }
                 
@@ -140,12 +140,12 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     
     
-    static func checkCameraPermissions(authorized: (()->())?, denied: (()->())?) {
-        let authorizationStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+    static func checkCameraPermissions(_ authorized: (()->())?, denied: (()->())?) {
+        let authorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
         switch authorizationStatus {
-        case .NotDetermined:
+        case .notDetermined:
             // permission dialog not yet presented, request authorization
-            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { (granted:Bool) -> Void in
+            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (granted:Bool) -> Void in
                 if granted {
                     authorized?()
                 }
@@ -153,11 +153,11 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
                     denied?()
                 }
             })
-        case .Authorized:
+        case .authorized:
             authorized?()
             break;
             
-        case .Denied, .Restricted:
+        case .denied, .restricted:
             denied?()
             break;
         }
@@ -168,24 +168,24 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     
     // AVCaptureVideoDataOutputSampleBufferDelegate
     
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
         
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-        let image = CIImage(CVPixelBuffer: pixelBuffer!)
-        if glContext != EAGLContext.currentContext() {
-            EAGLContext.setCurrentContext(glContext)
+        let image = CIImage(cvPixelBuffer: pixelBuffer!)
+        if glContext != EAGLContext.current() {
+            EAGLContext.setCurrent(glContext)
         }
         
         glView.bindDrawable()
-        ciContext.drawImage(image, inRect:image.extent, fromRect: image.extent)
+        ciContext.draw(image, in:image.extent, from: image.extent)
         glView.display()
 
         // we have to do it in main queue
-        dispatch_async(dispatch_get_main_queue())
+        DispatchQueue.main.async
         {
             // imageRotatedByDegrees causes damage
             // CMSampleBufferGetImageBuffer is rotated by 90
-            let image_ = UIImageHelper.imageFromSampleBuffer(sampleBuffer).imageRotatedByDegrees(90, flip: false, switchedSizes: true)
+            let image_ = UIImageHelper.image(from: sampleBuffer).imageRotatedByDegrees(90, flip: false, switchedSizes: true)
             
             self.previewImage?(image_)
         }

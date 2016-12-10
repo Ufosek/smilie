@@ -27,7 +27,7 @@ class SmilieLoadingView: NibView {
         rotationAnimation.duration = 1.0
         rotationAnimation.repeatCount = Float.infinity
         
-        self.smilieImageView.layer.addAnimation(rotationAnimation, forKey: "smilie_loading_view_anim_key")
+        self.smilieImageView.layer.add(rotationAnimation, forKey: "smilie_loading_view_anim_key")
     }
     
 }
@@ -43,13 +43,20 @@ extension ViewController {
         self.view.addSubview(smilieLoadingView)
         smilieLoadingView.startAnim()
         
-        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions(), animations: {
             smilieLoadingView.alpha = 1
         }, completion: { (completed) in })
     }
     
-    func hideSmilieLoadingView() {
-        self.view.viewWithTag(SmilieLoadingView.SMILIE_TAG)?.removeFromSuperview()
+    func hideSmilieLoadingView(removed: (()->())?=nil) {
+        if let loadingView = self.view.viewWithTag(SmilieLoadingView.SMILIE_TAG) {
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions(), animations: {
+                loadingView.alpha = 0
+            }, completion: { (completed) in
+                loadingView.removeFromSuperview()
+                removed?()
+            })
+        }
     }
     
 }
