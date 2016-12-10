@@ -36,6 +36,13 @@ func log(_ string: String) {
 
 //
 
+func rand(max: Int) -> Int {
+    return Int(arc4random_uniform(UInt32(max)))
+}
+
+
+//
+
 func stringForKey(_ key: String) -> String {
     return NSLocalizedString(key, comment: "")
 }
@@ -69,6 +76,15 @@ func workInBackground(_ work: (()->())?, completed: (()->())?) {
 //
 let degreesToRadians: (CGFloat) -> CGFloat = {
     return $0 / 180.0 * CGFloat(M_PI)
+}
+
+
+//
+
+extension Array {
+    var randomElem: AnyObject {
+        return self[rand(max: self.count)] as AnyObject
+    }
 }
 
 

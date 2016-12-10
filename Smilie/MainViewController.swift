@@ -113,7 +113,7 @@ class MainViewController: ViewController {
         self.smileDetector = SmileDetector()
         self.camera = MyCamera()
         self.camera.previewImage = { (image) in
-            self.smileDetector.detectSmile(image, smileDetected: { (probability, faceRect, faceFeature) in
+            self.smileDetector.detectSmile(image, smileDetected: { (probability, faceFeatures) in
                 if(self.photoMade == false && self.isIntroVisible == false) {
                     //log("SMIEL DETECTED= '\(probability)")
                     
@@ -149,7 +149,7 @@ class MainViewController: ViewController {
     
     fileprivate func showKeppOnSmiling() {
         // show insructions
-        UIView.animate(withDuration: 1.0, delay: 1.0, options: UIViewAnimationOptions(), animations: {
+        UIView.animate(withDuration: 1.0, delay: 2.0, options: UIViewAnimationOptions(), animations: {
             self.keepOnSmilingLabel.alpha = 1.0
             }, completion: { (completed) in
                 // hide

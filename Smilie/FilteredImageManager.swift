@@ -14,18 +14,16 @@ class FilteredImageManager: NSObject {
     
     fileprivate var image: UIImage!
     fileprivate var viewSize: CGRect!
-    fileprivate var faceRect: CGRect!
-    fileprivate var faceFeature: GMVFaceFeature!
+    fileprivate var faceFeatures: [GMVFaceFeature]!
     
     fileprivate var filteredImage: UIImage!
     fileprivate(set) var isProcessing: Bool = false
     
     
-    init(image: UIImage, faceRect: CGRect, viewSize: CGRect, faceFeature: GMVFaceFeature) {
+    init(image: UIImage, viewSize: CGRect, faceFeatures: [GMVFaceFeature]) {
         self.image = image
-        self.faceRect = faceRect
         self.viewSize = viewSize
-        self.faceFeature = faceFeature
+        self.faceFeatures = faceFeatures
     }
     
     
@@ -38,13 +36,13 @@ class FilteredImageManager: NSObject {
         // filter image
         workInBackground({
             // add filters
-            self.filteredImage = self.filteredImage.imageCropped(self.faceRect)
+            //self.filteredImage = self.filteredImage.imageCropped(self.faceRect)
             // add filters
             self.filteredImage = self.filterImage(self.filteredImage)
             // set size
-            self.filteredImage = self.filteredImage.imageCircle()
+            //self.filteredImage = self.filteredImage.imageCircle()
             // add images and texts
-            self.filteredImage = self.addMaskOnImage(self.filteredImage)
+            self.filteredImage = self.addEyesOnImage(self.filteredImage)
         }) {
             self.isProcessing = false
             
@@ -62,27 +60,46 @@ class FilteredImageManager: NSObject {
         return newImage
     }
     
-    fileprivate func addMaskOnImage(_ image: UIImage) -> UIImage {
-        let backgroundImage = UIImage(named: "background_\(1)")!
+    fileprivate func addEyesOnImage(_ image: UIImage) -> UIImage {
+        var newImage = image
         
-        let faceLocation = CGPoint(x: 185, y: 149)
-        let eyeSize = CGSize(width: 150, height: 150)
-        let faceSize = CGSize(width: 400, height: 400)
+        for feature in self.faceFeatures {
+            newImage = self.addRandomEyesOnImage(newImage, faceFeature: feature)
+        }
         
-        var newImage = backgroundImage.imageWithImage(image, atLocation: faceLocation, isBelow: true, withSize: faceSize)
-        
-        let sizeRatio = faceSize.width / faceRect.width
-        
-        
-        log("faceRect = \(self.faceRect)")
-        
-        let leftEyePos = CGPoint(x: (self.faceFeature.leftEyePosition.x - self.faceRect.origin.x) * sizeRatio + faceLocation.x - eyeSize.width/2, y: (self.faceFeature.leftEyePosition.y - self.faceRect.origin.y) * sizeRatio + faceLocation.y - eyeSize.height/2)
-        let rightEyePos = CGPoint(x: (self.faceFeature.rightEyePosition.x - self.faceRect.origin.x) * sizeRatio + faceLocation.x - eyeSize.width/2, y: (self.faceFeature.rightEyePosition.y - self.faceRect.origin.y) * sizeRatio + faceLocation.y - eyeSize.height/2)
-        
-        newImage = newImage.imageWithImage(#imageLiteral(resourceName: "eye1"), atLocation: leftEyePos, withSize: eyeSize)
-        newImage = newImage.imageWithImage(#imageLiteral(resourceName: "eye2"), atLocation: rightEyePos, withSize: eyeSize)
-
         return newImage
+    }
+    
+    
+    fileprivate func addRandomEyesOnImage(_ image: UIImage, faceFeature: GMVFaceFeature) -> UIImage {
+        var newImage = image
+        
+        let eyeSize = CGSize(width: 120, height: 120)
+        
+        let leftEyePos = CGPoint(x: faceFeature.leftEyePosition.x - eyeSize.width/2, y: faceFeature.leftEyePosition.y - eyeSize.height/2)
+        let rightEyePos = CGPoint(x: faceFeature.rightEyePosition.x - eyeSize.width/2, y: faceFeature.rightEyePosition.y - eyeSize.height/2)
+        
+        let eyes = [#imageLiteral(resourceName: "eye1"), #imageLiteral(resourceName: "eye2"), #imageLiteral(resourceName: "eye3"), #imageLiteral(resourceName: "eye4"), #imageLiteral(resourceName: "eye5"), #imageLiteral(resourceName: "eye6"), #imageLiteral(resourceName: "eye7")]
+
+        newImage = newImage.imageWithImage(eyes.randomElem as! UIImage, atLocation: leftEyePos, withSize: eyeSize)
+        newImage = newImage.imageWithImage(eyes.randomElem as! UIImage, atLocation: rightEyePos, withSize: eyeSize)
+        
+        return newImage
+    }
+    
+    //
+    
+    // face pos and size
+    fileprivate func faceRect(_ faceFeature: GMVFaceFeature) -> CGRect {
+        // radius = distance between nose and ear
+        let radius: CGFloat = sqrt((faceFeature.noseBasePosition.x - faceFeature.leftEarPosition.x)*(faceFeature.noseBasePosition.x - faceFeature.leftEarPosition.x) + (faceFeature.noseBasePosition.y - faceFeature.leftEarPosition.y)*(faceFeature.noseBasePosition.y - faceFeature.leftEarPosition.y))
+        
+        let posx: CGFloat = faceFeature.noseBasePosition.x - radius * 1.5
+        let posy: CGFloat = faceFeature.noseBasePosition.y - radius * 1.6
+        let width: CGFloat = faceFeature.noseBasePosition.x + radius * 1.5 - posx
+        let height: CGFloat = faceFeature.noseBasePosition.y + radius * 1.2 - posy
+        
+        return CGRect(x: posx, y: posy, width: width, height: height)
     }
     
     

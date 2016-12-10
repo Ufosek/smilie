@@ -106,11 +106,11 @@ class CapturedPhotoViewController: ViewController {
     
     fileprivate func checkSmile() {
         self.showSmilieLoadingView()
-        SmileDetector().detectSmile(self.image) { (probability, faceRect, faceFeature) in
+        SmileDetector().detectSmile(self.image) { (probability, faceFeatures) in
             if(probability > 0.5) {
 
                 // processing image
-                self.filteredImageManager = FilteredImageManager(image: self.image, faceRect: faceRect, viewSize: self.view.frame, faceFeature: faceFeature)
+                self.filteredImageManager = FilteredImageManager(image: self.image, viewSize: self.view.frame, faceFeatures: faceFeatures)
                 self.filteredImageManager.processImage({ (filteredImage) in
                     // hide loading and show water fountains
                     self.hideSmilieLoadingView(removed: {
@@ -148,7 +148,7 @@ class CapturedPhotoViewController: ViewController {
     fileprivate func initCamera() {
         self.smileDetector = SmileDetector()
         self.camera.previewImage = { (image) in
-            self.smileDetector.detectSmile(image, smileDetected: { (probability, faceRect, faceFeature) in
+            self.smileDetector.detectSmile(image, smileDetected: { (probability, faceFeatures) in
                 if(!self.isSmileDetected) {
                     if(probability > SMILE_PROBABILITY_TRESHOLD) {
                         // start timer when smile detected
@@ -211,7 +211,7 @@ class CapturedPhotoViewController: ViewController {
     
     fileprivate func showKeppOnSmiling() {
         // show insructions
-        UIView.animate(withDuration: 1.0, delay: 1.0, options: UIViewAnimationOptions(), animations: {
+        UIView.animate(withDuration: 1.0, delay: 3.0, options: UIViewAnimationOptions(), animations: {
             self.keepOnSmilingLabel.alpha = 1.0
         }, completion: { (completed) in
             // hide

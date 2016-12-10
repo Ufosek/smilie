@@ -32,6 +32,9 @@ class IntroViewController: ViewController {
     }
     
     override func viewDidFirstAppear() {
+        self.performSegue(withIdentifier: "Start", sender: self)
+        
+        /*
         self.firstInfoLabelCenterXCnst.constant =  -self.view.frame.width
         self.secondInfoLabelCenterXCnst.constant =  self.view.frame.width
         
@@ -59,7 +62,7 @@ class IntroViewController: ViewController {
                     self.showErrorView("No permissions")
                 }
             })
-        }
+        }*/
     }
 
 

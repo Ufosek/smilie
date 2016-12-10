@@ -51,7 +51,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The simplest way to happiness..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aV-ZG-z5f">
-                                <rect key="frame" x="54" y="353" width="268" height="30"/>
+                                <rect key="frame" x="41.5" y="353" width="293" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="XP5-32-OzE"/>
                                 </constraints>
@@ -60,7 +60,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="is to smile :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKN-bT-gJB">
-                                <rect key="frame" x="112" y="393" width="152" height="40"/>
+                                <rect key="frame" x="108.5" y="393" width="159.5" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Weq-bO-JaZ"/>
                                 </constraints>
@@ -110,7 +110,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#KEEP ON SMILING" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gfr-sh-B0c">
-                                <rect key="frame" x="8" y="375" width="359" height="252"/>
+                                <rect key="frame" x="8" y="382" width="359" height="245"/>
                                 <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="70"/>
                                 <color key="textColor" red="0.98039215686274506" green="0.66666666666666663" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -119,7 +119,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="is to smile :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsq-CX-U3K">
-                                        <rect key="frame" x="112" y="393" width="152" height="40"/>
+                                        <rect key="frame" x="108.5" y="393" width="159.5" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ejs-M4-WQC"/>
                                         </constraints>
@@ -142,7 +142,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The simplest way to happiness..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jw9-7J-ebP">
-                                        <rect key="frame" x="53" y="353" width="268" height="30"/>
+                                        <rect key="frame" x="40.5" y="353" width="293" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="bPX-Ca-OT9"/>
                                         </constraints>
@@ -205,12 +205,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gI6-Ce-onw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2nd-bB-XhX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2nd-bB-XhX">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NICE!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeH-pk-g7R">
-                                <rect key="frame" x="147" y="313" width="81" height="40"/>
+                                <rect key="frame" x="147.5" y="313" width="80.5" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="vuV-6z-G7l"/>
                                 </constraints>
@@ -237,10 +237,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hxk-Ww-Eq5">
-                                <rect key="frame" x="103" y="0.0" width="170" height="115"/>
+                                <rect key="frame" x="103.5" y="0.0" width="169.5" height="115"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fza-Ii-A4v">
-                                        <rect key="frame" x="135" y="42" width="30" height="30"/>
+                                        <rect key="frame" x="134.5" y="42" width="30" height="30"/>
                                         <color key="backgroundColor" red="0.98823529409999999" green="0.70980392160000005" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="dmr-yl-loc"/>
@@ -253,7 +253,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UYT-hz-7EV">
-                                        <rect key="frame" x="67" y="42" width="83" height="30"/>
+                                        <rect key="frame" x="67" y="42" width="82.5" height="30"/>
                                         <color key="backgroundColor" red="0.98823529409999999" green="0.70980392160000005" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="xU2-Ln-pxx"/>
@@ -267,7 +267,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6b-1O-ehj" customClass="SACountingLabel" customModule="SACountingLabel">
-                                        <rect key="frame" x="80" y="42" width="73" height="30"/>
+                                        <rect key="frame" x="80" y="42" width="72.5" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="gIb-6d-FpZ"/>
                                         </constraints>
@@ -357,7 +357,7 @@
                                         <state key="normal" title=" "/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEND TO FRIENDS :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcO-sz-4aP">
-                                        <rect key="frame" x="68" y="333" width="149" height="21"/>
+                                        <rect key="frame" x="68" y="333" width="153.5" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="DGw-yV-PpX"/>
                                         </constraints>
@@ -397,7 +397,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BE THE FIRST IN GALLERY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qyb-jz-2Y9">
-                                        <rect key="frame" x="68" y="272" width="193" height="21"/>
+                                        <rect key="frame" x="68" y="272" width="199.5" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="c0Q-wr-xOD"/>
                                         </constraints>
@@ -620,7 +620,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GALLERY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYo-JH-8rw">
-                                <rect key="frame" x="144" y="38" width="87" height="22"/>
+                                <rect key="frame" x="143" y="38" width="89" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="aI9-Iv-5QQ"/>
                                 </constraints>
