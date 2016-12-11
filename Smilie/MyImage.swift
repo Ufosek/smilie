@@ -198,7 +198,6 @@ extension UIImage {
             self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
         }
         
-        
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -227,6 +226,36 @@ extension UIImage {
         self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
         NSString(string: text).draw(at: location, withAttributes: attributes)
         
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
+    
+    func imageWithRect(_ rect: CGRect, withColor color: UIColor) -> UIImage {
+        UIGraphicsBeginImageContext(self.size)
+        
+        self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+        let context = UIGraphicsGetCurrentContext()
+        context?.setFillColor(color.cgColor)
+        context?.fill(rect)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
+    
+    func imageWithCircle(center: CGPoint, radius: CGFloat, withColor color: UIColor) -> UIImage {
+        UIGraphicsBeginImageContext(self.size)
+        
+        self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+        let context = UIGraphicsGetCurrentContext()
+
+        let circlePath = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2*M_PI), clockwise: false)
+        context?.setFillColor(color.cgColor)
+        circlePath.fill()
+
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         

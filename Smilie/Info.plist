@@ -2,19 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Lato-BlaIta.otf</string>
-		<string>Lato-BolIta.otf</string>
-		<string>Lato-Hai.otf</string>
-		<string>Lato-HaiIta.otf</string>
-		<string>Lato-Lig.otf</string>
-		<string>Lato-LigIta.otf</string>
-		<string>Lato-Reg.otf</string>
-		<string>Lato-Bla.otf</string>
-		<string>Lato-RegIta.otf</string>
-		<string>Lato-Bol.otf</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -35,6 +22,19 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Lato-BlaIta.otf</string>
+		<string>Lato-BolIta.otf</string>
+		<string>Lato-Hai.otf</string>
+		<string>Lato-HaiIta.otf</string>
+		<string>Lato-Lig.otf</string>
+		<string>Lato-LigIta.otf</string>
+		<string>Lato-Reg.otf</string>
+		<string>Lato-Bla.otf</string>
+		<string>Lato-RegIta.otf</string>
+		<string>Lato-Bol.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

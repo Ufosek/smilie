@@ -110,7 +110,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#KEEP ON SMILING" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gfr-sh-B0c">
-                                <rect key="frame" x="8" y="382" width="359" height="245"/>
+                                <rect key="frame" x="8" y="375" width="359" height="252"/>
                                 <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="70"/>
                                 <color key="textColor" red="0.98039215686274506" green="0.66666666666666663" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -119,7 +119,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="is to smile :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsq-CX-U3K">
-                                        <rect key="frame" x="108.5" y="393" width="159.5" height="40"/>
+                                        <rect key="frame" x="112.5" y="393" width="151.5" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ejs-M4-WQC"/>
                                         </constraints>
@@ -142,7 +142,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The simplest way to happiness..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jw9-7J-ebP">
-                                        <rect key="frame" x="40.5" y="353" width="293" height="30"/>
+                                        <rect key="frame" x="53" y="353" width="268" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="bPX-Ca-OT9"/>
                                         </constraints>
@@ -209,15 +209,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NICE!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeH-pk-g7R">
-                                <rect key="frame" x="147.5" y="313" width="80.5" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="vuV-6z-G7l"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="30"/>
-                                <color key="textColor" red="0.98823529409999999" green="0.70980392160000005" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t88-gt-kiK" customClass="BounceButton" customModule="Smilie" customModuleProvider="target">
                                 <rect key="frame" x="20" y="30" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -294,7 +285,6 @@
                         </subviews>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.66666666669999997" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="IeH-pk-g7R" firstAttribute="centerX" secondItem="wQ8-BH-lQo" secondAttribute="centerX" id="5Th-HG-0bb"/>
                             <constraint firstItem="gI6-Ce-onw" firstAttribute="top" secondItem="wQ8-BH-lQo" secondAttribute="top" id="DcU-9H-DMi"/>
                             <constraint firstItem="qTy-V7-T4k" firstAttribute="top" secondItem="2nd-bB-XhX" secondAttribute="bottom" id="EjE-DK-w3h"/>
                             <constraint firstItem="t88-gt-kiK" firstAttribute="leading" secondItem="wQ8-BH-lQo" secondAttribute="leading" constant="20" id="GGd-zW-uej"/>
@@ -304,7 +294,6 @@
                             <constraint firstItem="Hxk-Ww-Eq5" firstAttribute="top" secondItem="wQ8-BH-lQo" secondAttribute="top" id="Q3v-Cr-uP0"/>
                             <constraint firstItem="gI6-Ce-onw" firstAttribute="leading" secondItem="wQ8-BH-lQo" secondAttribute="leading" id="QdF-W3-1c9"/>
                             <constraint firstItem="RrI-tE-mom" firstAttribute="leading" secondItem="wQ8-BH-lQo" secondAttribute="leading" constant="8" id="bRF-bo-DHD"/>
-                            <constraint firstItem="IeH-pk-g7R" firstAttribute="centerY" secondItem="wQ8-BH-lQo" secondAttribute="centerY" id="dvw-Ci-QMS"/>
                             <constraint firstAttribute="trailing" secondItem="RrI-tE-mom" secondAttribute="trailing" constant="8" id="j7O-qp-dy0"/>
                             <constraint firstItem="RrI-tE-mom" firstAttribute="centerY" secondItem="wQ8-BH-lQo" secondAttribute="centerY" id="jMX-2j-4r6"/>
                             <constraint firstItem="qTy-V7-T4k" firstAttribute="top" secondItem="gI6-Ce-onw" secondAttribute="bottom" id="sh9-c8-KcJ"/>
@@ -319,7 +308,6 @@
                         <outlet property="keepOnSmilingLabel" destination="RrI-tE-mom" id="XqO-zF-2pt"/>
                         <outlet property="numberLabel" destination="b6b-1O-ehj" id="cvP-LD-h6C"/>
                         <outlet property="photoImageView" destination="gI6-Ce-onw" id="2ZL-Qi-BGw"/>
-                        <outlet property="yellLabel" destination="IeH-pk-g7R" id="fdX-L9-SNL"/>
                         <segue destination="c4F-NV-Bor" kind="custom" identifier="Share" customClass="ReplaceFadeSegue" customModule="Smilie" customModuleProvider="target" id="sM6-ee-vNQ"/>
                     </connections>
                 </viewController>
@@ -357,7 +345,7 @@
                                         <state key="normal" title=" "/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEND TO FRIENDS :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcO-sz-4aP">
-                                        <rect key="frame" x="68" y="333" width="153.5" height="21"/>
+                                        <rect key="frame" x="68" y="333" width="148.5" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="DGw-yV-PpX"/>
                                         </constraints>
@@ -397,7 +385,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BE THE FIRST IN GALLERY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qyb-jz-2Y9">
-                                        <rect key="frame" x="68" y="272" width="199.5" height="21"/>
+                                        <rect key="frame" x="68" y="272" width="192.5" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="c0Q-wr-xOD"/>
                                         </constraints>
@@ -447,7 +435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wPD-qs-bdA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1402" y="314"/>
+            <point key="canvasLocation" x="1993" y="313"/>
         </scene>
         <!--GALLERY-->
         <scene sceneID="RNG-PW-oq1">
@@ -620,7 +608,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GALLERY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYo-JH-8rw">
-                                <rect key="frame" x="143" y="38" width="89" height="22"/>
+                                <rect key="frame" x="144" y="38" width="87" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="aI9-Iv-5QQ"/>
                                 </constraints>
@@ -725,7 +713,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b9S-oj-HWO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2140" y="315"/>
+            <point key="canvasLocation" x="2732" y="314"/>
         </scene>
     </scenes>
     <resources>

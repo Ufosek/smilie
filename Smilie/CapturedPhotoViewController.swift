@@ -25,7 +25,6 @@ class CapturedPhotoViewController: ViewController {
     @IBOutlet weak var filteredPhotoImageView: UIImageView!
 
     @IBOutlet weak var numberLabel: SACountingLabel!
-    @IBOutlet weak var yellLabel: UILabel!
 
     @IBOutlet weak var counterView: UIView!
     //
@@ -98,7 +97,6 @@ class CapturedPhotoViewController: ViewController {
         super.viewWillAppear(animated)
         
         self.keepOnSmilingLabel.alpha = 0.0
-        self.yellLabel.alpha = 0.0
         self.counterView.alpha = 0.0
     }
     
@@ -110,12 +108,12 @@ class CapturedPhotoViewController: ViewController {
             if(probability > 0.5) {
 
                 // processing image
-                self.filteredImageManager = FilteredImageManager(image: self.image, viewSize: self.view.frame, faceFeatures: faceFeatures)
+                self.filteredImageManager = FilteredImageManager(image: self.image, currentNumber: DataManager.currentPhotoNumber, viewSize: self.view.frame, faceFeatures: faceFeatures)
                 self.filteredImageManager.processImage({ (filteredImage) in
+                    DataManager.incrementCurrentPhotoNumber()
                     // hide loading and show water fountains
                     self.hideSmilieLoadingView(removed: {
-                        self.showYell()
-                        self.animateNumber()
+                        //self.animateNumber()
                         self.showKeppOnSmiling()
                         
                         // start camera (to detect smile)
@@ -178,24 +176,6 @@ class CapturedPhotoViewController: ViewController {
         self.smileProgressView = SmileProgressView(frame: CGRect.zero)
         self.view.addSubview(self.smileProgressView)
         self.smileProgressView.onProgress(0)
-    }
-    
-    
-    func showYell() {
-        // init yell text
-        let yells = ["Nice!", "That is great!", ":)))", "Give me more", "ENDORPHINE++", "Keep on smiling"]
-        let rand = Int(arc4random_uniform(UInt32(yells.count)))
-        self.yellLabel.text = yells[rand]
-        
-        
-        self.yellLabel.alpha = 1
-        // show insructions
-        
-        UIView.animate(withDuration: 1.5, delay: 0.0, options: UIViewAnimationOptions(), animations: {
-            self.yellLabel.alpha = 0.0
-            self.yellLabel.transform = CGAffineTransform(scaleX: 2, y: 2)
-            }, completion: { (completed) in
-        })
     }
 
     

@@ -17,7 +17,8 @@ class DataManager {
     
     static var currentPhotoNumber: Int {
         let userDefaults = UserDefaults.standard
-        return userDefaults.integer(forKey: CURRENT_PHOTO_KEY)
+        let num = userDefaults.integer(forKey: CURRENT_PHOTO_KEY)
+        return num
     }
     
     static func incrementCurrentPhotoNumber() {

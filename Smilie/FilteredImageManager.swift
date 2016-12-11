@@ -12,18 +12,20 @@ import GoogleMobileVision
 
 class FilteredImageManager: NSObject {
     
-    fileprivate var image: UIImage!
-    fileprivate var viewSize: CGRect!
-    fileprivate var faceFeatures: [GMVFaceFeature]!
+    fileprivate var image: UIImage
+    fileprivate var viewSize: CGRect
+    fileprivate var faceFeatures: [GMVFaceFeature]
+    fileprivate var currentNumber: Int
     
     fileprivate var filteredImage: UIImage!
     fileprivate(set) var isProcessing: Bool = false
     
     
-    init(image: UIImage, viewSize: CGRect, faceFeatures: [GMVFaceFeature]) {
+    init(image: UIImage, currentNumber: Int, viewSize: CGRect, faceFeatures: [GMVFaceFeature]) {
         self.image = image
         self.viewSize = viewSize
         self.faceFeatures = faceFeatures
+        self.currentNumber = currentNumber
     }
     
     
@@ -43,6 +45,8 @@ class FilteredImageManager: NSObject {
             //self.filteredImage = self.filteredImage.imageCircle()
             // add images and texts
             self.filteredImage = self.addEyesOnImage(self.filteredImage)
+            //
+            self.filteredImage = self.addCounterOnImage(self.filteredImage, number: self.currentNumber)
         }) {
             self.isProcessing = false
             
@@ -74,15 +78,16 @@ class FilteredImageManager: NSObject {
     fileprivate func addRandomEyesOnImage(_ image: UIImage, faceFeature: GMVFaceFeature) -> UIImage {
         var newImage = image
         
-        let eyeSize = CGSize(width: 120, height: 120)
-        
-        let leftEyePos = CGPoint(x: faceFeature.leftEyePosition.x - eyeSize.width/2, y: faceFeature.leftEyePosition.y - eyeSize.height/2)
-        let rightEyePos = CGPoint(x: faceFeature.rightEyePosition.x - eyeSize.width/2, y: faceFeature.rightEyePosition.y - eyeSize.height/2)
+        // eye's size is based on distance between eyes
+        let eyeSize = sqrt((faceFeature.leftEyePosition.x - faceFeature.rightEyePosition.x) * (faceFeature.leftEyePosition.x - faceFeature.rightEyePosition.x) + (faceFeature.leftEyePosition.y - faceFeature.rightEyePosition.y) * (faceFeature.leftEyePosition.y - faceFeature.rightEyePosition.y)) * 0.6
+
+        let leftEyePos = CGPoint(x: faceFeature.leftEyePosition.x - eyeSize/2, y: faceFeature.leftEyePosition.y - eyeSize/2)
+        let rightEyePos = CGPoint(x: faceFeature.rightEyePosition.x - eyeSize/2, y: faceFeature.rightEyePosition.y - eyeSize/2)
         
         let eyes = [#imageLiteral(resourceName: "eye1"), #imageLiteral(resourceName: "eye2"), #imageLiteral(resourceName: "eye3"), #imageLiteral(resourceName: "eye4"), #imageLiteral(resourceName: "eye5"), #imageLiteral(resourceName: "eye6"), #imageLiteral(resourceName: "eye7")]
 
-        newImage = newImage.imageWithImage(eyes.randomElem as! UIImage, atLocation: leftEyePos, withSize: eyeSize)
-        newImage = newImage.imageWithImage(eyes.randomElem as! UIImage, atLocation: rightEyePos, withSize: eyeSize)
+        newImage = newImage.imageWithImage(eyes.randomElem as! UIImage, atLocation: leftEyePos, withSize: CGSize(width: eyeSize, height: eyeSize))
+        newImage = newImage.imageWithImage(eyes.randomElem as! UIImage, atLocation: rightEyePos, withSize: CGSize(width: eyeSize, height: eyeSize))
         
         return newImage
     }
@@ -100,6 +105,32 @@ class FilteredImageManager: NSObject {
         let height: CGFloat = faceFeature.noseBasePosition.y + radius * 1.2 - posy
         
         return CGRect(x: posx, y: posy, width: width, height: height)
+    }
+    
+    
+    fileprivate func addCounterOnImage(_ image: UIImage, number: Int) -> UIImage {
+
+        let textFont = UIFont(name: "Helvetica Bold", size: 52)!
+        
+        // Setup the font attributes that will be later used to dictate how the text should be drawn
+        let textFontAttributes = [
+            NSFontAttributeName: textFont,
+            NSForegroundColorAttributeName: UIColor.white,
+            ]
+        
+        let counterText = "#\(number)"
+        let counterTextWidth = CGFloat(counterText.characters.count * 38)
+        let counterTextX: CGFloat = 450
+        let rectHeight: CGFloat = 70
+        
+        var newImage = image
+        
+        newImage = newImage.imageWithCircle(center: CGPoint(x: counterTextX+counterTextWidth, y: 102+50/2), radius: rectHeight/2, withColor: UIColor.orange)
+        newImage = newImage.imageWithRect(CGRect(x: counterTextX, y: 92, width: counterTextWidth, height: rectHeight), withColor: UIColor.orange)
+        newImage = newImage.imageWithImage(#imageLiteral(resourceName: "smile_orange"), atLocation: CGPoint(x: 350 , y: 50), withSize: CGSize(width: 150, height: 150))
+        newImage = newImage.imageWithText(counterText, atLocation: CGPoint(x: counterTextX+50, y: 95), withAttributes: textFontAttributes)
+        
+        return newImage
     }
     
     
