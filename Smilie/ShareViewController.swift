@@ -17,7 +17,7 @@ class ShareViewController: ViewController {
     
     
     fileprivate var camera: MyCamera!
-    fileprivate var smileDetector: SmileDetector!
+    fileprivate var faceFeaturesDetector: FaceFeaturesDetector!
     fileprivate var isSmileDetected: Bool = false
     fileprivate var isCameraAvailable: Bool = false
     
@@ -78,10 +78,10 @@ class ShareViewController: ViewController {
     //
     
     fileprivate func initCamera() {
-        self.smileDetector = SmileDetector()
+        self.faceFeaturesDetector = FaceFeaturesDetector()
         self.camera = MyCamera()
         self.camera.previewImage = { (image) in
-            self.smileDetector.detectSmile(image, smileDetected: { (probability, faceFeatures) in
+            self.faceFeaturesDetector.detectSmile(image, smileDetected: { (probability, faceFeatures) in
                 if(!self.isSmileDetected) {
                     if(probability > SMILE_PROBABILITY_TRESHOLD) {
                         // start timer when smile detected

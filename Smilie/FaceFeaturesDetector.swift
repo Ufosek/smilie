@@ -12,7 +12,7 @@ import GLKit
 import GoogleMobileVision
 
 
-class SmileDetector: NSObject {
+class FaceFeaturesDetector: NSObject {
     
     fileprivate let GMVDetectorFaceLandmarkType_ALL = 1 << 1
     fileprivate let GMVDetectorFaceClassificationType_ALL = 1 << 1
@@ -48,10 +48,11 @@ class SmileDetector: NSObject {
             self.detectQueue.async {
                 // get face features
                 let faceFeatures: [GMVFaceFeature] = self.faceDetector.features(in: image, options: nil) as! [GMVFaceFeature]
-
+                
                 // find biggest smile probability
                 var probability: CGFloat = 0
                 for feature in faceFeatures {
+                    
                     if feature.hasSmilingProbability && feature.smilingProbability > probability {
                         probability = feature.smilingProbability
                     }

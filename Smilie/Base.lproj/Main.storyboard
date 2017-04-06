@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Q7o-dH-INJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Q7o-dH-INJ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -51,7 +51,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The simplest way to happiness..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aV-ZG-z5f">
-                                <rect key="frame" x="41.5" y="353" width="293" height="30"/>
+                                <rect key="frame" x="54" y="353" width="268" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="XP5-32-OzE"/>
                                 </constraints>
@@ -60,7 +60,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="is to smile :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKN-bT-gJB">
-                                <rect key="frame" x="108.5" y="393" width="159.5" height="40"/>
+                                <rect key="frame" x="112.5" y="393" width="151.5" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Weq-bO-JaZ"/>
                                 </constraints>
@@ -109,9 +109,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#KEEP ON SMILING" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gfr-sh-B0c">
-                                <rect key="frame" x="8" y="375" width="359" height="252"/>
-                                <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="70"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#KEEP ON SMILING" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gfr-sh-B0c">
+                                <rect key="frame" x="130" y="627" width="237" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="zpg-VI-fpt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="26"/>
                                 <color key="textColor" red="0.98039215686274506" green="0.66666666666666663" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -167,11 +170,10 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="FfQ-CL-lDV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="1aM-vy-fpB"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gfr-sh-B0c" secondAttribute="bottom" constant="40" id="5cY-6T-fU6"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gfr-sh-B0c" secondAttribute="bottom" id="5cY-6T-fU6"/>
                             <constraint firstItem="QO6-0w-wff" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CM5-qe-nVO"/>
                             <constraint firstItem="QO6-0w-wff" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Hes-VG-9U1"/>
                             <constraint firstAttribute="trailing" secondItem="FfQ-CL-lDV" secondAttribute="trailing" id="KJw-DH-sLs"/>
-                            <constraint firstItem="gfr-sh-B0c" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="Mzm-Ct-ZhV"/>
                             <constraint firstAttribute="trailing" secondItem="QO6-0w-wff" secondAttribute="trailing" id="hgJ-ch-hp1"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FfQ-CL-lDV" secondAttribute="bottom" id="lmw-QY-3lz"/>
                             <constraint firstAttribute="trailing" secondItem="gfr-sh-B0c" secondAttribute="trailing" constant="8" id="mkZ-cv-jv2"/>
@@ -183,6 +185,7 @@
                         <outlet property="cameraPreviewView" destination="QO6-0w-wff" id="kea-gK-cfU"/>
                         <outlet property="introView" destination="FfQ-CL-lDV" id="aKI-Fe-LZA"/>
                         <outlet property="keepOnSmilingLabel" destination="gfr-sh-B0c" id="VbT-Eb-ufU"/>
+                        <outlet property="keepOnSmilingTrailingCnst" destination="mkZ-cv-jv2" id="3R9-C9-8Sg"/>
                         <segue destination="HKd-VQ-e97" kind="custom" identifier="ShowPhoto" customClass="ReplaceSegue" customModule="Smilie" customModuleProvider="target" id="G8A-Dh-cVh"/>
                     </connections>
                 </viewController>
@@ -221,10 +224,10 @@
                                     <action selector="backClicked:" destination="HKd-VQ-e97" eventType="touchUpInside" id="MXq-aE-GJN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#SMILE TO SHARE" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RrI-tE-mom">
-                                <rect key="frame" x="8" y="208" width="359" height="252"/>
-                                <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="70"/>
-                                <color key="textColor" red="0.98039215686274506" green="0.66666666666666663" blue="0.074509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#SHAKE IT" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RrI-tE-mom">
+                                <rect key="frame" x="8" y="402.5" width="359" height="62.5"/>
+                                <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="52"/>
+                                <color key="textColor" red="0.98039215803146362" green="0.66666668653488159" blue="0.074509806931018829" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hxk-Ww-Eq5">
@@ -282,20 +285,31 @@
                                     <constraint firstItem="UYT-hz-7EV" firstAttribute="centerY" secondItem="Hxk-Ww-Eq5" secondAttribute="centerY" id="xiu-hg-NKt"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SMILE TO SHARE" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OtE-x8-ZkJ">
+                                <rect key="frame" x="161" y="627" width="206" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="xOB-vL-vP5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="26"/>
+                                <color key="textColor" red="0.98039215800000001" green="0.66666668650000005" blue="0.074509806930000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.66666666669999997" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="OtE-x8-ZkJ" secondAttribute="trailing" constant="8" id="58V-ny-jQi"/>
                             <constraint firstItem="gI6-Ce-onw" firstAttribute="top" secondItem="wQ8-BH-lQo" secondAttribute="top" id="DcU-9H-DMi"/>
                             <constraint firstItem="qTy-V7-T4k" firstAttribute="top" secondItem="2nd-bB-XhX" secondAttribute="bottom" id="EjE-DK-w3h"/>
                             <constraint firstItem="t88-gt-kiK" firstAttribute="leading" secondItem="wQ8-BH-lQo" secondAttribute="leading" constant="20" id="GGd-zW-uej"/>
                             <constraint firstAttribute="trailing" secondItem="gI6-Ce-onw" secondAttribute="trailing" id="L9X-uM-Rqj"/>
                             <constraint firstItem="2nd-bB-XhX" firstAttribute="leading" secondItem="wQ8-BH-lQo" secondAttribute="leading" id="Nj4-i6-Ckg"/>
+                            <constraint firstItem="qTy-V7-T4k" firstAttribute="top" secondItem="OtE-x8-ZkJ" secondAttribute="bottom" id="NzF-oY-3QA"/>
                             <constraint firstItem="2nd-bB-XhX" firstAttribute="top" secondItem="wQ8-BH-lQo" secondAttribute="top" id="ODG-W1-sog"/>
                             <constraint firstItem="Hxk-Ww-Eq5" firstAttribute="top" secondItem="wQ8-BH-lQo" secondAttribute="top" id="Q3v-Cr-uP0"/>
                             <constraint firstItem="gI6-Ce-onw" firstAttribute="leading" secondItem="wQ8-BH-lQo" secondAttribute="leading" id="QdF-W3-1c9"/>
                             <constraint firstItem="RrI-tE-mom" firstAttribute="leading" secondItem="wQ8-BH-lQo" secondAttribute="leading" constant="8" id="bRF-bo-DHD"/>
                             <constraint firstAttribute="trailing" secondItem="RrI-tE-mom" secondAttribute="trailing" constant="8" id="j7O-qp-dy0"/>
-                            <constraint firstItem="RrI-tE-mom" firstAttribute="centerY" secondItem="wQ8-BH-lQo" secondAttribute="centerY" id="jMX-2j-4r6"/>
+                            <constraint firstItem="RrI-tE-mom" firstAttribute="centerY" secondItem="wQ8-BH-lQo" secondAttribute="centerY" constant="100" id="jMX-2j-4r6"/>
                             <constraint firstItem="qTy-V7-T4k" firstAttribute="top" secondItem="gI6-Ce-onw" secondAttribute="bottom" id="sh9-c8-KcJ"/>
                             <constraint firstItem="t88-gt-kiK" firstAttribute="top" secondItem="wQ8-BH-lQo" secondAttribute="top" constant="30" id="uUc-8H-yLq"/>
                             <constraint firstAttribute="trailing" secondItem="2nd-bB-XhX" secondAttribute="trailing" id="ve5-zs-Per"/>
@@ -305,9 +319,11 @@
                     <connections>
                         <outlet property="counterView" destination="Hxk-Ww-Eq5" id="IzS-gM-s2n"/>
                         <outlet property="filteredPhotoImageView" destination="2nd-bB-XhX" id="zvO-Al-ezo"/>
-                        <outlet property="keepOnSmilingLabel" destination="RrI-tE-mom" id="XqO-zF-2pt"/>
                         <outlet property="numberLabel" destination="b6b-1O-ehj" id="cvP-LD-h6C"/>
                         <outlet property="photoImageView" destination="gI6-Ce-onw" id="2ZL-Qi-BGw"/>
+                        <outlet property="shakeItLabel" destination="RrI-tE-mom" id="e7b-ne-bqp"/>
+                        <outlet property="smileToShareLabel" destination="OtE-x8-ZkJ" id="i7Z-wK-umQ"/>
+                        <outlet property="smileToShareTrailingCnst" destination="58V-ny-jQi" id="GM1-gn-9Gh"/>
                         <segue destination="c4F-NV-Bor" kind="custom" identifier="Share" customClass="ReplaceFadeSegue" customModule="Smilie" customModuleProvider="target" id="sM6-ee-vNQ"/>
                     </connections>
                 </viewController>

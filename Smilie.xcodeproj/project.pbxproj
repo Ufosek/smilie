@@ -47,7 +47,7 @@
 		85EA589D1DCE1FED00749AEC /* MySegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA589C1DCE1FED00749AEC /* MySegues.swift */; };
 		85EA589F1DCE27F700749AEC /* MyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA589E1DCE27F700749AEC /* MyImage.swift */; };
 		85EA58A11DCE2B9500749AEC /* MyCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA58A01DCE2B9500749AEC /* MyCamera.swift */; };
-		85EA58A31DCE31A000749AEC /* SmileDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA58A21DCE31A000749AEC /* SmileDetector.swift */; };
+		85EA58A31DCE31A000749AEC /* FaceFeaturesDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EA58A21DCE31A000749AEC /* FaceFeaturesDetector.swift */; };
 		85EB35BF1DD93B84002DED9F /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EB35BE1DD93B84002DED9F /* IntroViewController.swift */; };
 		85FB657C1DE3A0F700CC4021 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB657B1DE3A0F700CC4021 /* GalleryViewController.swift */; };
 		85FB657F1DE3B6E500CC4021 /* SmilieLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FB657E1DE3B6E500CC4021 /* SmilieLoadingView.swift */; };
@@ -102,7 +102,7 @@
 		85EA589C1DCE1FED00749AEC /* MySegues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySegues.swift; sourceTree = "<group>"; };
 		85EA589E1DCE27F700749AEC /* MyImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImage.swift; sourceTree = "<group>"; };
 		85EA58A01DCE2B9500749AEC /* MyCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCamera.swift; sourceTree = "<group>"; };
-		85EA58A21DCE31A000749AEC /* SmileDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmileDetector.swift; sourceTree = "<group>"; };
+		85EA58A21DCE31A000749AEC /* FaceFeaturesDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceFeaturesDetector.swift; sourceTree = "<group>"; };
 		85EB35BE1DD93B84002DED9F /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		85FB657B1DE3A0F700CC4021 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		85FB657E1DE3B6E500CC4021 /* SmilieLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmilieLoadingView.swift; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 				85DB110E1DC7516C00AFCCD0 /* Info.plist */,
 				85B39B311DCE3AD500427350 /* AppDelegate.swift */,
 				85EA58A01DCE2B9500749AEC /* MyCamera.swift */,
-				85EA58A21DCE31A000749AEC /* SmileDetector.swift */,
+				85EA58A21DCE31A000749AEC /* FaceFeaturesDetector.swift */,
 				85A3B4001DD8E54E007EE252 /* DataManager.swift */,
 				85715AC21DEDF71900BBC7CA /* FilteredImageManager.swift */,
 			);
@@ -402,7 +402,7 @@
 				853255221DD74C3B00EDF3DE /* DurationTimer.swift in Sources */,
 				85DB11221DC76AD600AFCCD0 /* CameraView.swift in Sources */,
 				85715AC31DEDF71900BBC7CA /* FilteredImageManager.swift in Sources */,
-				85EA58A31DCE31A000749AEC /* SmileDetector.swift in Sources */,
+				85EA58A31DCE31A000749AEC /* FaceFeaturesDetector.swift in Sources */,
 				85DB11251DC77E5E00AFCCD0 /* CameraViewController.swift in Sources */,
 				85CCC50C1DE0855D007D1991 /* SmileProgressView.swift in Sources */,
 				85A3B4011DD8E54E007EE252 /* DataManager.swift in Sources */,

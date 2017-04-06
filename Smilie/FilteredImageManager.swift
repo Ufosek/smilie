@@ -12,6 +12,12 @@ import GoogleMobileVision
 
 class FilteredImageManager: NSObject {
     
+    //
+    
+    private let EYE_SIZE_FACTOR: CGFloat = 0.6
+    
+    //
+    
     fileprivate var image: UIImage
     fileprivate var viewSize: CGRect
     fileprivate var faceFeatures: [GMVFaceFeature]
@@ -47,6 +53,24 @@ class FilteredImageManager: NSObject {
             self.filteredImage = self.addEyesOnImage(self.filteredImage)
             //
             self.filteredImage = self.addCounterOnImage(self.filteredImage, number: self.currentNumber)
+            
+            self.filteredImage = self.addLogo(self.filteredImage)
+        }) {
+            self.isProcessing = false
+            self.image = self.filteredImage
+            
+            completed?(self.filteredImage)
+        }
+    }
+    
+    func addRandomEeyes(_ completed: ((UIImage)->())?) {
+        self.isProcessing = true
+        
+        self.filteredImage = self.image
+        
+        // filter image
+        workInBackground({
+            self.filteredImage = self.addEyesOnImage(self.filteredImage)
         }) {
             self.isProcessing = false
             
@@ -57,7 +81,7 @@ class FilteredImageManager: NSObject {
     fileprivate func filterImage(_ image: UIImage) -> UIImage {
         // dot effects
         let kuwaharaFilter = GPUImageKuwaharaFilter()
-        kuwaharaFilter.radius = 8
+        kuwaharaFilter.radius = 2
         
         let newImage = image.imageWithFilter(kuwaharaFilter)
         
@@ -79,15 +103,24 @@ class FilteredImageManager: NSObject {
         var newImage = image
         
         // eye's size is based on distance between eyes
-        let eyeSize = sqrt((faceFeature.leftEyePosition.x - faceFeature.rightEyePosition.x) * (faceFeature.leftEyePosition.x - faceFeature.rightEyePosition.x) + (faceFeature.leftEyePosition.y - faceFeature.rightEyePosition.y) * (faceFeature.leftEyePosition.y - faceFeature.rightEyePosition.y)) * 0.6
+        let eyeSize = sqrt((faceFeature.leftEyePosition.x - faceFeature.rightEyePosition.x) * (faceFeature.leftEyePosition.x - faceFeature.rightEyePosition.x) + (faceFeature.leftEyePosition.y - faceFeature.rightEyePosition.y) * (faceFeature.leftEyePosition.y - faceFeature.rightEyePosition.y)) * EYE_SIZE_FACTOR
 
         let leftEyePos = CGPoint(x: faceFeature.leftEyePosition.x - eyeSize/2, y: faceFeature.leftEyePosition.y - eyeSize/2)
         let rightEyePos = CGPoint(x: faceFeature.rightEyePosition.x - eyeSize/2, y: faceFeature.rightEyePosition.y - eyeSize/2)
         
-        let eyes = [#imageLiteral(resourceName: "eye1"), #imageLiteral(resourceName: "eye2"), #imageLiteral(resourceName: "eye3"), #imageLiteral(resourceName: "eye4"), #imageLiteral(resourceName: "eye5"), #imageLiteral(resourceName: "eye6"), #imageLiteral(resourceName: "eye7")]
+        let eyes = [#imageLiteral(resourceName: "eye1"), #imageLiteral(resourceName: "eye2"), #imageLiteral(resourceName: "eye3"), #imageLiteral(resourceName: "eye4"), #imageLiteral(resourceName: "eye5"), #imageLiteral(resourceName: "eye6"), #imageLiteral(resourceName: "eye7"), #imageLiteral(resourceName: "eye8"), #imageLiteral(resourceName: "eye9"), #imageLiteral(resourceName: "eye10"), #imageLiteral(resourceName: "eye11"), #imageLiteral(resourceName: "eye12"), #imageLiteral(resourceName: "eye13"), #imageLiteral(resourceName: "eye14"), #imageLiteral(resourceName: "eye15"), #imageLiteral(resourceName: "eye16"), #imageLiteral(resourceName: "eye17"), #imageLiteral(resourceName: "eye18"), #imageLiteral(resourceName: "eye19"), #imageLiteral(resourceName: "eye20"), #imageLiteral(resourceName: "eye21")]
 
-        newImage = newImage.imageWithImage(eyes.randomElem as! UIImage, atLocation: leftEyePos, withSize: CGSize(width: eyeSize, height: eyeSize))
-        newImage = newImage.imageWithImage(eyes.randomElem as! UIImage, atLocation: rightEyePos, withSize: CGSize(width: eyeSize, height: eyeSize))
+        var leftEye = eyes.randomElem as! UIImage
+        var rightEye = eyes.randomElem as! UIImage
+        
+        // rotate to fit face
+        if(faceFeature.hasHeadEulerAngleZ) {
+            leftEye = leftEye.imageRotatedByDegrees(-faceFeature.headEulerAngleZ, flip: false)
+            rightEye = rightEye.imageRotatedByDegrees(-faceFeature.headEulerAngleZ, flip: false)
+        }
+
+        newImage = newImage.imageWithImage(leftEye, atLocation: leftEyePos, withSize: CGSize(width: eyeSize, height: eyeSize))
+        newImage = newImage.imageWithImage(rightEye, atLocation: rightEyePos, withSize: CGSize(width: eyeSize, height: eyeSize))
         
         return newImage
     }
@@ -133,5 +166,8 @@ class FilteredImageManager: NSObject {
         return newImage
     }
     
+    fileprivate func addLogo(_ image: UIImage) -> UIImage {
+        return image.imageWithImage(#imageLiteral(resourceName: "smilie"), atLocation: CGPoint(x: (image.size.width-211)/2, y: image.size.height-150), withSize: CGSize(width: 211, height: 55))
+    }
     
 }

@@ -25,6 +25,8 @@ class MainViewController: ViewController {
     @IBOutlet weak var keepOnSmilingLabel: UILabel!
     @IBOutlet weak var cameraPreviewView: UIView!
 
+    // 8; -x
+    @IBOutlet weak var keepOnSmilingTrailingCnst: NSLayoutConstraint!
     //
     
     fileprivate var smileProgressView: SmileProgressView!
@@ -33,7 +35,7 @@ class MainViewController: ViewController {
     
     
     fileprivate var camera: MyCamera!
-    fileprivate var smileDetector: SmileDetector!
+    fileprivate var faceFeaturesDetector: FaceFeaturesDetector!
     
     fileprivate var photoMade: Bool!
     
@@ -56,10 +58,8 @@ class MainViewController: ViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        
-        self.keepOnSmilingLabel.alpha = 0.0
-        
         self.smileProgressView.onProgress(0)
+        self.keepOnSmilingTrailingCnst.constant = 8
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -99,21 +99,23 @@ class MainViewController: ViewController {
                 self.introView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }, completion: { (completed) in
                 // show insructions
-                    self.introView.isHidden = true
-                    self.isIntroVisible = false
-                    self.showKeppOnSmiling()
+                self.introView.isHidden = true
+                self.isIntroVisible = false
+                self.keepOnSmilingLabel.alpha = 1.0
             })
         })
+        
+        self.keepOnSmilingLabel.alpha = 0.0
     }
 
     
     //
     
     fileprivate func initCamera() {
-        self.smileDetector = SmileDetector()
+        self.faceFeaturesDetector = FaceFeaturesDetector()
         self.camera = MyCamera()
         self.camera.previewImage = { (image) in
-            self.smileDetector.detectSmile(image, smileDetected: { (probability, faceFeatures) in
+            self.faceFeaturesDetector.detectSmile(image, smileDetected: { (probability, faceFeatures) in
                 if(self.photoMade == false && self.isIntroVisible == false) {
                     //log("SMIEL DETECTED= '\(probability)")
                     
@@ -127,6 +129,12 @@ class MainViewController: ViewController {
                         self.smileTimer.cancel()
                         
                         self.smileProgressView.hideAnim()
+                        
+                        // update SMILE TO SHARE text
+                        UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions(), animations: {
+                            self.keepOnSmilingTrailingCnst.constant = 8
+                            self.view.layoutIfNeeded()
+                        }, completion: { (completed) in })
                     }
                 }
             })
@@ -137,6 +145,13 @@ class MainViewController: ViewController {
         // keep on smiling for 2 seconds...
         self.smileTimer = DurationTimer(duration: SMILE_TIME, onProgress: { (progress) in
             self.smileProgressView.onProgress(progress)
+            
+            // update SMILE TO SHARE
+            let textPos = self.view.frame.width - self.keepOnSmilingLabel.frame.width
+            let smiliePos = self.view.frame.width * CGFloat(progress) + 50
+            
+            self.keepOnSmilingTrailingCnst.constant = min(8, -(smiliePos - textPos))
+            self.keepOnSmilingLabel.setNeedsLayout()
         }, completed: {
                 self.makePhoto()
         })
@@ -144,19 +159,6 @@ class MainViewController: ViewController {
         
         self.smileProgressView = SmileProgressView(frame: CGRect.zero)
         self.view.addSubview(self.smileProgressView)
-    }
-
-    
-    fileprivate func showKeppOnSmiling() {
-        // show insructions
-        UIView.animate(withDuration: 1.0, delay: 2.0, options: UIViewAnimationOptions(), animations: {
-            self.keepOnSmilingLabel.alpha = 1.0
-            }, completion: { (completed) in
-                // hide
-                UIView.animate(withDuration: 1.0, delay: 2.0, options: UIViewAnimationOptions(), animations: {
-                    self.keepOnSmilingLabel.alpha = 0.0
-                    }, completion: nil)
-        })
     }
     
     //

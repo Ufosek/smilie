@@ -19,7 +19,8 @@ class CapturedPhotoViewController: ViewController {
     //
 
     //
-    @IBOutlet weak var keepOnSmilingLabel: UILabel!
+    @IBOutlet weak var shakeItLabel: UILabel!
+    @IBOutlet weak var smileToShareLabel: UILabel!
     
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var filteredPhotoImageView: UIImageView!
@@ -27,6 +28,10 @@ class CapturedPhotoViewController: ViewController {
     @IBOutlet weak var numberLabel: SACountingLabel!
 
     @IBOutlet weak var counterView: UIView!
+    
+    // 8 ; -x
+    @IBOutlet weak var smileToShareTrailingCnst: NSLayoutConstraint!
+    
     //
     
     fileprivate var smileProgressView: SmileProgressView!
@@ -34,7 +39,7 @@ class CapturedPhotoViewController: ViewController {
     fileprivate var smileTimer: DurationTimer!
     
     fileprivate var camera: MyCamera!
-    fileprivate var smileDetector: SmileDetector!
+    fileprivate var faceFeaturesDetector: FaceFeaturesDetector!
 
     fileprivate var isSmileDetected: Bool = false
 
@@ -67,6 +72,9 @@ class CapturedPhotoViewController: ViewController {
         
         // not visible filtered
         self.filteredPhotoImageView.alpha = 0
+        
+        // to get shake event
+        self.becomeFirstResponder()
     }
     
     override func viewDidFirstAppear() {
@@ -75,6 +83,8 @@ class CapturedPhotoViewController: ViewController {
         self.checkSmile()
         
         self.camera = MyCamera()
+        
+        self.smileToShareLabel.alpha = 0.0
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -96,15 +106,37 @@ class CapturedPhotoViewController: ViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.keepOnSmilingLabel.alpha = 0.0
+        self.shakeItLabel.alpha = 0.0
         self.counterView.alpha = 0.0
+    }
+    
+    
+    // SHAKE
+    
+    // We are willing to become first responder to get shake motion
+    override var canBecomeFirstResponder: Bool {
+        get {
+            return true
+        }
+    }
+    
+    // Enable detection of shake motion
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            log("START ADD EYES")
+            self.filteredImageManager.addRandomEeyes { (filteredImage) in
+                self.filteredImage = filteredImage
+                self.filteredPhotoImageView.image = self.filteredImage
+                log("END ADD EYES")
+            }
+        }
     }
     
     //
     
     fileprivate func checkSmile() {
         self.showSmilieLoadingView()
-        SmileDetector().detectSmile(self.image) { (probability, faceFeatures) in
+        FaceFeaturesDetector().detectSmile(self.image, smileDetected: { (probability, faceFeatures) in
             if(probability > 0.5) {
 
                 // processing image
@@ -140,13 +172,13 @@ class CapturedPhotoViewController: ViewController {
                 self.showErrorView("No smile :(")
                 self.dismissfadeOut()
             }
-        }
+        })
     }
     
     fileprivate func initCamera() {
-        self.smileDetector = SmileDetector()
+        self.faceFeaturesDetector = FaceFeaturesDetector()
         self.camera.previewImage = { (image) in
-            self.smileDetector.detectSmile(image, smileDetected: { (probability, faceFeatures) in
+            self.faceFeaturesDetector.detectSmile(image, smileDetected: { (probability, faceFeatures) in
                 if(!self.isSmileDetected) {
                     if(probability > SMILE_PROBABILITY_TRESHOLD) {
                         // start timer when smile detected
@@ -158,9 +190,19 @@ class CapturedPhotoViewController: ViewController {
                         self.smileTimer.cancel()
                         
                         self.smileProgressView.hideAnim()
+                        
+                        // update SMILE TO SHARE text
+                        UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions(), animations: {
+                            self.smileToShareTrailingCnst.constant = 8
+                            self.view.layoutIfNeeded()
+                        }, completion: { (completed) in })
                     }
                 }
             })
+            
+            //
+            
+            
         }
     }
     
@@ -168,6 +210,14 @@ class CapturedPhotoViewController: ViewController {
         // keep on smiling for 2 seconds...
         self.smileTimer = DurationTimer(duration: SMILE_TIME, onProgress: { (progress) in
             self.smileProgressView.onProgress(progress)
+            
+            // update SMILE TO SHARE
+            let textPos = self.view.frame.width - self.smileToShareLabel.frame.width
+            let smiliePos = self.view.frame.width * CGFloat(progress) + 50
+
+            self.smileToShareTrailingCnst.constant = min(8, -(smiliePos - textPos))
+            self.smileToShareLabel.setNeedsLayout()
+            
         }, completed: {
             self.isSmileDetected = true
             self.share()
@@ -191,12 +241,12 @@ class CapturedPhotoViewController: ViewController {
     
     fileprivate func showKeppOnSmiling() {
         // show insructions
-        UIView.animate(withDuration: 1.0, delay: 3.0, options: UIViewAnimationOptions(), animations: {
-            self.keepOnSmilingLabel.alpha = 1.0
+        UIView.animate(withDuration: 1.0, delay: 2.0, options: UIViewAnimationOptions(), animations: {
+            self.shakeItLabel.alpha = 1.0
         }, completion: { (completed) in
             // hide
-            UIView.animate(withDuration: 1.0, delay: 2.0, options: UIViewAnimationOptions(), animations: {
-                self.keepOnSmilingLabel.alpha = 0.0
+            UIView.animate(withDuration: 1.0, delay: 1.0, options: UIViewAnimationOptions(), animations: {
+                self.shakeItLabel.alpha = 0.0
             }, completion: nil)
         })
     }
@@ -218,6 +268,7 @@ class CapturedPhotoViewController: ViewController {
             let scale = 3 * (self.view.frame.height / animView.frame.height)
             animView.transform = CGAffineTransform(scaleX: scale, y: scale)
             self.filteredPhotoImageView.alpha = 1.0
+            self.smileToShareLabel.alpha = 1.0
         }) { (finished) in }
     }
     
@@ -231,6 +282,7 @@ class CapturedPhotoViewController: ViewController {
                 self.hideSmilieLoadingView()
                 self.isSmileDetected = false
                 self.smileProgressView.hideAnim()
+                self.smileToShareTrailingCnst.constant = 8
             }
             self.present(activityVc, animated: true, completion: nil)
         }
