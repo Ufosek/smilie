@@ -9,6 +9,8 @@
 import UIKit
 import GPUImage
 import SACountingLabel
+import AudioToolbox
+
 
 class CapturedPhotoViewController: ViewController {
 
@@ -48,6 +50,9 @@ class CapturedPhotoViewController: ViewController {
     //
     
     fileprivate var filteredImage: UIImage!
+    
+    
+    //
     
     var image: UIImage! {
         didSet {
@@ -124,6 +129,7 @@ class CapturedPhotoViewController: ViewController {
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             log("START ADD EYES")
+            
             self.filteredImageManager.addRandomEeyes { (filteredImage) in
                 self.filteredImage = filteredImage
                 self.filteredPhotoImageView.image = self.filteredImage

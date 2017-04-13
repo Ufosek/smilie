@@ -12,41 +12,35 @@ class IntroViewController: ViewController {
 
     //
     
-    @IBOutlet weak var firstInfoLabel: UILabel!
-    @IBOutlet weak var secondInfoLabel: UILabel!
+    @IBOutlet weak var smileImageView: UIImageView!
+    @IBOutlet weak var textLabel: UILabel!
     
-    // 0
-    @IBOutlet weak var firstInfoLabelCenterXCnst: NSLayoutConstraint!
-    
-    // 0
-    @IBOutlet weak var secondInfoLabelCenterXCnst: NSLayoutConstraint!
-    
+    @IBOutlet weak var logoImageView: UIImageView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.firstInfoLabel.alpha = 0.0
-        self.secondInfoLabel.alpha = 0.0
-        
-        
+        self.logoImageView.alpha = 0.0
+        self.smileImageView.alpha = 0.0
+        self.textLabel.alpha = 0.0
     }
     
     override func viewDidFirstAppear() {
-        self.firstInfoLabelCenterXCnst.constant =  -self.view.frame.width
-        self.secondInfoLabelCenterXCnst.constant =  self.view.frame.width
+        
         
         self.view.layoutIfNeeded()
         
         UIView.animate(withDuration: 1.5, delay: 1.5, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-            self.firstInfoLabel.alpha = 1.0
-            self.firstInfoLabelCenterXCnst.constant = 0
+            self.logoImageView.alpha = 1.0
+            self.smileImageView.alpha = 1.0
             
             self.view.layoutIfNeeded()
         }) { (finished) in }
         
-        UIView.animate(withDuration: 1.5, delay: 3.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-            self.secondInfoLabel.alpha = 1.0
-            self.secondInfoLabelCenterXCnst.constant = 0
+        
+        UIView.animate(withDuration: 1.5, delay: 3.5, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+            self.textLabel.alpha = 1.0
             
             self.view.layoutIfNeeded()
         }) { (finished) in

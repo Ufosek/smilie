@@ -15,6 +15,8 @@
 		85715AC31DEDF71900BBC7CA /* FilteredImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85715AC21DEDF71900BBC7CA /* FilteredImageManager.swift */; };
 		85781AAA1DD63F32008EE778 /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */; };
 		8588C6901DC8DC82000979EF /* UIImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C68F1DC8DC82000979EF /* UIImageHelper.m */; };
+		858F89391EA015960005D04F /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858F89381EA015960005D04F /* SoundPlayer.swift */; };
+		858F893B1EA016E80005D04F /* punch_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 858F893A1EA016E80005D04F /* punch_sound.mp3 */; };
 		85A3B4011DD8E54E007EE252 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A3B4001DD8E54E007EE252 /* DataManager.swift */; };
 		85B39B2E1DCE3A6600427350 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B2D1DCE3A6600427350 /* CircleImageView.swift */; };
 		85B39B321DCE3AD500427350 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B39B311DCE3AD500427350 /* AppDelegate.swift */; };
@@ -68,6 +70,8 @@
 		8588C68D1DC8DBF2000979EF /* Smilie-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Smilie-Bridging-Header.h"; sourceTree = "<group>"; };
 		8588C68E1DC8DC70000979EF /* UIImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageHelper.h; sourceTree = "<group>"; };
 		8588C68F1DC8DC82000979EF /* UIImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageHelper.m; sourceTree = "<group>"; };
+		858F89381EA015960005D04F /* SoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
+		858F893A1EA016E80005D04F /* punch_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = punch_sound.mp3; sourceTree = "<group>"; };
 		85A3B4001DD8E54E007EE252 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		85B39B2D1DCE3A6600427350 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		85B39B311DCE3AD500427350 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +143,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		858F89331EA010620005D04F /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				858F893A1EA016E80005D04F /* punch_sound.mp3 */,
+			);
+			name = sound;
+			sourceTree = "<group>";
+		};
 		85CCC5131DE0C1B0007D1991 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +189,7 @@
 		85DB11011DC7516C00AFCCD0 /* Smilie */ = {
 			isa = PBXGroup;
 			children = (
+				858F89331EA010620005D04F /* sound */,
 				85CCC5111DE0B1E5007D1991 /* Assets.xcassets */,
 				85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */,
 				85FB657D1DE3A0FA00CC4021 /* vc */,
@@ -211,6 +224,7 @@
 				853255211DD74C3B00EDF3DE /* DurationTimer.swift */,
 				853255231DD7567200EDF3DE /* BounceButton.swift */,
 				8547DF8C1DE0D53C00B511FB /* CircleView.swift */,
+				858F89381EA015960005D04F /* SoundPlayer.swift */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -323,6 +337,7 @@
 				85CCC5231DE0C220007D1991 /* Lato-LigIta.otf in Resources */,
 				85CCC5221DE0C220007D1991 /* Lato-Lig.otf in Resources */,
 				85781AAA1DD63F32008EE778 /* lookup_miss_etikate.png in Resources */,
+				858F893B1EA016E80005D04F /* punch_sound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +418,7 @@
 				85DB11221DC76AD600AFCCD0 /* CameraView.swift in Sources */,
 				85715AC31DEDF71900BBC7CA /* FilteredImageManager.swift in Sources */,
 				85EA58A31DCE31A000749AEC /* FaceFeaturesDetector.swift in Sources */,
+				858F89391EA015960005D04F /* SoundPlayer.swift in Sources */,
 				85DB11251DC77E5E00AFCCD0 /* CameraViewController.swift in Sources */,
 				85CCC50C1DE0855D007D1991 /* SmileProgressView.swift in Sources */,
 				85A3B4011DD8E54E007EE252 /* DataManager.swift in Sources */,

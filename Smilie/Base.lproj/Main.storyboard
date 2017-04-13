@@ -16,12 +16,6 @@
         <array key="Lato-Bol.otf">
             <string>Lato-Bold</string>
         </array>
-        <array key="Lato-Lig.otf">
-            <string>Lato-Light</string>
-        </array>
-        <array key="Lato-Reg.otf">
-            <string>Lato-Regular</string>
-        </array>
     </customFonts>
     <scenes>
         <!--Intro View Controller-->
@@ -37,61 +31,55 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smilie" translatesAutoresizingMaskIntoConstraints="NO" id="zYj-oJ-9Mx">
-                                <rect key="frame" x="67" y="223" width="240" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="O5f-2O-ty8"/>
-                                    <constraint firstAttribute="width" constant="240" id="SKH-2I-DYb"/>
-                                </constraints>
+                                <rect key="frame" x="82.5" y="286.5" width="210" height="54"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smile_white" translatesAutoresizingMaskIntoConstraints="NO" id="kV7-JX-5x9">
-                                <rect key="frame" x="166" y="178" width="43" height="45"/>
+                                <rect key="frame" x="166" y="233.5" width="43" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="43" id="vCy-Ld-N2Q"/>
-                                    <constraint firstAttribute="height" constant="45" id="yCj-Rd-TMQ"/>
+                                    <constraint firstAttribute="height" constant="45" id="L1T-Wi-9JN"/>
+                                    <constraint firstAttribute="width" constant="43" id="uMF-CO-0oS"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The simplest way to happiness..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aV-ZG-z5f">
-                                <rect key="frame" x="54" y="353" width="268" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="XP5-32-OzE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# KEEP ON SMILING" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9br-gY-RoA">
+                                <rect key="frame" x="20" y="260" width="334" height="407"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="77"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="is to smile :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKN-bT-gJB">
-                                <rect key="frame" x="112.5" y="393" width="151.5" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Weq-bO-JaZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#KEEPONSMILING" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aV-ZG-z5f">
+                                <rect key="frame" x="0.0" y="350.5" width="375" height="48"/>
+                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="40"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.9882352941176471" green="0.70980392156862748" blue="0.078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="zYj-oJ-9Mx" firstAttribute="top" secondItem="kV7-JX-5x9" secondAttribute="bottom" id="1QI-kp-7Zn"/>
-                            <constraint firstItem="zYj-oJ-9Mx" firstAttribute="centerX" secondItem="rDy-mz-IGA" secondAttribute="centerX" id="HM1-PJ-BDf"/>
-                            <constraint firstItem="BKN-bT-gJB" firstAttribute="centerX" secondItem="rDy-mz-IGA" secondAttribute="centerX" id="TJa-Op-Z4S"/>
-                            <constraint firstItem="BKN-bT-gJB" firstAttribute="top" secondItem="3aV-ZG-z5f" secondAttribute="bottom" constant="10" id="TiX-P0-Dua"/>
-                            <constraint firstItem="kV7-JX-5x9" firstAttribute="centerX" secondItem="rDy-mz-IGA" secondAttribute="centerX" id="ZFQ-k0-Gsc"/>
-                            <constraint firstItem="zYj-oJ-9Mx" firstAttribute="centerY" secondItem="rDy-mz-IGA" secondAttribute="centerY" constant="-80" id="pZO-Rh-kd8"/>
-                            <constraint firstItem="3aV-ZG-z5f" firstAttribute="centerX" secondItem="rDy-mz-IGA" secondAttribute="centerX" id="sIX-4R-o8M"/>
-                            <constraint firstItem="3aV-ZG-z5f" firstAttribute="top" secondItem="zYj-oJ-9Mx" secondAttribute="bottom" constant="70" id="w9V-nH-OFe"/>
+                            <constraint firstItem="zYj-oJ-9Mx" firstAttribute="top" secondItem="kV7-JX-5x9" secondAttribute="bottom" constant="8" id="4Ez-tz-43V"/>
+                            <constraint firstItem="3aV-ZG-z5f" firstAttribute="top" secondItem="zYj-oJ-9Mx" secondAttribute="bottom" constant="10" id="E8w-Xp-g8i"/>
+                            <constraint firstAttribute="trailing" secondItem="3aV-ZG-z5f" secondAttribute="trailing" id="HoA-Yj-vJZ"/>
+                            <constraint firstItem="kV7-JX-5x9" firstAttribute="centerX" secondItem="rDy-mz-IGA" secondAttribute="centerX" id="PPL-Lp-KZf"/>
+                            <constraint firstItem="3aV-ZG-z5f" firstAttribute="leading" secondItem="rDy-mz-IGA" secondAttribute="leading" id="ghs-0W-1iJ"/>
+                            <constraint firstItem="zYj-oJ-9Mx" firstAttribute="centerY" secondItem="rDy-mz-IGA" secondAttribute="centerY" constant="-20" id="lrW-F5-Nnx"/>
+                            <constraint firstItem="zYj-oJ-9Mx" firstAttribute="centerX" secondItem="rDy-mz-IGA" secondAttribute="centerX" id="tjS-K8-Nfe"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="9br-gY-RoA"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
-                        <outlet property="firstInfoLabel" destination="3aV-ZG-z5f" id="zhu-aj-r5a"/>
-                        <outlet property="firstInfoLabelCenterXCnst" destination="sIX-4R-o8M" id="Oa1-LK-nQW"/>
-                        <outlet property="secondInfoLabel" destination="BKN-bT-gJB" id="jef-Ih-Og7"/>
-                        <outlet property="secondInfoLabelCenterXCnst" destination="TJa-Op-Z4S" id="tXE-Su-LmA"/>
+                        <outlet property="logoImageView" destination="zYj-oJ-9Mx" id="HrJ-1p-Rlw"/>
+                        <outlet property="smileImageView" destination="kV7-JX-5x9" id="NWS-yu-aKU"/>
+                        <outlet property="textLabel" destination="3aV-ZG-z5f" id="t67-6F-8K9"/>
                         <segue destination="BYZ-38-t0r" kind="custom" identifier="Start" customClass="ReplaceSegue" customModule="Smilie" customModuleProvider="target" id="Cqf-Sp-Mde"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msx-AI-trd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-878" y="313"/>
+            <point key="canvasLocation" x="-879.20000000000005" y="312.59370314842579"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -121,49 +109,32 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FfQ-CL-lDV">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="is to smile :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsq-CX-U3K">
-                                        <rect key="frame" x="112.5" y="393" width="151.5" height="40"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smilie" translatesAutoresizingMaskIntoConstraints="NO" id="ow9-WO-4K8">
+                                        <rect key="frame" x="82.5" y="286.5" width="210" height="54"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smile_white" translatesAutoresizingMaskIntoConstraints="NO" id="D4q-Pe-4Na">
+                                        <rect key="frame" x="166" y="233.5" width="43" height="45"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="ejs-M4-WQC"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="30"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smile_white" translatesAutoresizingMaskIntoConstraints="NO" id="ufd-vn-pOU">
-                                        <rect key="frame" x="166" y="178" width="43" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="1hw-mD-JJR"/>
-                                            <constraint firstAttribute="width" constant="43" id="OKH-kp-InY"/>
+                                            <constraint firstAttribute="height" constant="45" id="lOb-85-f1R"/>
+                                            <constraint firstAttribute="width" constant="43" id="vHo-vp-Lke"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smilie" translatesAutoresizingMaskIntoConstraints="NO" id="L6t-Ga-2Cd">
-                                        <rect key="frame" x="67" y="223" width="240" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="aRN-ez-CRk"/>
-                                            <constraint firstAttribute="width" constant="240" id="udo-Ja-kXd"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The simplest way to happiness..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jw9-7J-ebP">
-                                        <rect key="frame" x="53" y="353" width="268" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="bPX-Ca-OT9"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Lato-Light" family="Lato" pointSize="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#KEEPONSMILING" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTR-NS-2iY">
+                                        <rect key="frame" x="0.0" y="350.5" width="375" height="48"/>
+                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="40"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.98823529409999999" green="0.70980392160000005" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="vsq-CX-U3K" firstAttribute="top" secondItem="jw9-7J-ebP" secondAttribute="bottom" constant="10" id="CP1-DX-k80"/>
-                                    <constraint firstItem="L6t-Ga-2Cd" firstAttribute="top" secondItem="ufd-vn-pOU" secondAttribute="bottom" id="KqE-2M-0Tl"/>
-                                    <constraint firstItem="ufd-vn-pOU" firstAttribute="centerX" secondItem="FfQ-CL-lDV" secondAttribute="centerX" id="O5b-nu-LAi"/>
-                                    <constraint firstItem="jw9-7J-ebP" firstAttribute="centerX" secondItem="FfQ-CL-lDV" secondAttribute="centerX" id="QcC-Su-Z8y"/>
-                                    <constraint firstItem="L6t-Ga-2Cd" firstAttribute="centerX" secondItem="FfQ-CL-lDV" secondAttribute="centerX" id="VuW-zV-I7M"/>
-                                    <constraint firstItem="jw9-7J-ebP" firstAttribute="top" secondItem="L6t-Ga-2Cd" secondAttribute="bottom" constant="70" id="bVt-fm-bIz"/>
-                                    <constraint firstItem="vsq-CX-U3K" firstAttribute="centerX" secondItem="FfQ-CL-lDV" secondAttribute="centerX" id="d4P-qF-Di9"/>
-                                    <constraint firstItem="L6t-Ga-2Cd" firstAttribute="centerY" secondItem="FfQ-CL-lDV" secondAttribute="centerY" constant="-80" id="hir-XM-bHi"/>
+                                    <constraint firstItem="D4q-Pe-4Na" firstAttribute="centerX" secondItem="FfQ-CL-lDV" secondAttribute="centerX" id="A9N-ac-rXy"/>
+                                    <constraint firstItem="oTR-NS-2iY" firstAttribute="leading" secondItem="FfQ-CL-lDV" secondAttribute="leading" id="M4c-Do-3SU"/>
+                                    <constraint firstItem="ow9-WO-4K8" firstAttribute="centerY" secondItem="FfQ-CL-lDV" secondAttribute="centerY" constant="-20" id="Q8D-6Y-rCR"/>
+                                    <constraint firstItem="ow9-WO-4K8" firstAttribute="top" secondItem="D4q-Pe-4Na" secondAttribute="bottom" constant="8" id="Rak-Ek-F9b"/>
+                                    <constraint firstItem="oTR-NS-2iY" firstAttribute="top" secondItem="ow9-WO-4K8" secondAttribute="bottom" constant="10" id="Zgu-KN-Xmw"/>
+                                    <constraint firstAttribute="trailing" secondItem="oTR-NS-2iY" secondAttribute="trailing" id="cFL-P1-csZ"/>
+                                    <constraint firstItem="ow9-WO-4K8" firstAttribute="centerX" secondItem="FfQ-CL-lDV" secondAttribute="centerX" id="tOH-P5-2sU"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -225,7 +196,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#SHAKE IT" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RrI-tE-mom">
-                                <rect key="frame" x="8" y="402.5" width="359" height="62.5"/>
+                                <rect key="frame" x="8" y="403" width="359" height="62.5"/>
                                 <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="52"/>
                                 <color key="textColor" red="0.98039215803146362" green="0.66666668653488159" blue="0.074509806931018829" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
