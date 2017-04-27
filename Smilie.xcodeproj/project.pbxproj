@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		13160D11C5BE6098856AABE3 /* Pods_Smilie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3791D516D54B602DBD18D80F /* Pods_Smilie.framework */; };
 		850948BC1DD60E5200B080CD /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850948BB1DD60E5200B080CD /* Checkbox.swift */; };
+		852827381EB296DC00426AAA /* RotateToBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852827371EB296DC00426AAA /* RotateToBackView.swift */; };
+		8528273A1EB296E700426AAA /* RotateToBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 852827391EB296E700426AAA /* RotateToBackView.xib */; };
 		853255221DD74C3B00EDF3DE /* DurationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853255211DD74C3B00EDF3DE /* DurationTimer.swift */; };
 		853255241DD7567200EDF3DE /* BounceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853255231DD7567200EDF3DE /* BounceButton.swift */; };
 		8547DF8D1DE0D53C00B511FB /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8547DF8C1DE0D53C00B511FB /* CircleView.swift */; };
@@ -62,6 +64,8 @@
 		3791D516D54B602DBD18D80F /* Pods_Smilie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smilie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E7E125B4DD9943456933D25 /* Pods-Smilie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smilie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smilie/Pods-Smilie.debug.xcconfig"; sourceTree = "<group>"; };
 		850948BB1DD60E5200B080CD /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		852827371EB296DC00426AAA /* RotateToBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateToBackView.swift; sourceTree = "<group>"; };
+		852827391EB296E700426AAA /* RotateToBackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RotateToBackView.xib; sourceTree = "<group>"; };
 		853255211DD74C3B00EDF3DE /* DurationTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationTimer.swift; sourceTree = "<group>"; };
 		853255231DD7567200EDF3DE /* BounceButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceButton.swift; sourceTree = "<group>"; };
 		8547DF8C1DE0D53C00B511FB /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
@@ -240,6 +244,8 @@
 				85CCC50D1DE085D3007D1991 /* SmileProgressView.xib */,
 				85FB657E1DE3B6E500CC4021 /* SmilieLoadingView.swift */,
 				85FB65801DE3B6FC00CC4021 /* SmilieLoadingView.xib */,
+				852827371EB296DC00426AAA /* RotateToBackView.swift */,
+				852827391EB296E700426AAA /* RotateToBackView.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -327,6 +333,7 @@
 				85DB11081DC7516C00AFCCD0 /* Main.storyboard in Resources */,
 				85FB65811DE3B6FC00CC4021 /* SmilieLoadingView.xib in Resources */,
 				85CCC5261DE0C220007D1991 /* Lato-Bla.otf in Resources */,
+				8528273A1EB296E700426AAA /* RotateToBackView.xib in Resources */,
 				85CCC5211DE0C220007D1991 /* Lato-HaiIta.otf in Resources */,
 				85DB11201DC76AC400AFCCD0 /* CameraView.xib in Resources */,
 				85CCC5201DE0C220007D1991 /* Lato-Hai.otf in Resources */,
@@ -423,6 +430,7 @@
 				85CCC50C1DE0855D007D1991 /* SmileProgressView.swift in Sources */,
 				85A3B4011DD8E54E007EE252 /* DataManager.swift in Sources */,
 				85EA589D1DCE1FED00749AEC /* MySegues.swift in Sources */,
+				852827381EB296DC00426AAA /* RotateToBackView.swift in Sources */,
 				85B39B361DCE449300427350 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

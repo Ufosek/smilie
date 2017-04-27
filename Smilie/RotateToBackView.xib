@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Bla.otf">
+            <string>Lato-Black</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RotateToBackView">
+            <connections>
+                <outlet property="infoLabel" destination="CYC-7D-qf5" id="pEk-y7-vUr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ROTATE TO BACK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CYC-7D-qf5">
+                    <rect key="frame" x="30" y="312.5" width="315" height="43.5"/>
+                    <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="37"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.98039215803146362" green="0.66666668653488159" blue="0.074509806931018829" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="CYC-7D-qf5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="CDY-Wl-eC4"/>
+                <constraint firstAttribute="trailing" secondItem="CYC-7D-qf5" secondAttribute="trailing" constant="30" id="IRF-Lq-9xL"/>
+                <constraint firstItem="CYC-7D-qf5" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="O5t-sT-QrB"/>
+                <constraint firstItem="CYC-7D-qf5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="e6t-uc-OLp"/>
+            </constraints>
+            <point key="canvasLocation" x="-120.5" y="57.5"/>
+        </view>
+    </objects>
+</document>

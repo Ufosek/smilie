@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraView" customModule="Smilie" customModuleProvider="target">
@@ -17,7 +21,7 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fOe-j4-5zt">
                     <rect key="frame" x="10" y="507" width="100" height="150"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="5Wd-PK-8l6"/>
                         <constraint firstAttribute="height" constant="150" id="f0F-uW-SyR"/>
@@ -25,7 +29,7 @@
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSP-FR-75r">
                     <rect key="frame" x="155" y="618" width="65" height="39"/>
-                    <color key="backgroundColor" red="0.8862745098" green="0.95294117649999999" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.8862745098" green="0.95294117649999999" blue="0.019607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="65" id="KG8-Nd-yyp"/>
                         <constraint firstAttribute="height" constant="39" id="RSe-oN-BUX"/>
@@ -36,14 +40,13 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="fOe-j4-5zt" secondAttribute="bottom" constant="10" id="3Ol-X6-CWL"/>
                 <constraint firstItem="fOe-j4-5zt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="546-zL-QrQ"/>
                 <constraint firstAttribute="bottom" secondItem="hSP-FR-75r" secondAttribute="bottom" constant="10" id="5g3-rd-MtX"/>
                 <constraint firstItem="hSP-FR-75r" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Kkx-BN-tHI"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="270.5" y="312.5"/>
         </view>
     </objects>

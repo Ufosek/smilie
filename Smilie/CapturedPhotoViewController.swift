@@ -10,7 +10,7 @@ import UIKit
 import GPUImage
 import SACountingLabel
 import AudioToolbox
-
+import CoreMotion
 
 class CapturedPhotoViewController: ViewController {
 
@@ -30,6 +30,7 @@ class CapturedPhotoViewController: ViewController {
     @IBOutlet weak var numberLabel: SACountingLabel!
 
     @IBOutlet weak var counterView: UIView!
+    @IBOutlet weak var backButton: BounceButton!
     
     // 8 ; -x
     @IBOutlet weak var smileToShareTrailingCnst: NSLayoutConstraint!
@@ -47,9 +48,13 @@ class CapturedPhotoViewController: ViewController {
 
     fileprivate var filteredImageManager: FilteredImageManager!
     
+    fileprivate var backView: RotateToBackView!
+    
     //
     
     fileprivate var filteredImage: UIImage!
+    
+    private let manager = CMMotionManager()
     
     
     //
@@ -80,6 +85,23 @@ class CapturedPhotoViewController: ViewController {
         
         // to get shake event
         self.becomeFirstResponder()
+        
+        // exit
+        if manager.isDeviceMotionAvailable {
+            log("MOTION")
+            manager.deviceMotionUpdateInterval = 0.01
+            manager.startDeviceMotionUpdates(to: OperationQueue.main) {
+                (data, error) in
+                if let data = data {
+                    let rotation = (atan2(data.gravity.x, data.gravity.y) - Double.pi) * 180 / Double.pi
+                    //log("rotation = \(rotation)")
+                    if(rotation > -240 && rotation < -100) {
+                        self.camera.stop()
+                        self.dismissfadeOut()
+                    }
+                }
+            }
+        }
     }
     
     override func viewDidFirstAppear() {
@@ -298,8 +320,26 @@ class CapturedPhotoViewController: ViewController {
     // Actions
     
     @IBAction func backClicked(_ sender: AnyObject) {
-        self.camera.stop()
-        self.dismissfadeOut()
+        if(self.backView == nil) {
+            self.backView = RotateToBackView(frame: self.view.frame)
+            self.backView.alpha = 0
+            self.view.addSubview(self.backView)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.backView.alpha = 1.0
+                self.backButton.alpha = 0
+            }, completion: { (completed) in
+                self.backView.showInfo()
+                
+                delay(2.0, withCompletion: {
+                    UIView.animate(withDuration: 0.5, animations: { 
+                        self.backView.alpha = 0
+                    }, completion: { (completed) in
+                        self.backView.removeFromSuperview()
+                    })
+                })
+            })
+        }
     }
     
 

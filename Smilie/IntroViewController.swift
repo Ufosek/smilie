@@ -14,14 +14,11 @@ class IntroViewController: ViewController {
     
     @IBOutlet weak var smileImageView: UIImageView!
     @IBOutlet weak var textLabel: UILabel!
-    
-    @IBOutlet weak var logoImageView: UIImageView!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.logoImageView.alpha = 0.0
         self.smileImageView.alpha = 0.0
         self.textLabel.alpha = 0.0
     }
@@ -32,7 +29,6 @@ class IntroViewController: ViewController {
         self.view.layoutIfNeeded()
         
         UIView.animate(withDuration: 1.5, delay: 1.5, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-            self.logoImageView.alpha = 1.0
             self.smileImageView.alpha = 1.0
             
             self.view.layoutIfNeeded()
