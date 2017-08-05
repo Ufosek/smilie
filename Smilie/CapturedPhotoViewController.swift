@@ -17,6 +17,7 @@ class CapturedPhotoViewController: ViewController {
     fileprivate let SHARE_COLOR_VIEW_ANIM_DURATION: TimeInterval = 0.8
     fileprivate let NUMBER_ANIM_DURATION: TimeInterval = 1.0
     
+    fileprivate let ANGLE_TO_BACK: Double = 90
     
     //
 
@@ -95,7 +96,7 @@ class CapturedPhotoViewController: ViewController {
                 if let data = data {
                     let rotation = (atan2(data.gravity.x, data.gravity.y) - Double.pi) * 180 / Double.pi
                     //log("rotation = \(rotation)")
-                    if(rotation > -240 && rotation < -100) {
+                    if(rotation > -360+self.ANGLE_TO_BACK && rotation < -self.ANGLE_TO_BACK) {
                         self.camera.stop()
                         self.dismissfadeOut()
                     }
