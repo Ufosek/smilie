@@ -40,6 +40,7 @@ class MainViewController: ViewController {
     fileprivate var photoMade: Bool!
     
 
+    fileprivate var isSmileDetected: Bool = false
     
     fileprivate var isIntroVisible: Bool!
     
@@ -69,9 +70,11 @@ class MainViewController: ViewController {
 
         // make another photo
         self.photoMade = false
+        self.isSmileDetected = false
         
         // init camera
         MyCamera.checkCameraPermissions({
+            log("START CAMERA")
             self.camera.start(self.cameraPreviewView, handleError: {
                 self.showErrorView("Camera error")
             })
@@ -92,7 +95,7 @@ class MainViewController: ViewController {
     
     override func viewDidFirstAppear() {
         // hide intro view
-        UIView.animate(withDuration: 0.3, delay: 1.5, options: UIViewAnimationOptions(), animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.5, options: UIViewAnimationOptions(), animations: {
             self.introView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }, completion: { (completed) in
             self.introView.cornerRadius = 30
@@ -118,7 +121,8 @@ class MainViewController: ViewController {
         self.camera = MyCamera()
         self.camera.previewImage = { (image) in
             self.faceFeaturesDetector.detectSmile(image, smileDetected: { (probability, faceFeatures) in
-                if(self.photoMade == false && self.isIntroVisible == false) {
+                
+                if(self.photoMade == false && self.isIntroVisible == false && self.isSmileDetected == false) {
                     //log("SMIEL DETECTED= '\(probability)")
                     
                     // start timer when smile detected
@@ -155,6 +159,8 @@ class MainViewController: ViewController {
             self.keepOnSmilingTrailingCnst.constant = min(8, -(smiliePos - textPos))
             self.keepOnSmilingLabel.setNeedsLayout()
         }, completed: {
+                self.smileTimer.cancel()
+                self.isSmileDetected = true
                 self.makePhoto()
         })
         
@@ -169,9 +175,12 @@ class MainViewController: ViewController {
         if(self.photoMade == false) {
             self.smileTimer.cancel()
             
+            // iphone7: size = (2320.0, 3088.0)
+            // iphone 5: size = (960.0, 1280.0)
             self.camera.makePhoto({ (photoImage) in
+                log("PHOTO DONE size = \(photoImage.size)")
                 self.photoMade = true
-                // move to next vc
+
                 self.performSegueWithIdentifier("ShowPhoto", withCompletion: { (destVc) in
                     (destVc as! CapturedPhotoViewController).image = photoImage
                 })

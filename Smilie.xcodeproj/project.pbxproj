@@ -301,6 +301,7 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = RK4WALX88Y;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -572,6 +573,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sparing.Smilie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f2d8aad2-18a7-4fec-94e8-cb329e5f976b";
+				PROVISIONING_PROFILE_SPECIFIER = Smilie;
 				SWIFT_OBJC_BRIDGING_HEADER = "Smilie/Smilie-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -591,6 +594,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sparing.Smilie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f5b745ce-af14-4d00-8647-86a42080df16";
+				PROVISIONING_PROFILE_SPECIFIER = Smilie;
 				SWIFT_OBJC_BRIDGING_HEADER = "Smilie/Smilie-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

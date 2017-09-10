@@ -42,6 +42,7 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
             // update the video orientation to the device one
             connection?.videoOrientation = AVCaptureVideoOrientation(rawValue: UIDevice.current.orientation.rawValue)!
             
+            
             self.stillCameraOutput.captureStillImageAsynchronously(from: connection) {
                 (imageDataSampleBuffer, error) -> Void in
                 
@@ -53,8 +54,11 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
                     
                     if let image = UIImage(data: imageData!) {
                         // save the image or do something interesting with it
+
+                        // size (width from iphone 5)
+                        let resizedImage = image.imageFlipped().imageWithWidth(960)
                         
-                        photoTaken?(image.imageFlipped())
+                        photoTaken?(resizedImage)
                     }
                 }
                 else {

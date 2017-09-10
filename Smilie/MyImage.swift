@@ -151,7 +151,7 @@ extension UIImage {
     // width would be calculated from ratio
     func imageWithWidth(_ width: CGFloat) -> UIImage {
         
-        let ratio = self.size.width / self.size.height
+        let ratio = self.size.height / self.size.width
         let height = width * ratio
 
         return imageWithSize(CGSize(width: width, height: height))

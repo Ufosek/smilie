@@ -131,12 +131,15 @@ extension UIViewController {
     }
     
     func dismissfadeOut() {
+        // this animation causes strange black screen on iPhone7
+        /*
         // fadeout dismiss
         let transition = CATransition()
         transition.duration = 0.5
         transition.type = kCATransitionFade
         
         self.view.window?.layer.add(transition, forKey:kCATransition)
+         */
         self.dismiss(animated: false, completion: nil)
     }
 }

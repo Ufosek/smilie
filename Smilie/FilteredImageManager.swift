@@ -45,6 +45,7 @@ class FilteredImageManager: NSObject {
         workInBackground({
             // add filters
             //self.filteredImage = self.filteredImage.imageCropped(self.faceRect)
+            
             // add filters
             self.filteredImage = self.filterImage(self.filteredImage)
             // set size
@@ -152,7 +153,7 @@ class FilteredImageManager: NSObject {
             ]
         
         let counterText = "#\(number)"
-        let counterTextWidth = CGFloat(counterText.characters.count * 38)
+        let counterTextWidth = CGFloat(counterText.characters.count * 38) + 20
         let counterTextX: CGFloat = 450
         let rectHeight: CGFloat = 70
         

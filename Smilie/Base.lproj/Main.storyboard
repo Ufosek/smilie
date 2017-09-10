@@ -31,10 +31,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smilie_white_big" translatesAutoresizingMaskIntoConstraints="NO" id="kV7-JX-5x9">
-                                <rect key="frame" x="166" y="311" width="43" height="45"/>
+                                <rect key="frame" x="87.5" y="233.5" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="L1T-Wi-9JN"/>
-                                    <constraint firstAttribute="width" constant="43" id="uMF-CO-0oS"/>
+                                    <constraint firstAttribute="height" constant="200" id="L1T-Wi-9JN"/>
+                                    <constraint firstAttribute="width" constant="200" id="uMF-CO-0oS"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# KEEP ON SMILING" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9br-gY-RoA">
@@ -45,7 +45,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#KeepOnSmiling" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3aV-ZG-z5f">
-                                <rect key="frame" x="0.0" y="376" width="375" height="48"/>
+                                <rect key="frame" x="0.0" y="453.5" width="375" height="48"/>
                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="40"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -87,9 +87,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QO6-0w-wff">
+                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="QO6-0w-wff">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.53333333329999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#KeepOnSmiling" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gfr-sh-B0c">
                                 <rect key="frame" x="167" y="627" width="200" height="40"/>
@@ -104,14 +104,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smilie_white_big" translatesAutoresizingMaskIntoConstraints="NO" id="D4q-Pe-4Na">
-                                        <rect key="frame" x="166" y="311" width="43" height="45"/>
+                                        <rect key="frame" x="87.5" y="233.5" width="200" height="200"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="lOb-85-f1R"/>
-                                            <constraint firstAttribute="width" constant="43" id="vHo-vp-Lke"/>
+                                            <constraint firstAttribute="height" constant="200" id="lOb-85-f1R"/>
+                                            <constraint firstAttribute="width" constant="200" id="vHo-vp-Lke"/>
                                         </constraints>
                                     </imageView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#KeepOnSmiling" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="oTR-NS-2iY">
-                                        <rect key="frame" x="0.0" y="376" width="375" height="48"/>
+                                        <rect key="frame" x="0.0" y="453.5" width="375" height="48"/>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="40"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -698,6 +698,6 @@
         <image name="back_white" width="50" height="50"/>
         <image name="smile_orange" width="100" height="100"/>
         <image name="smilie" width="210" height="54"/>
-        <image name="smilie_white_big" width="50" height="50"/>
+        <image name="smilie_white_big" width="200" height="200"/>
     </resources>
 </document>

@@ -24,23 +24,14 @@ class IntroViewController: ViewController {
     }
     
     override func viewDidFirstAppear() {
-        
-        
         self.view.layoutIfNeeded()
         
-        UIView.animate(withDuration: 1.5, delay: 1.5, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+        UIView.animate(withDuration: 1.5, delay: 0.5, options: UIViewAnimationOptions.curveEaseInOut, animations: {
             self.smileImageView.alpha = 1.0
             
             self.view.layoutIfNeeded()
-        }) { (finished) in }
-        
-        
-        UIView.animate(withDuration: 1.5, delay: 3.5, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-            self.textLabel.alpha = 1.0
-            
-            self.view.layoutIfNeeded()
         }) { (finished) in
-            
+        
             // delay and ask for permissions
             delay(1.0, withCompletion: {
                 MyCamera.checkCameraPermissions({
