@@ -13,6 +13,8 @@
 		8528273A1EB296E700426AAA /* RotateToBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 852827391EB296E700426AAA /* RotateToBackView.xib */; };
 		853255221DD74C3B00EDF3DE /* DurationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853255211DD74C3B00EDF3DE /* DurationTimer.swift */; };
 		853255241DD7567200EDF3DE /* BounceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853255231DD7567200EDF3DE /* BounceButton.swift */; };
+		853F0F071F6EE0D6005FB9A7 /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853F0F051F6EE0D6005FB9A7 /* ActionManager.swift */; };
+		853F0F081F6EE0D6005FB9A7 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853F0F061F6EE0D6005FB9A7 /* SessionManager.swift */; };
 		8547DF8D1DE0D53C00B511FB /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8547DF8C1DE0D53C00B511FB /* CircleView.swift */; };
 		85715AC31DEDF71900BBC7CA /* FilteredImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85715AC21DEDF71900BBC7CA /* FilteredImageManager.swift */; };
 		85781AAA1DD63F32008EE778 /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */; };
@@ -68,6 +70,8 @@
 		852827391EB296E700426AAA /* RotateToBackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RotateToBackView.xib; sourceTree = "<group>"; };
 		853255211DD74C3B00EDF3DE /* DurationTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationTimer.swift; sourceTree = "<group>"; };
 		853255231DD7567200EDF3DE /* BounceButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceButton.swift; sourceTree = "<group>"; };
+		853F0F051F6EE0D6005FB9A7 /* ActionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
+		853F0F061F6EE0D6005FB9A7 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		8547DF8C1DE0D53C00B511FB /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		85715AC21DEDF71900BBC7CA /* FilteredImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteredImageManager.swift; sourceTree = "<group>"; };
 		85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
@@ -147,6 +151,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		853F0F041F6EE0B8005FB9A7 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				853F0F051F6EE0D6005FB9A7 /* ActionManager.swift */,
+				853F0F061F6EE0D6005FB9A7 /* SessionManager.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		858F89331EA010620005D04F /* sound */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +206,7 @@
 		85DB11011DC7516C00AFCCD0 /* Smilie */ = {
 			isa = PBXGroup;
 			children = (
+				853F0F041F6EE0B8005FB9A7 /* model */,
 				858F89331EA010620005D04F /* sound */,
 				85CCC5111DE0B1E5007D1991 /* Assets.xcassets */,
 				85781AA91DD63F32008EE778 /* lookup_miss_etikate.png */,
@@ -429,6 +443,7 @@
 				853255241DD7567200EDF3DE /* BounceButton.swift in Sources */,
 				85DB11271DC7860400AFCCD0 /* CapturedPhotoViewController.swift in Sources */,
 				85DB111E1DC769CD00AFCCD0 /* Colors.swift in Sources */,
+				853F0F071F6EE0D6005FB9A7 /* ActionManager.swift in Sources */,
 				85B39B341DCE3B3300427350 /* MainViewController.swift in Sources */,
 				850948BC1DD60E5200B080CD /* Checkbox.swift in Sources */,
 				85FB657C1DE3A0F700CC4021 /* GalleryViewController.swift in Sources */,
@@ -437,6 +452,7 @@
 				85EA589F1DCE27F700749AEC /* MyImage.swift in Sources */,
 				85DB111C1DC769B800AFCCD0 /* Helper.swift in Sources */,
 				853255221DD74C3B00EDF3DE /* DurationTimer.swift in Sources */,
+				853F0F081F6EE0D6005FB9A7 /* SessionManager.swift in Sources */,
 				85DB11221DC76AD600AFCCD0 /* CameraView.swift in Sources */,
 				85715AC31DEDF71900BBC7CA /* FilteredImageManager.swift in Sources */,
 				85EA58A31DCE31A000749AEC /* FaceFeaturesDetector.swift in Sources */,

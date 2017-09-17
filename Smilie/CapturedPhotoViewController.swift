@@ -186,6 +186,9 @@ class CapturedPhotoViewController: ViewController {
                     
                     self.showFilteredPhoto()
                 })
+                
+                // add smile to counter
+                ActionManager.addSmile()
 
                 // init camera
                 self.initCamera()
