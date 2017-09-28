@@ -148,20 +148,27 @@ class MyCamera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         let authorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
         switch authorizationStatus {
         case .notDetermined:
+            log("CAMERA PERM dialog = NOT DETERMINED")
             // permission dialog not yet presented, request authorization
             AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (granted:Bool) -> Void in
                 if granted {
-                    authorized?()
+                    log("CAMERA PERM dialog = GRANTED")
+                    delay(0.1, withCompletion: {
+                        authorized?()
+                    })
                 }
                 else {
+                    log("CAMERA PERM dialog = DENIED")
                     denied?()
                 }
             })
         case .authorized:
+            log("CAMERA PERM = AUTHORIZED")
             authorized?()
             break;
             
         case .denied, .restricted:
+            log("CAMERA PERM = DENIED")
             denied?()
             break;
         }

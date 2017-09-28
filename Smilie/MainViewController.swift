@@ -54,8 +54,6 @@ class MainViewController: ViewController {
         //
         self.initCamera()
         self.initSmile()
-        
-        SoundPlayer(soundName: "punch_sound").play()
     }
     
     override func viewWillAppear(_ animated: Bool) {
