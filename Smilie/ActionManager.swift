@@ -43,7 +43,7 @@ class ActionManager
     //
 
     
-    
+    // This is changed so that nobody will add fake smiles ;)
     static func addSmile() {
         let timestamp = Int64(Date().timeIntervalSince1970)
         let hash = (timestamp%102) * 8

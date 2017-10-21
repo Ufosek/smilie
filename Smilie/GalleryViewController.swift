@@ -10,6 +10,9 @@ import UIKit
 import SDWebImage
 
 
+// NOT USED
+
+
 class GalleryViewController: ViewController {
 
     @IBOutlet weak var photoImageView: UIImageView!
